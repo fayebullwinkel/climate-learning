@@ -15,11 +15,7 @@ function App() {
     // This function updates the component with the
     // current event data stored in the server
     function update() {
-        fetch(`${process.env.REACT_APP_BACKEND}api/events`, {
-            headers: {
-                'Authorization': `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`
-            }
-        })
+        fetch(`${process.env.REACT_APP_BACKEND}api/events`)
             .then(res => res.json())
             .then(event => {
                 setEvents(event.data);
@@ -41,8 +37,7 @@ function App() {
         fetch(`${process.env.REACT_APP_BACKEND}api/events`, {
             method: "POST",
             headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`
+                'Content-type': 'application/json'
             },
             body: JSON.stringify(body)
         })

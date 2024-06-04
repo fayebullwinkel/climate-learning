@@ -26,8 +26,7 @@ function EventItem({ event, update }) {
         fetch(`${process.env.REACT_APP_BACKEND}api/events/${pos}`, {
             method: "PUT",
             headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`
+                'Content-type': 'application/json'
             },
             body: JSON.stringify(body)
         })
@@ -46,10 +45,7 @@ function EventItem({ event, update }) {
         let pos = event.id;
 
         fetch(`${process.env.REACT_APP_BACKEND}api/events/${pos}`, {
-            method: "DELETE",
-            headers: {
-                'Authorization': `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`
-            }
+            method: "DELETE"
         })
             .then(() => {
                 update();
