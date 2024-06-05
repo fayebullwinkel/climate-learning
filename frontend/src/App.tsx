@@ -1,10 +1,7 @@
 import './App.css';
-import NavigationMenu from "./components/NavigationMenu";
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ClimateChange from "./components/ClimateChange";
-import ClimateAdaptation from "./components/ClimateAdaptation";
-import EventList from "./components/EventList";
+import { ClimateChange, ClimateAdaptation, EventList, NavigationMenu } from "./components";
 
 function App() {
     return (
