@@ -1,7 +1,19 @@
 import { useState } from "react";
-import './App.css';
+import '../App.css';
 
-function EventItem({ event, update }) {
+interface Event {
+    id: number;
+    attributes: {
+        item: string;
+    };
+}
+
+interface EventItemProps {
+    event: Event;
+    update: () => void;
+}
+
+function EventItem({ event, update }: EventItemProps) {
 
     // Our component uses the "edit" state
     // variable to switch between editing
@@ -13,7 +25,7 @@ function EventItem({ event, update }) {
     // is rendered in this component.
     // This function is called when the
     // form to change a event is submitted
-    function changeEvent(e) {
+    function changeEvent(e: { preventDefault: () => void; }) {
         e.preventDefault();
         let item = newEvent;
         let pos = event.id;
@@ -40,7 +52,7 @@ function EventItem({ event, update }) {
     // is rendered in this component.
     // This function is called when the
     // form to delete a event is submitted
-    function deleteEvent(e) {
+    function deleteEvent(e: { preventDefault: () => void; }) {
         e.preventDefault();
         let pos = event.id;
 
