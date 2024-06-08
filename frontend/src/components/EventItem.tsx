@@ -35,7 +35,7 @@ function EventItem({ event, update }: EventItemProps) {
             }
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND}api/events/${pos}`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/api/events/${pos}`, {
             method: "PUT",
             headers: {
                 'Content-type': 'application/json'
@@ -56,7 +56,7 @@ function EventItem({ event, update }: EventItemProps) {
         e.preventDefault();
         let pos = event.id;
 
-        fetch(`${process.env.REACT_APP_BACKEND}api/events/${pos}`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/api/events/${pos}`, {
             method: "DELETE"
         })
             .then(() => {

@@ -14,7 +14,7 @@ function EventList(){
     // This function updates the component with the
     // current event data stored in the server
     function update() {
-        fetch(`${process.env.REACT_APP_BACKEND}api/events`)
+        fetch(`${process.env.REACT_APP_BACKEND}/api/events`)
             .then(res => res.json())
             .then(event => {
                 setEvents(event.data);
@@ -33,7 +33,7 @@ function EventList(){
             }
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND}api/events`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/api/events`, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json'

@@ -794,13 +794,16 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     singularName: 'climate-change';
     pluralName: 'climate-changes';
     displayName: 'Climate Change';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    bannerTitle: Attribute.String;
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
