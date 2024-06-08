@@ -1,15 +1,15 @@
 import React from 'react';
 
-interface ColorContainerProps {
+interface ColorBannerProps {
     heading: string;
     description: string;
     color: string;
 }
 
-const ColorContainer: React.FC<ColorContainerProps> = ({ heading, description, color }) => {
-    const containerStyle: React.CSSProperties = {
+const ColorBanner: React.FC<ColorBannerProps> = ({ heading, description, color }) => {
+    const bannerStyle: React.CSSProperties = {
         backgroundColor: color,
-        padding: '20px',
+        padding: '10px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -21,11 +21,11 @@ const ColorContainer: React.FC<ColorContainerProps> = ({ heading, description, c
     };
 
     return (
-        <div className="color-container" style={containerStyle}>
+        <div style={bannerStyle}>
             <h2 style={textContainerStyle}>{heading}</h2>
             <p style={textContainerStyle}>{description}</p>
         </div>
     );
 };
 
-export default ColorContainer;
+export default ColorBanner;

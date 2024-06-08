@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface ImageContainerProps {
+interface ImageBannerProps {
     title: string;
     imageUrl: string;
 }
 
-const ImageContainer: React.FC<ImageContainerProps> = ({ title, imageUrl }) => {
-    const containerStyle: React.CSSProperties = {
+const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl }) => {
+    const bannerStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
         height: '40vh',
@@ -27,10 +27,10 @@ const ImageContainer: React.FC<ImageContainerProps> = ({ title, imageUrl }) => {
     }
 
     return (
-        <div className="image-container" style={containerStyle}>
+        <div style={bannerStyle}>
             <h1 style={overlayTextStyle}>{title}</h1>
         </div>
     );
 };
 
-export default ImageContainer;
+export default ImageBanner;

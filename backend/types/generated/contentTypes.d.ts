@@ -852,6 +852,38 @@ export interface ApiEventEvent extends Schema.CollectionType {
   };
 }
 
+export interface ApiImageCardImageCard extends Schema.CollectionType {
+  collectionName: 'image_cards';
+  info: {
+    singularName: 'image-card';
+    pluralName: 'image-cards';
+    displayName: 'ImageCard';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::image-card.image-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::image-card.image-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -872,6 +904,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::event.event': ApiEventEvent;
+      'api::image-card.image-card': ApiImageCardImageCard;
     }
   }
 }

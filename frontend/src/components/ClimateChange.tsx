@@ -1,10 +1,19 @@
-import { useEffect, useState } from "react";
-import { ClimateChange as ClimateChangeType } from '../types';
-import {ColorContainer, ImageContainer} from "./container";
+import React, {useEffect, useState} from "react";
+import {ClimateChange as ClimateChangeType} from '../types';
+import {ColorContainer, ImageContainer, Card} from "./container";
+import {ImageCardType} from "@/types/ImageCardType";
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
+    const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
     const [error, setError] = useState<string | null>(null);
+
+    const overlayTextStyle: React.CSSProperties = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '50%',
+        margin: '0 auto'
+    }
 
     useEffect(() => {
         const update = () => {
@@ -35,6 +44,17 @@ function ClimateChange() {
                 .catch(error => {
                     setError(error.message);
                 });
+
+            fetch(`${process.env.REACT_APP_BACKEND}/api/image-cards?populate=*`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(imageCard => {
+                    setImageCards(imageCard.data)
+                });
         };
 
         update();
@@ -51,7 +71,16 @@ function ClimateChange() {
     return (
         <div className="page-container">
             <ImageContainer title={data.bannerTitle} imageUrl={data.image.url}/>
-            <ColorContainer heading={data.heading} description={data.description} color={"#F6EDD9"} />
+            <ColorContainer heading={data.heading} description={data.description} color={"#F6EDD9"}/>
+
+            <div style={overlayTextStyle}>
+                {
+                    imageCards.map((imageCard) => {
+                        console.log(imageCard.attributes.image.data)
+                        return <Card imageUrl={imageCard.attributes.image.data.attributes.url} heading={imageCard.attributes.heading} description={imageCard.attributes.description}/>
+                    })
+                }
+            </div>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {EventItem} from "../components";
 
-function EventList(){
+function EventList() {
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState("");
 
