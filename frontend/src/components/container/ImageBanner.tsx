@@ -1,13 +1,16 @@
 import React from 'react';
+import Button from "@mui/material/Button";
+import {Link} from "react-router-dom";
 
 interface ImageBannerProps {
     title: string;
     imageUrl: string;
+    description?: string;
+    showButton?: boolean;
 }
 
-const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl }) => {
+const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, showButton }) => {
     const bannerStyle: React.CSSProperties = {
-        position: 'relative',
         width: '100%',
         height: '40vh',
         backgroundSize: 'cover',
@@ -17,19 +20,32 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl }) => {
         padding: '20px',
     };
 
-    const overlayTextStyle: React.CSSProperties = {
-        position: 'absolute',
+    const contentStyle: React.CSSProperties = {
+        position: 'relative',
         top: '50%',
-        left: '50px',
-        transform: 'translateY(-50%)',
+        left: '5%',
         color: 'white',
         maxWidth: '50%',
-        fontStyle: 'italic'
-    }
+        textAlign: 'justify',
+        transform: 'translateY(-50%)'
+    };
+
+    const overlayTextStyle: React.CSSProperties = {
+        fontStyle: 'italic',
+        transform: 'translateX(-1.2%)'
+    };
 
     return (
         <div style={bannerStyle}>
-            <h1 style={overlayTextStyle}>{title}</h1>
+            <div style={contentStyle}>
+                <h1 style={overlayTextStyle}>{title}</h1>
+                <p>{description}</p>
+                {showButton && (
+                    <Button variant="outlined" component={Link} to="/eventList" style={{color: 'white', borderColor: 'white'}}>
+                        Zu den Aktionen
+                    </Button>
+                )}
+            </div>
         </div>
     );
 };

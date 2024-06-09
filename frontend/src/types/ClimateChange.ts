@@ -6,4 +6,10 @@ export interface ClimateChange {
     };
     heading: string;
     description: string;
+    secondImage: {
+        url: string;
+    }
+    secondBannerTitle: string;
+    secondBannerDescription: string;
+    trippleImageHeading: string;
 }

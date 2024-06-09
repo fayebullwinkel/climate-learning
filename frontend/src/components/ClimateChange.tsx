@@ -41,7 +41,13 @@ function ClimateChange() {
                             url: climateChangeData.attributes.headerImage.data.attributes.url,
                         },
                         heading: climateChangeData.attributes.heading,
-                        description: climateChangeData.attributes.description
+                        description: climateChangeData.attributes.description,
+                        secondImage: {
+                            url: climateChangeData.attributes.secondBannerImage.data.attributes.url
+                        },
+                        secondBannerTitle: climateChangeData.attributes.secondBannerTitle,
+                        secondBannerDescription: climateChangeData.attributes.secondBannerDescription,
+                        trippleImageHeading: climateChangeData.attributes.trippleImageHeading
                     };
                     setData(formattedData);
                 })
@@ -86,13 +92,17 @@ function ClimateChange() {
         <div className="page-container">
             <ImageContainer title={data.bannerTitle} imageUrl={data.image.url}/>
             <ColorContainer heading={data.heading} description={data.description} color={"#F6EDD9"}/>
+            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImage.url} description={data.secondBannerDescription} showButton={true}/>
 
-            <div style={imageCardsStyle}>
-                {
-                    imageCards.map((imageCard: ImageCardType) => {
-                        return <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url} heading={imageCard.attributes.heading} description={imageCard.attributes.description} link={imageCard.attributes.link}/>
-                    })
-                }
+            <div style={{backgroundColor: '#F6EDD9', padding: '1%'}}>
+                <h2>{data.trippleImageHeading}</h2>
+                <div style={imageCardsStyle}>
+                    {
+                        imageCards.map((imageCard: ImageCardType) => {
+                            return <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url} heading={imageCard.attributes.heading} description={imageCard.attributes.description} link={imageCard.attributes.link} />
+                        })
+                    }
+                </div>
             </div>
         </div>
     );

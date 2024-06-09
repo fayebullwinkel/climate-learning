@@ -804,6 +804,12 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     heading: Attribute.String;
     description: Attribute.Text;
+    secondBannerImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    secondBannerTitle: Attribute.String;
+    secondBannerDescription: Attribute.String;
+    trippleImageHeading: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
