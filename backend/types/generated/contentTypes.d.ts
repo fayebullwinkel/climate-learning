@@ -801,7 +801,7 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
   };
   attributes: {
     bannerTitle: Attribute.String;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     heading: Attribute.String;
     description: Attribute.Text;
     createdAt: Attribute.DateTime;
@@ -858,6 +858,7 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
     singularName: 'image-card';
     pluralName: 'image-cards';
     displayName: 'ImageCard';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -866,6 +867,7 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     heading: Attribute.String;
     description: Attribute.Text;
+    link: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

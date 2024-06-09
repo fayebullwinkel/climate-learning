@@ -1,22 +1,26 @@
 import React, {useEffect, useState} from "react";
-import {ClimateChange as ClimateChangeType} from '../types';
+import {ClimateChange as ClimateChangeType, ImageCardType} from '../types';
 import {ColorContainer, ImageContainer, Card} from "./container";
-import {ImageCardType} from "@/types/ImageCardType";
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
     const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    const overlayTextStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '50%',
-        margin: '0 auto'
-    }
+    const getImageCardsStyle = (): React.CSSProperties => {
+        return {
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
+            width: '70%',
+            margin: '0 auto'
+        }
+    };
+
+    const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
 
     useEffect(() => {
-        const update = () => {
+        const update = async () => {
             fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*`)
                 .then(response => {
                     if (!response.ok) {
@@ -34,7 +38,7 @@ function ClimateChange() {
                         id: climateChangeData.id,
                         bannerTitle: climateChangeData.attributes.bannerTitle,
                         image: {
-                            url: climateChangeData.attributes.image.data.attributes.url,
+                            url: climateChangeData.attributes.headerImage.data.attributes.url,
                         },
                         heading: climateChangeData.attributes.heading,
                         description: climateChangeData.attributes.description
@@ -58,6 +62,16 @@ function ClimateChange() {
         };
 
         update();
+
+        const handleResize = () => {
+            setImageCardsStyle(getImageCardsStyle());
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     if (error) {
@@ -73,11 +87,10 @@ function ClimateChange() {
             <ImageContainer title={data.bannerTitle} imageUrl={data.image.url}/>
             <ColorContainer heading={data.heading} description={data.description} color={"#F6EDD9"}/>
 
-            <div style={overlayTextStyle}>
+            <div style={imageCardsStyle}>
                 {
-                    imageCards.map((imageCard) => {
-                        console.log(imageCard.attributes.image.data)
-                        return <Card imageUrl={imageCard.attributes.image.data.attributes.url} heading={imageCard.attributes.heading} description={imageCard.attributes.description}/>
+                    imageCards.map((imageCard: ImageCardType) => {
+                        return <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url} heading={imageCard.attributes.heading} description={imageCard.attributes.description} link={imageCard.attributes.link}/>
                     })
                 }
             </div>

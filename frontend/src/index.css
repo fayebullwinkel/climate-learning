@@ -1,86 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-Black.otf') format('opentype');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-BlackItalic.otf') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-BoldItalic.otf') format('opentype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-ExtraBold.otf') format('opentype');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-ExtraBoldItalic.otf') format('opentype');
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-MediumItalic.otf') format('opentype');
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Stara';
-  src: url('./assets/fonts/Stara-SemiBoldItalic.otf') format('opentype');
-  font-weight: 600;
-  font-style: italic;
-}
+@import url('https://fonts.cdnfonts.com/css/source-sans-pro');
 
 body {
   margin: 0;
-  font-family: 'Stara', sans-serif;
+  font-family: 'Plantagenet Cherokee', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  hyphens: auto;
+  word-break: break-word;
 }
 
 code {
-  font-family: 'Stara', monospace;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Merriweather', serif;
+  line-height: normal;
 }

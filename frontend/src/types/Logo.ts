@@ -1,7 +1,5 @@
-export interface ImageCardType {
-    id: number;
+export interface Logo {
     attributes: {
-        id: number;
         image: {
             data: {
                 attributes: {
@@ -9,8 +7,5 @@ export interface ImageCardType {
                 }
             }
         };
-        heading: string;
-        description: string;
-        link: string;
     }
 }
