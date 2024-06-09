@@ -1,12 +1,13 @@
 import React from 'react';
 
 interface ColorBannerProps {
+    category: string;
     heading: string;
     description: string;
     color: string;
 }
 
-const ColorBanner: React.FC<ColorBannerProps> = ({ heading, description, color }) => {
+const ColorBanner: React.FC<ColorBannerProps> = ({ category, heading, description, color }) => {
     const bannerStyle: React.CSSProperties = {
         backgroundColor: color,
         padding: '10px',
@@ -22,8 +23,11 @@ const ColorBanner: React.FC<ColorBannerProps> = ({ heading, description, color }
 
     return (
         <div style={bannerStyle}>
-            <h2 style={textContainerStyle}>{heading}</h2>
-            <p style={textContainerStyle}>{description}</p>
+            <div style={textContainerStyle}>
+                <h3 style={{color: '#76B900'}}>{category}</h3>
+                <h2>{heading}</h2>
+                <p>{description}</p>
+            </div>
         </div>
     );
 };

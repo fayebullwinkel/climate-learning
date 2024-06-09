@@ -810,6 +810,7 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     secondBannerTitle: Attribute.String;
     secondBannerDescription: Attribute.String;
     trippleImageHeading: Attribute.String;
+    category: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

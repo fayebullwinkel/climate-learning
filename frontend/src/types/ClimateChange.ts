@@ -4,6 +4,7 @@ export interface ClimateChange {
     image: {
         url: string;
     };
+    category: string;
     heading: string;
     description: string;
     secondImage: {

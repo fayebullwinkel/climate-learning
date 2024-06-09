@@ -40,6 +40,7 @@ function ClimateChange() {
                         image: {
                             url: climateChangeData.attributes.headerImage.data.attributes.url,
                         },
+                        category: climateChangeData.attributes.category,
                         heading: climateChangeData.attributes.heading,
                         description: climateChangeData.attributes.description,
                         secondImage: {
@@ -91,7 +92,7 @@ function ClimateChange() {
     return (
         <div className="page-container">
             <ImageContainer title={data.bannerTitle} imageUrl={data.image.url}/>
-            <ColorContainer heading={data.heading} description={data.description} color={"#F6EDD9"}/>
+            <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"}/>
             <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImage.url} description={data.secondBannerDescription} showButton={true}/>
 
             <div style={{backgroundColor: '#F6EDD9', padding: '1%'}}>
