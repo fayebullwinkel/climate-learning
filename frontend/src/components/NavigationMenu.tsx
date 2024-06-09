@@ -9,15 +9,19 @@ import { Link } from 'react-router-dom';
 import {Grid} from "@mui/material";
 
 function NavigationMenu() {
+    const menuStyle: React.CSSProperties = {
+        backgroundColor: '#F7FBF1',
+        color: "black"
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
-                position="static"
-                sx={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)', height: 100 }} // Add shadow and increase height
+                position="fixed"
+                sx={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)', height: 100 }}
             >
-                <Toolbar sx={{ minHeight: 100 }}> {/* Ensure Toolbar matches AppBar height */}
+                <Toolbar sx={{ minHeight: 100 }} style={menuStyle}>
                     <Grid container alignItems="center">
-                        {/* Logo on the left */}
                         <Grid item>
                             <IconButton
                                 size="large"
@@ -31,8 +35,8 @@ function NavigationMenu() {
                                 <img
                                     src="https://www.svgrepo.com/show/270536/earth-day-ecology.svg"
                                     alt="logo"
-                                    width="80" // Increase logo width
-                                    height="80" // Increase logo height
+                                    width="80"
+                                    height="80"
                                 />
                             </IconButton>
                         </Grid>
@@ -40,7 +44,6 @@ function NavigationMenu() {
                         {/* Spacer to push the next items to the center */}
                         <Grid item xs />
 
-                        {/* Centered Navigation Buttons */}
                         <Grid item>
                             <Typography variant="h6" component="div">
                                 <Button color="inherit" component={Link} to="/" sx={{ mx: 1 }}>
@@ -58,7 +61,6 @@ function NavigationMenu() {
                         {/* Spacer to push the next items to the right */}
                         <Grid item xs />
 
-                        {/* Login button on the right */}
                         <Grid item>
                             <Button color="inherit">Login</Button>
                         </Grid>

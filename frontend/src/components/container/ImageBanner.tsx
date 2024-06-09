@@ -24,6 +24,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl }) => {
         transform: 'translateY(-50%)',
         color: 'white',
         maxWidth: '50%',
+        fontStyle: 'italic'
     }
 
     return (
