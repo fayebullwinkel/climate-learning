@@ -12,5 +12,18 @@ export interface ClimateChange {
     }
     secondBannerTitle: string;
     secondBannerDescription: string;
-    trippleImageHeading: string;
+    consequences: {
+        consequence_1: {
+            heading: string;
+            description: string;
+        };
+        consequence_2: {
+            heading: string;
+            description: string;
+        };
+        consequence_3: {
+            heading: string;
+            description: string;
+        };
+    };
 }

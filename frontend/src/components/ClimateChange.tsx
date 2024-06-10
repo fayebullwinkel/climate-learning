@@ -48,7 +48,20 @@ function ClimateChange() {
                         },
                         secondBannerTitle: climateChangeData.attributes.secondBannerTitle,
                         secondBannerDescription: climateChangeData.attributes.secondBannerDescription,
-                        trippleImageHeading: climateChangeData.attributes.trippleImageHeading
+                        consequences: {
+                            consequence_1: {
+                                heading: climateChangeData.attributes.consequence_1_heading,
+                                description: climateChangeData.attributes.consequence_1_description,
+                            },
+                            consequence_2: {
+                                heading: climateChangeData.attributes.consequence_2_heading,
+                                description: climateChangeData.attributes.consequence_2_description,
+                            },
+                            consequence_3: {
+                                heading: climateChangeData.attributes.consequence_3_heading,
+                                description: climateChangeData.attributes.consequence_3_description,
+                            },
+                        },
                     };
                     setData(formattedData);
                 })
@@ -93,10 +106,7 @@ function ClimateChange() {
         <div className="page-container">
             <ImageContainer title={data.bannerTitle} imageUrl={data.image.url}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"}/>
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImage.url} description={data.secondBannerDescription} showButton={true}/>
-
-            <div style={{backgroundColor: '#F6EDD9', padding: '1%'}}>
-                <h2>{data.trippleImageHeading}</h2>
+            <div style={{ padding: '1%'}}>
                 <div style={imageCardsStyle}>
                     {
                         imageCards.map((imageCard: ImageCardType) => {
@@ -105,6 +115,7 @@ function ClimateChange() {
                     }
                 </div>
             </div>
+            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImage.url} description={data.secondBannerDescription} consequences={data.consequences}/>
         </div>
     );
 }

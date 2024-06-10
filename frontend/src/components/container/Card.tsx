@@ -14,8 +14,8 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, link }) => 
         flexDirection: "column",
         textAlign: 'justify',
         width: window.innerWidth <= 768 ? "100%" : "30%",
-        marginTop: '4%',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        padding: '10px'
     };
 
     const cardImageStyle: React.CSSProperties = {
