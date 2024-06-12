@@ -1,0 +1,25 @@
+version: "3"
+services:
+  strapi:
+    container_name: strapi
+    build: backend
+    image: climate-learning-backend:latest
+    restart: unless-stopped
+    env_file: ./backend/.env
+    volumes:
+      - ./backend/config:/opt/app/config
+      - ./backend/src:/opt/app/src
+      - ./backend/package.json:/opt/package.json
+      - ./backend/yarn.lock:/opt/yarn.lock
+      - ./backend/.env:/opt/app/.env
+      - ./backend/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+
+  react:
+    container_name: frontend_learning_platform
+    build: frontend
+    image: climate-learning-frontend:latest
+    restart: unless-stopped
+    ports:
+      - "3000:80"
