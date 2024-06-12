@@ -1,13 +1,13 @@
 import Slider from "react-slick";
-import {TemperatureChart} from "./";
+import {Co2Clock, TemperatureChart} from "./";
 import React from "react";
+import {SliderItem} from '../types';
 
 interface ClimateChangeProps {
-    heading: string;
-    caption: string;
+    sliderItems: SliderItem[]
 }
 
-const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({heading, caption}) => {
+const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({sliderItems}) => {
     const sliderSettings = {
         dots: true,
         infinite: true,
@@ -35,18 +35,24 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({heading, caption}) =
         <div style={{width: '70%', margin: '0 auto', padding: '1%'}}>
             <Slider {...sliderSettings}>
                 <div style={sliderStyle}>
-                    <h2 style={{textAlign: 'justify'}}>{heading}</h2>
-                    <p style={{textAlign: 'justify'}}>{caption} Quelle: <a
+                    <h2 style={{textAlign: 'justify'}}>{sliderItems[0].attributes.heading}</h2>
+                    <p style={{textAlign: 'justify'}}>{sliderItems[0].attributes.description} Quelle: <a
                         href="https://climate.nasa.gov/vital-signs/global-temperature/?intent=121"
                         target="_blank">NASA/GISS</a>.</p>
                 </div>
                 <div style={sliderStyle}>
                     <TemperatureChart/>
                 </div>
-                <div style={sliderStyle}>Slider 2 - Left Content</div>
+                <div style={sliderStyle}>
+                    <h2 style={{textAlign: 'justify'}}>{sliderItems[1].attributes.heading}</h2>
+                    <p style={{textAlign: 'justify'}}>{sliderItems[1].attributes.description}</p>
+                </div>
                 <div style={sliderStyle}>Slider 2 - Right Content</div>
-                <div style={sliderStyle}>Slider 3 - Left Content</div>
-                <div style={sliderStyle}>Slider 3 - Right Content</div>
+                <div style={sliderStyle}>
+                    <h2 style={{textAlign: 'justify'}}>{sliderItems[2].attributes.heading}</h2>
+                    <p style={{textAlign: 'justify'}}>{sliderItems[2].attributes.description}</p>
+                </div>
+                <div style={sliderStyle}><Co2Clock /></div>
             </Slider>
             <style>{`
                 .slick-prev:before, .slick-next:before {

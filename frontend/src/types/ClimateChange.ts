@@ -1,31 +1,19 @@
+import {Consequence, SliderItem} from "./";
+
 export interface ClimateChange {
     id: number;
     bannerTitle: string;
-    image: {
-        url: string;
-    };
+    headerImageUrl: string;
     category: string;
     heading: string;
     description: string;
-    secondImage: {
-        url: string;
-    }
     secondBannerTitle: string;
     secondBannerDescription: string;
+    secondImageUrl: string;
     consequences: {
-        consequence_1: {
-            heading: string;
-            description: string;
-        };
-        consequence_2: {
-            heading: string;
-            description: string;
-        };
-        consequence_3: {
-            heading: string;
-            description: string;
-        }
+        data: Consequence[];
     }
-    graphHeading: string;
-    graphCaption: string;
+    sliderItems: {
+        data: SliderItem[];
+    }
 }

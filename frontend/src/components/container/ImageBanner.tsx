@@ -1,21 +1,13 @@
 import React from 'react';
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-
-interface Consequence {
-    heading: string;
-    description: string;
-}
+import {Consequence} from "../../types";
 
 interface ImageBannerProps {
     title: string;
     imageUrl: string;
     description?: string;
-    consequences?: {
-        consequence_1: Consequence;
-        consequence_2: Consequence;
-        consequence_3: Consequence;
-    };
+    consequences?: Consequence[];
 }
 
 const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, consequences }) => {
@@ -76,17 +68,15 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
             {consequences && (
                 <div style={optionalDivStyle}>
                     <div style={containerStyle}>
-                        <div style={{ flex: '1', margin: '0 10px' }}>
-                            <h2>{consequences.consequence_1.heading}</h2>
-                            <p>{consequences.consequence_1.description}</p>
-                        </div>
-                        <div style={{ flex: '1', margin: '0 10px' }}>
-                            <h2>{consequences.consequence_2.heading}</h2>
-                            <p>{consequences.consequence_2.description}</p>
-                        </div>
-                        <div style={{ flex: '1', margin: '0 10px' }}>
-                            <h2>{consequences.consequence_3.heading}</h2>
-                            <p>{consequences.consequence_3.description}</p>
+                        <div style={optionalDivStyle}>
+                            <div style={containerStyle}>
+                                {consequences.map(consequence => (
+                                    <div key={consequence.id} style={{ flex: '1', margin: '0 10px' }}>
+                                        <h2>{consequence.attributes.heading}</h2>
+                                        <p>{consequence.attributes.description}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

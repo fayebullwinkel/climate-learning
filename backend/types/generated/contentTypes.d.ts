@@ -810,14 +810,16 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     secondBannerTitle: Attribute.String;
     category: Attribute.String;
     secondBannerDescription: Attribute.Text;
-    consequence_1_heading: Attribute.String;
-    consequence_1_description: Attribute.String;
-    consequence_2_heading: Attribute.String;
-    consequence_2_description: Attribute.String;
-    consequence_3_heading: Attribute.String;
-    consequence_3_description: Attribute.String;
-    graphCaption: Attribute.Text;
-    graphHeading: Attribute.String;
+    consequences: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::consequence.consequence'
+    >;
+    slider_items: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::slider-item.slider-item'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -829,6 +831,43 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::climate-change.climate-change',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiConsequenceConsequence extends Schema.CollectionType {
+  collectionName: 'consequences';
+  info: {
+    singularName: 'consequence';
+    pluralName: 'consequences';
+    displayName: 'Consequence';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    climate_change: Attribute.Relation<
+      'api::consequence.consequence',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::consequence.consequence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::consequence.consequence',
       'oneToOne',
       'admin::user'
     > &
@@ -900,6 +939,42 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
   };
 }
 
+export interface ApiSliderItemSliderItem extends Schema.CollectionType {
+  collectionName: 'slider_items';
+  info: {
+    singularName: 'slider-item';
+    pluralName: 'slider-items';
+    displayName: 'SliderItem';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    climate_change: Attribute.Relation<
+      'api::slider-item.slider-item',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::slider-item.slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::slider-item.slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -919,8 +994,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
+      'api::consequence.consequence': ApiConsequenceConsequence;
       'api::event.event': ApiEventEvent;
       'api::image-card.image-card': ApiImageCardImageCard;
+      'api::slider-item.slider-item': ApiSliderItemSliderItem;
     }
   }
 }
