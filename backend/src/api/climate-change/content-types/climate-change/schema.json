@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "climate_changes",
+  "info": {
+    "singularName": "climate-change",
+    "pluralName": "climate-changes",
+    "displayName": "Climate Change",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bannerTitle": {
+      "type": "string"
+    },
+    "headerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "secondBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "secondBannerTitle": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "secondBannerDescription": {
+      "type": "text"
+    },
+    "consequences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::consequence.consequence",
+      "mappedBy": "climate_change"
+    },
+    "slider_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::slider-item.slider-item",
+      "mappedBy": "climate_change"
+    }
+  }
+}

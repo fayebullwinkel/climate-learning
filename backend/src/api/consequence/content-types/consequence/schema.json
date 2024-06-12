@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consequences",
+  "info": {
+    "singularName": "consequence",
+    "pluralName": "consequences",
+    "displayName": "Consequence",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "climate_change": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-change.climate-change",
+      "inversedBy": "consequences"
+    }
+  }
+}
