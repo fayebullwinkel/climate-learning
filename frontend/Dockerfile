@@ -22,6 +22,9 @@ FROM nginx:alpine
 # Copy the built React app to Nginx's web server directory
 COPY --from=build /app/build /usr/share/nginx/html
 
+# substitute environment variables before starting nginx
+COPY substitute-env-vars.sh /docker-entrypoint.d/99-substitute-env-vars.sh
+
 # Expose port 80 for the Nginx server
 EXPOSE 80
 

@@ -1,7 +1,6 @@
 version: "3"
 services:
-  strapi:
-    container_name: strapi
+  backend:
     build: backend
     image: climate-learning-backend:latest
     restart: unless-stopped
@@ -16,10 +15,11 @@ services:
     ports:
       - "1337:1337"
 
-  react:
-    container_name: frontend_learning_platform
+  frontend:
     build: frontend
     image: climate-learning-frontend:latest
     restart: unless-stopped
+    environment:
+      REACT_APP_BACKEND: http://localhost:1337
     ports:
       - "3000:80"

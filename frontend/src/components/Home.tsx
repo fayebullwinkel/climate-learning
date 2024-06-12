@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { ClimateChangeSlider } from "./";
-import { ClimateChange as ClimateChangeType, ImageCardType } from '../types';
-import { ColorContainer, ImageContainer, Card } from "./container";
+import React, {useEffect, useState} from "react";
+import {ClimateChangeSlider} from "./";
+import {ClimateChange as ClimateChangeType, ImageCardType} from '../types';
+import {ColorContainer, ImageContainer, Card} from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -9,7 +9,18 @@ function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
     const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
     const [error, setError] = useState<string | null>(null);
-    const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>({});
+    const getImageCardsStyle = (): React.CSSProperties => {
+        return {
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
+            width: '70%',
+            margin: '0 auto'
+        }
+    };
+
+    const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,16 +54,6 @@ function ClimateChange() {
         };
     }, []);
 
-    const getImageCardsStyle = (): React.CSSProperties => {
-        return {
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
-            width: '70%',
-            margin: '0 auto'
-        };
-    };
-
     const formatClimateData = (climateData: any): ClimateChangeType => {
         return {
             id: climateData.id,
@@ -80,23 +81,23 @@ function ClimateChange() {
 
     return (
         <div className="page-container">
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} />
+            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
-                            color={"#F6EDD9"} />
-            <div style={{ padding: '1%' }}>
+                            color={"#F6EDD9"}/>
+            <div style={{padding: '1%'}}>
                 <div style={imageCardsStyle}>
                     {
                         imageCards.map((imageCard: ImageCardType) => (
                             <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
                                   heading={imageCard.attributes.heading}
                                   description={imageCard.attributes.description}
-                                  link={imageCard.attributes.link} />
+                                  link={imageCard.attributes.link}/>
                         ))
                     }
                 </div>
             </div>
             <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
-                            description={data.secondBannerDescription} consequences={data.consequences.data} />
+                            description={data.secondBannerDescription} consequences={data.consequences.data}/>
             <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
         </div>
     );
