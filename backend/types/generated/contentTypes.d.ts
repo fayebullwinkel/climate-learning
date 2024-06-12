@@ -816,6 +816,8 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     consequence_2_description: Attribute.String;
     consequence_3_heading: Attribute.String;
     consequence_3_description: Attribute.String;
+    graphCaption: Attribute.Text;
+    graphHeading: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -22,7 +22,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     const bannerStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
-        height: '40vh',
+        height: description ? '70vh' : '60vh',
         backgroundSize: 'cover',
         backgroundPosition: 'center 55%',
         boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',

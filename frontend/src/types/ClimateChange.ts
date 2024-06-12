@@ -24,6 +24,8 @@ export interface ClimateChange {
         consequence_3: {
             heading: string;
             description: string;
-        };
-    };
+        }
+    }
+    graphHeading: string;
+    graphCaption: string;
 }
