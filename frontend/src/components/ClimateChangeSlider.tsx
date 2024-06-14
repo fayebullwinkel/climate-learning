@@ -1,13 +1,14 @@
 import Slider from "react-slick";
-import {Co2Clock, TemperatureChart} from "./";
+import { Co2Clock, TemperatureChart } from "./";
 import React from "react";
-import {SliderItem} from '../types';
+import { SliderItem } from '../types';
 
 interface ClimateChangeProps {
     sliderItems: SliderItem[]
 }
 
-const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({sliderItems}) => {
+const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems }) => {
+
     const sliderSettings = {
         dots: true,
         infinite: true,
@@ -31,12 +32,17 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({sliderItems}) => {
         display: 'inline-block',
     };
 
+    const paragraphStyle: React.CSSProperties = {
+        textAlign: 'justify',
+        width: window.innerWidth <= 768 ? '95%' : 'auto'
+    }
+
     return (
         <div style={{width: '70%', margin: '0 auto', padding: '1%'}}>
             <Slider {...sliderSettings}>
                 <div style={sliderStyle}>
                     <h2 style={{textAlign: 'justify'}}>{sliderItems[0].attributes.heading}</h2>
-                    <p style={{textAlign: 'justify'}}>{sliderItems[0].attributes.description} Quelle: <a
+                    <p style={paragraphStyle}>{sliderItems[0].attributes.description} Quelle: <a
                         href="https://climate.nasa.gov/vital-signs/global-temperature/?intent=121"
                         target="_blank">NASA/GISS</a>.</p>
                 </div>
@@ -45,12 +51,12 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({sliderItems}) => {
                 </div>
                 <div style={sliderStyle}>
                     <h2 style={{textAlign: 'justify'}}>{sliderItems[1].attributes.heading}</h2>
-                    <p style={{textAlign: 'justify'}}>{sliderItems[1].attributes.description}</p>
+                    <p style={paragraphStyle}>{sliderItems[1].attributes.description}</p>
                 </div>
                 <div style={sliderStyle}>Slider 2 - Right Content</div>
                 <div style={sliderStyle}>
                     <h2 style={{textAlign: 'justify'}}>{sliderItems[2].attributes.heading}</h2>
-                    <p style={{textAlign: 'justify'}}>{sliderItems[2].attributes.description}</p>
+                    <p style={paragraphStyle}>{sliderItems[2].attributes.description}</p>
                 </div>
                 <div style={sliderStyle}><Co2Clock /></div>
             </Slider>

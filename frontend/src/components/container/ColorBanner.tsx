@@ -17,7 +17,7 @@ const ColorBanner: React.FC<ColorBannerProps> = ({ category, heading, descriptio
     };
 
     const textContainerStyle: React.CSSProperties = {
-        width: '50%',
+        width: window.innerWidth <= 768 ? '100%' : '50%',
         textAlign: 'center',
     };
 

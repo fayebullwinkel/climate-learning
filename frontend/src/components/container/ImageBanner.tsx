@@ -1,7 +1,10 @@
 import React from 'react';
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import {Consequence} from "../../types";
+import Slider from "react-slick";
+import { Consequence } from "../../types";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 interface ImageBannerProps {
     title: string;
@@ -14,7 +17,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     const bannerStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
-        height: description ? '70vh' : '60vh',
+        height: description ? '700px' : '600px',
         backgroundSize: 'cover',
         backgroundPosition: 'center 55%',
         boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
@@ -27,7 +30,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         top: description ? '30%' : '50%',
         left: '10%',
         color: 'white',
-        maxWidth: '50%',
+        maxWidth: window.innerWidth <= 768 ? "70%" : "50%",
         textAlign: 'justify',
         transform: 'translateY(-50%)',
     };
@@ -54,6 +57,15 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         textAlign: 'justify'
     };
 
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true
+    };
+
     return (
         <div style={bannerStyle}>
             <div style={contentStyle}>
@@ -67,18 +79,25 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
             </div>
             {consequences && (
                 <div style={optionalDivStyle}>
-                    <div style={containerStyle}>
-                        <div style={optionalDivStyle}>
-                            <div style={containerStyle}>
-                                {consequences.map(consequence => (
-                                    <div key={consequence.id} style={{ flex: '1', margin: '0 10px' }}>
-                                        <h2>{consequence.attributes.heading}</h2>
-                                        <p>{consequence.attributes.description}</p>
-                                    </div>
-                                ))}
-                            </div>
+                    {window.innerWidth <= 768 ? (
+                        <Slider {...sliderSettings}>
+                            {consequences.map(consequence => (
+                                <div key={consequence.id}>
+                                    <h2>{consequence.attributes.heading}</h2>
+                                    <p>{consequence.attributes.description}</p>
+                                </div>
+                            ))}
+                        </Slider>
+                    ) : (
+                        <div style={containerStyle}>
+                            {consequences.map(consequence => (
+                                <div key={consequence.id} style={{ flex: '1', margin: '0 10px' }}>
+                                    <h2>{consequence.attributes.heading}</h2>
+                                    <p>{consequence.attributes.description}</p>
+                                </div>
+                            ))}
                         </div>
-                    </div>
+                    )}
                 </div>
             )}
         </div>
