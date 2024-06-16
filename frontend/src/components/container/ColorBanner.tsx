@@ -26,7 +26,7 @@ const ColorBanner: React.FC<ColorBannerProps> = ({ category, heading, descriptio
             <div style={textContainerStyle}>
                 <h3 style={{color: '#76B900'}}>{category}</h3>
                 <h2>{heading}</h2>
-                <p>{description}</p>
+                <p style={{textAlign: 'justify'}}>{description}</p>
             </div>
         </div>
     );

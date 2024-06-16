@@ -19,7 +19,13 @@ export interface ClimateChange {
     category_2: string;
     heading_2: string;
     description_2: string;
-    consequencesSliderItems: {
+    naturalConsequences: {
+        data: SliderItem[];
+    }
+    socialConsequences: {
+        data: SliderItem[];
+    }
+    economicConsequences: {
         data: SliderItem[];
     }
 }

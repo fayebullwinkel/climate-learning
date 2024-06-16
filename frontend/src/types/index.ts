@@ -1,3 +1,4 @@
+export * from './AccordionData';
 export * from './ClimateChange';
 export * from './Consequence';
 export * from './ImageCardType';

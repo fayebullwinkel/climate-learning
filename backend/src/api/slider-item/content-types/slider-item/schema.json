@@ -4,7 +4,8 @@
   "info": {
     "singularName": "slider-item",
     "pluralName": "slider-items",
-    "displayName": "SliderItem"
+    "displayName": "SliderItem",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

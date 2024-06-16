@@ -13,23 +13,27 @@ const FlipCard: React.FC<FlipCardProps> = ({ item }) => {
         setIsFlipped(!isFlipped);
     };
 
-    const imageStyle: React.CSSProperties = {
-        width: "100%",
-        height: "auto",
-        maxHeight: "400px",
-        objectFit: 'cover',
-        borderRadius: '10px',
-    };
-
     const cardStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'justify',
-        padding: '20px',
+        padding: '10px',
+        margin: '20px',
         boxSizing: 'border-box',
-        height: '100%',
+        height: '450px',
         position: 'relative',
         overflow: 'hidden',
+        borderRadius: '10px',
+        border: isFlipped ? '1px solid lightgrey' : 'none'
+    };
+
+    const frontCardStyle: React.CSSProperties = {
+        ...cardStyle,
+        backgroundImage: `url(${process.env.REACT_APP_BACKEND}${item.attributes.image?.data.attributes.url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        color: 'white',
+        boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)'
     };
 
     const headingStyle: React.CSSProperties = {
@@ -39,23 +43,18 @@ const FlipCard: React.FC<FlipCardProps> = ({ item }) => {
         transform: 'translate(-50%, -50%)',
         color: 'white',
         zIndex: 1,
+        width: '80%',
+        textAlign: 'center',
     };
-
-    const imageUrl: string | undefined = item.attributes.image?.data.attributes.url;
 
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-            <div className="card front" style={cardStyle} onClick={handleClick}>
+            <div className="card front" style={frontCardStyle} onClick={handleClick}>
                 <h2 style={headingStyle}>{item.attributes.heading}</h2>
-                <img
-                    src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}
-                    alt="Image of consequence of climate change"
-                    style={imageStyle}
-                />
             </div>
 
             <div className="card back" style={cardStyle} onClick={handleClick}>
-                <p>{item.attributes.description}</p>
+                <p style={{textAlign: 'left'}}>{item.attributes.description}</p>
             </div>
         </ReactCardFlip>
     );

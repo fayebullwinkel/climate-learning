@@ -13,8 +13,8 @@ const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         responsive: [
             {
                 breakpoint: 1024,
@@ -27,7 +27,8 @@ const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
     };
 
     return (
-        <div style={{width: '70%', margin: '0 auto', padding: '1%'}}>
+        <div style={{padding: '1%'}}>
+            <p style={{textAlign: 'left'}}>Klicke auf die einzelnen Karten, um mehr zu erfahren: </p>
             <Slider {...sliderSettings}>
                 {sliderItems.map((item, index) => (
                     <div key={index}>

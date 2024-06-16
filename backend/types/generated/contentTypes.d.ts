@@ -828,6 +828,16 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::consequence-slider-item.consequence-slider-item'
     >;
+    social_consequences: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::social-consequence.social-consequence'
+    >;
+    economic_consequences: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::economic-consequence.economic-consequence'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -889,7 +899,7 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
   info: {
     singularName: 'consequence-slider-item';
     pluralName: 'consequence-slider-items';
-    displayName: 'ConsequenceSliderItem';
+    displayName: 'NaturalConsequence';
     description: '';
   };
   options: {
@@ -915,6 +925,44 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::consequence-slider-item.consequence-slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEconomicConsequenceEconomicConsequence
+  extends Schema.CollectionType {
+  collectionName: 'economic_consequences';
+  info: {
+    singularName: 'economic-consequence';
+    pluralName: 'economic-consequences';
+    displayName: 'EconomicConsequence';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    climate_change: Attribute.Relation<
+      'api::economic-consequence.economic-consequence',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::economic-consequence.economic-consequence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::economic-consequence.economic-consequence',
       'oneToOne',
       'admin::user'
     > &
@@ -1016,12 +1064,48 @@ export interface ApiPageTitlePageTitle extends Schema.CollectionType {
   };
 }
 
+export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
+  collectionName: 'quiz_questions';
+  info: {
+    singularName: 'quiz-question';
+    pluralName: 'quiz-questions';
+    displayName: 'ConsequencesQuizQuestion';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    question: Attribute.String;
+    answer1: Attribute.String;
+    answer2: Attribute.String;
+    answer3: Attribute.String;
+    answer4: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::quiz-question.quiz-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::quiz-question.quiz-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSliderItemSliderItem extends Schema.CollectionType {
   collectionName: 'slider_items';
   info: {
     singularName: 'slider-item';
     pluralName: 'slider-items';
     displayName: 'SliderItem';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1045,6 +1129,45 @@ export interface ApiSliderItemSliderItem extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::slider-item.slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSocialConsequenceSocialConsequence
+  extends Schema.CollectionType {
+  collectionName: 'social_consequences';
+  info: {
+    singularName: 'social-consequence';
+    pluralName: 'social-consequences';
+    displayName: 'SocialConsequence';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    climate_change: Attribute.Relation<
+      'api::social-consequence.social-consequence',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::social-consequence.social-consequence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::social-consequence.social-consequence',
       'oneToOne',
       'admin::user'
     > &
@@ -1097,10 +1220,13 @@ declare module '@strapi/types' {
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
       'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;
+      'api::economic-consequence.economic-consequence': ApiEconomicConsequenceEconomicConsequence;
       'api::event.event': ApiEventEvent;
       'api::image-card.image-card': ApiImageCardImageCard;
       'api::page-title.page-title': ApiPageTitlePageTitle;
+      'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;
+      'api::social-consequence.social-consequence': ApiSocialConsequenceSocialConsequence;
       'api::tab.tab': ApiTabTab;
     }
   }

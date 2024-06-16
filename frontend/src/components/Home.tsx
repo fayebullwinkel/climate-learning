@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {ClimateChangeSlider, ConsequencesSlider} from "./slider";
-import {ClimateChange as ClimateChangeType, ImageCardType} from '../types';
-import {ColorContainer, ImageContainer, Card } from "./container";
+import {AccordionData, ClimateChange as ClimateChangeType, ImageCardType} from '../types';
+import {ColorContainer, ImageContainer, Card, CustomAccordion} from "./container";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css"
+import "slick-carousel/slick/slick-theme.css";
+
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
+    const [accordionData, setAccordionData] = useState<AccordionData | null>(null);
     const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
     const [error, setError] = useState<string | null>(null);
     const getImageCardsStyle = (): React.CSSProperties => {
@@ -15,21 +17,26 @@ function ClimateChange() {
             flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
             width: '70%',
             margin: '0 auto'
-        }
+        };
     };
 
     const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=headerImage,secondBannerImage,consequences,slider_items,consequence_slider_items.image`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=headerImage,secondBannerImage,consequences,slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
+                console.log("hier kommen die Daten ", formattedData);
                 setData(formattedData);
+                setAccordionData({
+                    naturalConsequencesSliderItems: formattedData.naturalConsequences.data,
+                    socialConsequencesSliderItems: formattedData.socialConsequences.data,
+                    economicConsequencesSliderItems: formattedData.economicConsequences.data
+                });
 
                 const imageResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/image-cards?populate=*`);
                 if (!imageResponse.ok) throw new Error('Network response was not ok');
@@ -69,10 +76,11 @@ function ClimateChange() {
             category_2: climateData.attributes.category_2,
             heading_2: climateData.attributes.heading_2,
             description_2: climateData.attributes.description_2,
-            consequencesSliderItems: climateData.attributes.consequence_slider_items
+            naturalConsequences: climateData.attributes.consequence_slider_items,
+            socialConsequences: climateData.attributes.social_consequences,
+            economicConsequences: climateData.attributes.economic_consequences,
         };
     };
-
 
     if (error) {
         return <div>{error}</div>;
@@ -104,7 +112,9 @@ function ClimateChange() {
             <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
             <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                             color={"#F6EDD9"}/>
-            <ConsequencesSlider sliderItems={data.consequencesSliderItems.data}/>
+            <div style={{margin: '20px 0 20px 0'}}>
+                <CustomAccordion data={accordionData}/>
+            </div>
         </div>
     );
 }

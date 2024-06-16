@@ -78,6 +78,18 @@
       "relation": "oneToMany",
       "target": "api::consequence-slider-item.consequence-slider-item",
       "mappedBy": "climate_change"
+    },
+    "social_consequences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::social-consequence.social-consequence",
+      "mappedBy": "climate_change"
+    },
+    "economic_consequences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::economic-consequence.economic-consequence",
+      "mappedBy": "climate_change"
     }
   }
 }
