@@ -820,6 +820,14 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::slider-item.slider-item'
     >;
+    category_2: Attribute.String;
+    heading_2: Attribute.String;
+    description_2: Attribute.Text;
+    consequence_slider_items: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::consequence-slider-item.consequence-slider-item'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -868,6 +876,45 @@ export interface ApiConsequenceConsequence extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::consequence.consequence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiConsequenceSliderItemConsequenceSliderItem
+  extends Schema.CollectionType {
+  collectionName: 'consequence_slider_items';
+  info: {
+    singularName: 'consequence-slider-item';
+    pluralName: 'consequence-slider-items';
+    displayName: 'ConsequenceSliderItem';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    climate_change: Attribute.Relation<
+      'api::consequence-slider-item.consequence-slider-item',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::consequence-slider-item.consequence-slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::consequence-slider-item.consequence-slider-item',
       'oneToOne',
       'admin::user'
     > &
@@ -939,6 +986,36 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
   };
 }
 
+export interface ApiPageTitlePageTitle extends Schema.CollectionType {
+  collectionName: 'page_titles';
+  info: {
+    singularName: 'page-title';
+    pluralName: 'page-titles';
+    displayName: 'PageTitle';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-title.page-title',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-title.page-title',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSliderItemSliderItem extends Schema.CollectionType {
   collectionName: 'slider_items';
   info: {
@@ -975,6 +1052,30 @@ export interface ApiSliderItemSliderItem extends Schema.CollectionType {
   };
 }
 
+export interface ApiTabTab extends Schema.CollectionType {
+  collectionName: 'tabs';
+  info: {
+    singularName: 'tab';
+    pluralName: 'tabs';
+    displayName: 'Tab';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -995,9 +1096,12 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
+      'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;
       'api::event.event': ApiEventEvent;
       'api::image-card.image-card': ApiImageCardImageCard;
+      'api::page-title.page-title': ApiPageTitlePageTitle;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;
+      'api::tab.tab': ApiTabTab;
     }
   }
 }

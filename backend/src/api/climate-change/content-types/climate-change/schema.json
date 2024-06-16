@@ -63,6 +63,21 @@
       "relation": "oneToMany",
       "target": "api::slider-item.slider-item",
       "mappedBy": "climate_change"
+    },
+    "category_2": {
+      "type": "string"
+    },
+    "heading_2": {
+      "type": "string"
+    },
+    "description_2": {
+      "type": "text"
+    },
+    "consequence_slider_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::consequence-slider-item.consequence-slider-item",
+      "mappedBy": "climate_change"
     }
   }
 }
