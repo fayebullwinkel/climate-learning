@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "social_consequences",
+  "info": {
+    "singularName": "social-consequence",
+    "pluralName": "social-consequences",
+    "displayName": "SocialConsequence",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "climate_change": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-change.climate-change",
+      "inversedBy": "social_consequences"
+    }
+  }
+}

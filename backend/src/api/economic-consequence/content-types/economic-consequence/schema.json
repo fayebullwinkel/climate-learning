@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "economic_consequences",
+  "info": {
+    "singularName": "economic-consequence",
+    "pluralName": "economic-consequences",
+    "displayName": "EconomicConsequence"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "climate_change": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-change.climate-change",
+      "inversedBy": "economic_consequences"
+    }
+  }
+}
