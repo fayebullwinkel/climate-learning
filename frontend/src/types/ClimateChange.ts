@@ -16,4 +16,10 @@ export interface ClimateChange {
     sliderItems: {
         data: SliderItem[];
     }
+    category_2: string;
+    heading_2: string;
+    description_2: string;
+    consequencesSliderItems: {
+        data: SliderItem[];
+    }
 }

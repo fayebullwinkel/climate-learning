@@ -10,6 +10,9 @@ import { Grid } from "@mui/material";
 
 function NavigationMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');
+    const [pageTitles, setPageTitles] = React.useState<string[]>([]);
+
+    const routes = ['/', '/climateAdaptation', '/eventList' ];
 
     React.useEffect(() => {
         const fetchLogoUrl = async () => {
@@ -26,11 +29,27 @@ function NavigationMenu() {
             }
         };
 
+        const fetchPageTitles = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/page-titles`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const titles = data.data.map((item: { attributes: { title: string; }; }) => item.attributes.title);
+                    setPageTitles(titles);
+                } else {
+                    console.error('Failed to fetch page titles:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching page titles:', error);
+            }
+        };
+
         fetchLogoUrl();
+        fetchPageTitles();
     }, []);
 
     const menuStyle: React.CSSProperties = {
-        backgroundColor: '#F7FBF1',
+        backgroundColor: 'white',
         color: "black",
         padding: '1%'
     };
@@ -77,39 +96,20 @@ function NavigationMenu() {
                         <Grid item xs />
 
                         <Grid item>
-                            <Button
-                                color="inherit"
-                                component={Link}
-                                to="/"
-                                sx={{
-                                    mx: 1,
-                                    fontWeight: location.pathname === '/' ? 'bold' : 'normal'
-                                }}
-                            >
-                                Klimaschutz
-                            </Button>
-                            <Button
-                                color="inherit"
-                                component={Link}
-                                to="/climateAdaptation"
-                                sx={{
-                                    mx: 1,
-                                    fontWeight: location.pathname === '/climateAdaptation' ? 'bold' : 'normal'
-                                }}
-                            >
-                                Klimaanpassung
-                            </Button>
-                            <Button
-                                color="inherit"
-                                component={Link}
-                                to="/eventList"
-                                sx={{
-                                    mx: 1,
-                                    fontWeight: location.pathname === '/eventList' ? 'bold' : 'normal'
-                                }}
-                            >
-                                Aktuelles am Campus
-                            </Button>
+                            {pageTitles.map((title, index) => (
+                                <Button
+                                    key={index}
+                                    color="inherit"
+                                    component={Link}
+                                    to={routes[index]}
+                                    sx={{
+                                        mx: 1,
+                                        fontWeight: location.pathname === routes[index] ? 'bold' : 'normal'
+                                    }}
+                                >
+                                    {title}
+                                </Button>
+                            ))}
                         </Grid>
 
                         {/* Spacer to push the next items to the right */}

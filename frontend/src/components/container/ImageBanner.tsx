@@ -36,8 +36,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     };
 
     const overlayTextStyle: React.CSSProperties = {
-        fontStyle: 'italic',
-        transform: 'translateX(-1.2%)'
+        fontStyle: 'italic'
     };
 
     const optionalDivStyle: React.CSSProperties = {

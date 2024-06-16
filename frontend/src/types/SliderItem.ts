@@ -3,5 +3,12 @@ export interface SliderItem {
     attributes: {
         heading: string;
         description: string;
+        image?: {
+            data: {
+                attributes: {
+                    url: string;
+                }
+            }
+        }
     };
 }

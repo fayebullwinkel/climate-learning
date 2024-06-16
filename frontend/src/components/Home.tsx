@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {ClimateChangeSlider} from "./";
+import {ClimateChangeSlider, ConsequencesSlider} from "./slider";
 import {ClimateChange as ClimateChangeType, ImageCardType} from '../types';
-import {ColorContainer, ImageContainer, Card} from "./container";
+import {ColorContainer, ImageContainer, Card } from "./container";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
+import "slick-carousel/slick/slick-theme.css"
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
     const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
@@ -25,7 +24,7 @@ function ClimateChange() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=headerImage,secondBannerImage,consequences,slider_items,consequence_slider_items.image`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
@@ -66,7 +65,11 @@ function ClimateChange() {
             secondBannerTitle: climateData.attributes.secondBannerTitle,
             secondBannerDescription: climateData.attributes.secondBannerDescription,
             consequences: climateData.attributes.consequences,
-            sliderItems: climateData.attributes.slider_items
+            sliderItems: climateData.attributes.slider_items,
+            category_2: climateData.attributes.category_2,
+            heading_2: climateData.attributes.heading_2,
+            description_2: climateData.attributes.description_2,
+            consequencesSliderItems: climateData.attributes.consequence_slider_items
         };
     };
 
@@ -99,6 +102,9 @@ function ClimateChange() {
             <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
                             description={data.secondBannerDescription} consequences={data.consequences.data}/>
             <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
+            <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
+                            color={"#F6EDD9"}/>
+            <ConsequencesSlider sliderItems={data.consequencesSliderItems.data}/>
         </div>
     );
 }

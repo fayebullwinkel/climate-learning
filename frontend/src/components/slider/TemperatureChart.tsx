@@ -1,6 +1,6 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
-import temperatureData from '../assets/temperatureData.json';
+import temperatureData from '../../assets/temperatureData.json';
 
 const TemperatureChart = () => {
     return (
