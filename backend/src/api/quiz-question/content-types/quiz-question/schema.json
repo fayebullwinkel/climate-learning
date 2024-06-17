@@ -26,6 +26,9 @@
     },
     "answer4": {
       "type": "string"
+    },
+    "correctAnswer": {
+      "type": "integer"
     }
   }
 }

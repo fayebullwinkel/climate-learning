@@ -6,16 +6,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ConsequencesSlider } from '../slider';
 import { SliderItem } from '../../types';
 import Box from '@mui/material/Box';
+import QuizSlider from "../../components/slider/QuizSlider";
 
 interface CustomAccordionProps {
     data: {
         naturalConsequencesSliderItems: SliderItem[],
         socialConsequencesSliderItems: SliderItem[],
         economicConsequencesSliderItems: SliderItem[],
-        [key: string]: SliderItem[]
+        [key: string]: SliderItem[];
     } | null;
 }
-
 
 const CustomAccordion: React.FC<CustomAccordionProps> = ({ data }) => {
     if (!data) {
@@ -26,7 +26,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({ data }) => {
         { title: 'Natürliche Folgen', dataKey: 'naturalConsequencesSliderItems' },
         { title: 'Gesellschaftliche Gefahren', dataKey: 'socialConsequencesSliderItems' },
         { title: 'Wirtschaftliche Gefahren', dataKey: 'economicConsequencesSliderItems' },
-        //{ title: 'Teste dein Wissen', component: <Quiz /> },
+        { title: 'Teste dein Wissen', component: <QuizSlider /> },
     ];
 
     return (
