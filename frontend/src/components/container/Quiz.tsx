@@ -5,9 +5,10 @@ import Button from "@mui/material/Button";
 
 interface QuizProps {
     question: Question;
+    triggerToast: (message: string, type: "success" | "info") => void;
 }
 
-const Quiz: React.FC<QuizProps> = ({ question }) => {
+const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -18,6 +19,12 @@ const Quiz: React.FC<QuizProps> = ({ question }) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setSubmitted(true);
+
+        if (selectedAnswer !== null && selectedAnswer === question.correctAnswer) {
+            triggerToast("Super gemacht!", "success");
+        } else {
+            triggerToast(`Nicht ganz. Die richtige Antwort ist: ${question.answers[question.correctAnswer]}`, "info");
+        }
     };
 
     return (

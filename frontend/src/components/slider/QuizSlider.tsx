@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import React, {useEffect, useState} from "react";
 import { Question } from '../../types';
-import {Quiz} from "../../components/container";
-
+import Quiz from "../../components/container/Quiz";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const QuizSlider: React.FC = () => {
     const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -44,6 +45,14 @@ const QuizSlider: React.FC = () => {
         slidesToScroll: 1,
     };
 
+    const triggerToastNotification = (message: string, type: "success" | "info") => {
+        if (type === "success") {
+            toast.success(message);
+        } else {
+            toast.info(message);
+        }
+    };
+
     if (error) {
         return <div>{error}</div>;
     }
@@ -54,23 +63,24 @@ const QuizSlider: React.FC = () => {
 
     return (
         <div style={{ width: '70%', margin: '0 auto', padding: '1%' }}>
+            <ToastContainer position="bottom-right" />
             <Slider {...sliderSettings}>
                 {questions.map((question, index) => (
-                    <div key={index}><Quiz question={question}/></div>
+                    <div key={index}>
+                        <Quiz question={question} triggerToast={triggerToastNotification} />
+                    </div>
                 ))}
             </Slider>
             <style>{`
-                .slick-prev:before, .slick-next:before {
-                    color: #76b900;
+                .toast-success {
+                    background-color: green;
                 }
-                .slick-track {
-                    display: flex;
-                    align-items: center;
-                    padding: 10px;
+                .toast-neutral {
+                    background-color: #f0f0f0;
                 }
             `}</style>
         </div>
     );
-}
+};
 
 export default QuizSlider;
