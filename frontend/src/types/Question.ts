@@ -7,4 +7,5 @@ export interface Question {
         answer4?: string
     ];
     correctAnswer: number;
+    explanation: string;
 }

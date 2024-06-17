@@ -25,7 +25,8 @@ const QuizSlider: React.FC = () => {
                         item.attributes.answer3,
                         item.attributes.answer4 || ''
                     ].filter(answer => answer !== ''),
-                    correctAnswer: item.attributes.correctAnswer - 1
+                    correctAnswer: item.attributes.correctAnswer - 1,
+                    explanation: item.attributes.explanation
                 }));
 
                 setQuestions(mappedQuestions);
@@ -73,10 +74,10 @@ const QuizSlider: React.FC = () => {
             </Slider>
             <style>{`
                 .toast-success {
-                    background-color: green;
+                    background-color: #76B900;
                 }
                 .toast-neutral {
-                    background-color: #f0f0f0;
+                    background-color: #00C8EF;
                 }
             `}</style>
         </div>

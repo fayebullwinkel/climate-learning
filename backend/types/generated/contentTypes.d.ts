@@ -1082,6 +1082,7 @@ export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
     answer3: Attribute.String;
     answer4: Attribute.String;
     correctAnswer: Attribute.Integer;
+    explanation: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

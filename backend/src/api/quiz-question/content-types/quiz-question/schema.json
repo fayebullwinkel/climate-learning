@@ -29,6 +29,9 @@
     },
     "correctAnswer": {
       "type": "integer"
+    },
+    "explanation": {
+      "type": "text"
     }
   }
 }
