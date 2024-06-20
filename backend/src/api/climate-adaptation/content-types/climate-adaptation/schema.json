@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "climate_adaptations",
+  "info": {
+    "singularName": "climate-adaptation",
+    "pluralName": "climate-adaptations",
+    "displayName": "Climate Adaptation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bannerTitle": {
+      "type": "string"
+    },
+    "headerImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "category": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
