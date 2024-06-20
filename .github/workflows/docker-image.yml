@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
         with:
@@ -35,7 +38,9 @@ jobs:
           context: ./backend
           push: true
           platforms: linux/amd64,linux/arm64/v8
-          tags: ghcr.io/fayebullwinkel/climate-learning:backend-latest
+          tags: |
+            ghcr.io/fayebullwinkel/climate-learning/backend:latest
+            ghcr.io/fayebullwinkel/climate-learning/backend:$SHORT_SHA
 
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -43,4 +48,6 @@ jobs:
           context: ./frontend
           push: true
           platforms: linux/amd64,linux/arm64/v8
-          tags: ghcr.io/fayebullwinkel/climate-learning:frontend-latest
+          tags: |
+            ghcr.io/fayebullwinkel/climate-learning/frontend:latest
+            ghcr.io/fayebullwinkel/climate-learning/frontend:$SHORT_SHA
