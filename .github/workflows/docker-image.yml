@@ -40,7 +40,7 @@ jobs:
           platforms: linux/amd64,linux/arm64/v8
           tags: |
             ghcr.io/fayebullwinkel/climate-learning/backend:latest
-            ghcr.io/fayebullwinkel/climate-learning/backend:${SHORT_SHA}
+            ghcr.io/fayebullwinkel/climate-learning/backend:${{SHORT_SHA}}
 
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -50,4 +50,4 @@ jobs:
           platforms: linux/amd64,linux/arm64/v8
           tags: |
             ghcr.io/fayebullwinkel/climate-learning/frontend:latest
-            ghcr.io/fayebullwinkel/climate-learning/frontend:${SHORT_SHA}
+            ghcr.io/fayebullwinkel/climate-learning/frontend:${{SHORT_SHA}}
