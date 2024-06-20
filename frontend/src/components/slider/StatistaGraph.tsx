@@ -5,6 +5,7 @@ const StatistaGraph = () => {
         <div className="statista-graph">
             <a href="https://de.statista.com/infografik/30203/anzahl-naturkatastrophen-extremwetterereignisse-in-europa/"
                target="_blank"
+               rel="noopener noreferrer"
                title="Infografik: Wasser - die größte Naturgefahr des 21. Jahrhunderts? | Statista">
                 <img
                     src="https://cdn.statcdn.com/Infographic/images/normal/30203.jpeg"

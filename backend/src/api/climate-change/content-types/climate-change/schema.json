@@ -90,6 +90,32 @@
       "relation": "oneToMany",
       "target": "api::economic-consequence.economic-consequence",
       "mappedBy": "climate_change"
+    },
+    "category_3": {
+      "type": "string"
+    },
+    "heading_3": {
+      "type": "string"
+    },
+    "description_3": {
+      "type": "text"
+    },
+    "thirdBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "actions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::action.action",
+      "mappedBy": "climate_change"
     }
   }
 }

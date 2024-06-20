@@ -1,3 +1,4 @@
+export { default as BottomMenu } from './BottomMenu';
 export { default as ClimateAdaptation } from './ClimateAdaptation';
 export { default as EventItem } from './EventItem';
 export { default as EventList } from './EventList';

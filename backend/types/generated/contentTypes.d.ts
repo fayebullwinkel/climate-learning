@@ -788,6 +788,42 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiActionAction extends Schema.CollectionType {
+  collectionName: 'actions';
+  info: {
+    singularName: 'action';
+    pluralName: 'actions';
+    displayName: 'Action';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    climate_change: Attribute.Relation<
+      'api::action.action',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::action.action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::action.action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
   collectionName: 'climate_changes';
   info: {
@@ -837,6 +873,15 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'api::climate-change.climate-change',
       'oneToMany',
       'api::economic-consequence.economic-consequence'
+    >;
+    category_3: Attribute.String;
+    heading_3: Attribute.String;
+    description_3: Attribute.Text;
+    thirdBannerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    actions: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::action.action'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1219,6 +1264,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::action.action': ApiActionAction;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
       'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;

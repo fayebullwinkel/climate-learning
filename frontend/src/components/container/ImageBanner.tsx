@@ -2,7 +2,7 @@ import React from 'react';
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { Consequence } from "../../types";
+import { Mixed } from "../../types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -10,7 +10,7 @@ interface ImageBannerProps {
     title: string;
     imageUrl: string;
     description?: string;
-    consequences?: Consequence[];
+    consequences?: Mixed[];
 }
 
 const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, consequences }) => {

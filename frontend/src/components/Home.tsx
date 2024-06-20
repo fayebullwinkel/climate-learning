@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ClimateChangeSlider, ConsequencesSlider} from "./slider";
+import {ClimateChangeSlider} from "./slider";
 import {AccordionData, ClimateChange as ClimateChangeType, ImageCardType} from '../types';
 import {ColorContainer, ImageContainer, Card, CustomAccordion} from "./container";
 import "slick-carousel/slick/slick.css";
@@ -25,7 +25,7 @@ function ClimateChange() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=headerImage,secondBannerImage,consequences,slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=headerImage,secondBannerImage,consequences, actions,slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
@@ -79,6 +79,11 @@ function ClimateChange() {
             naturalConsequences: climateData.attributes.consequence_slider_items,
             socialConsequences: climateData.attributes.social_consequences,
             economicConsequences: climateData.attributes.economic_consequences,
+            thirdImageUrl: climateData.attributes.thirdBannerImage.data.attributes.url,
+            category_3: climateData.attributes.category_3,
+            heading_3: climateData.attributes.heading_3,
+            description_3: climateData.attributes.description_3,
+            actions: climateData.attributes.actions
         };
     };
 
@@ -115,6 +120,8 @@ function ClimateChange() {
             <div style={{margin: '20px 0 20px 0'}}>
                 <CustomAccordion data={accordionData}/>
             </div>
+            <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
+                            description={data.description_3} consequences={data.actions.data}/>
         </div>
     );
 }

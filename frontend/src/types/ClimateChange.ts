@@ -1,4 +1,4 @@
-import {Consequence, SliderItem} from "./";
+import {Mixed, SliderItem} from "./";
 
 export interface ClimateChange {
     id: number;
@@ -11,7 +11,7 @@ export interface ClimateChange {
     secondBannerDescription: string;
     secondImageUrl: string;
     consequences: {
-        data: Consequence[];
+        data: Mixed[];
     }
     sliderItems: {
         data: SliderItem[];
@@ -27,5 +27,12 @@ export interface ClimateChange {
     }
     economicConsequences: {
         data: SliderItem[];
+    }
+    thirdImageUrl: string;
+    category_3: string;
+    heading_3: string;
+    description_3: string;
+    actions: {
+        data: Mixed[];
     }
 }

@@ -1,4 +1,4 @@
-export interface Consequence {
+export interface Mixed {
     id: number;
     attributes: {
         heading: string;

@@ -35,7 +35,7 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, link }) => 
             />
             <h2>{heading}</h2>
             <p>{description}</p>
-            <Button variant="contained" href={link} size="small" target="_blank" style={{backgroundColor: '#76B900'}}>Mehr erfahren</Button>
+            <Button variant="contained" href={link} size="small" target="_blank" rel="noopener noreferrer" style={{backgroundColor: '#76B900'}}>Mehr erfahren</Button>
         </div>
     );
 }

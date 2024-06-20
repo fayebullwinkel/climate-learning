@@ -44,7 +44,8 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems }) => {
                     <h2 style={{textAlign: 'justify'}}>{sliderItems[0].attributes.heading}</h2>
                     <p style={paragraphStyle}>{sliderItems[0].attributes.description} Quelle: <a
                         href="https://climate.nasa.gov/vital-signs/global-temperature/?intent=121"
-                        target="_blank">NASA/GISS</a>.</p>
+                        target="_blank"
+                        rel="noopener noreferrer">NASA/GISS</a>.</p>
                 </div>
                 <div style={sliderStyle}>
                     <TemperatureChart/>

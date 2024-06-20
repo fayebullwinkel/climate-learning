@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Home, ClimateAdaptation, EventList, NavigationMenu } from "./components";
+import {Home, ClimateAdaptation, EventList, NavigationMenu, BottomMenu} from "./components";
 
 function App() {
     return (
@@ -15,6 +15,7 @@ function App() {
                         <Route path="/eventList" element={<EventList />} />
                     </Routes>
                 </main>
+                <BottomMenu/>
             </Router>
         </div>
     );
