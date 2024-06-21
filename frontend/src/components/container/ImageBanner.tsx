@@ -10,10 +10,11 @@ interface ImageBannerProps {
     title: string;
     imageUrl: string;
     description?: string;
-    consequences?: Mixed[];
+    bannerItems?: Mixed[];
+    showButton?: boolean;
 }
 
-const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, consequences }) => {
+const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, bannerItems, showButton = true }) => {
     const bannerStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
@@ -31,8 +32,8 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         left: '10%',
         color: 'white',
         maxWidth: window.innerWidth <= 768 ? "70%" : "50%",
-        textAlign: 'justify',
         transform: 'translateY(-50%)',
+        textAlign: 'justify'
     };
 
     const overlayTextStyle: React.CSSProperties = {
@@ -70,17 +71,17 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
             <div style={contentStyle}>
                 <h1 style={overlayTextStyle}>{title}</h1>
                 <p>{description}</p>
-                {description && (
+                {showButton && (
                     <Button variant="outlined" component={Link} to="/eventList" style={{ color: 'white', borderColor: 'white' }}>
                         Zu den Aktionen
                     </Button>
                 )}
             </div>
-            {consequences && (
+            {bannerItems && (
                 <div style={optionalDivStyle}>
                     {window.innerWidth <= 768 ? (
                         <Slider {...sliderSettings}>
-                            {consequences.map(consequence => (
+                            {bannerItems.map(consequence => (
                                 <div key={consequence.id}>
                                     <h2>{consequence.attributes.heading}</h2>
                                     <p>{consequence.attributes.description}</p>
@@ -89,7 +90,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                         </Slider>
                     ) : (
                         <div style={containerStyle}>
-                            {consequences.map(consequence => (
+                            {bannerItems.map(consequence => (
                                 <div key={consequence.id} style={{ flex: '1', margin: '0 10px' }}>
                                     <h2>{consequence.attributes.heading}</h2>
                                     <p>{consequence.attributes.description}</p>

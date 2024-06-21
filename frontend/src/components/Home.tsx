@@ -1,24 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {ClimateChangeSlider} from "./slider";
-import {AccordionData, ClimateChange as ClimateChangeType, ImageCardType} from '../types';
-import {ColorContainer, ImageContainer, Card, CustomAccordion} from "./container";
+import React, { useEffect, useState } from "react";
+import { ClimateChangeSlider } from "./slider";
+import { AccordionData, ClimateChange as ClimateChangeType, ImageCardType } from '../types';
+import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { getImageCardsStyle } from './';
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
     const [accordionData, setAccordionData] = useState<AccordionData | null>(null);
     const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
     const [error, setError] = useState<string | null>(null);
-    const getImageCardsStyle = (): React.CSSProperties => {
-        return {
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
-            width: '70%',
-            margin: '0 auto'
-        };
-    };
 
     const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
 
@@ -30,7 +22,6 @@ function ClimateChange() {
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
-                console.log("hier kommen die Daten ", formattedData);
                 setData(formattedData);
                 setAccordionData({
                     naturalConsequencesSliderItems: formattedData.naturalConsequences.data,
@@ -97,7 +88,7 @@ function ClimateChange() {
 
     return (
         <div className="page-container">
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl}/>
+            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
                             color={"#F6EDD9"}/>
             <div style={{padding: '1%'}}>
@@ -113,7 +104,7 @@ function ClimateChange() {
                 </div>
             </div>
             <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
-                            description={data.secondBannerDescription} consequences={data.consequences.data}/>
+                            description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
             <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
             <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                             color={"#F6EDD9"}/>
@@ -121,7 +112,7 @@ function ClimateChange() {
                 <CustomAccordion data={accordionData}/>
             </div>
             <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
-                            description={data.description_3} consequences={data.actions.data}/>
+                            description={data.description_3} bannerItems={data.actions.data}/>
         </div>
     );
 }

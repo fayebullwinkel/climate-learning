@@ -12,7 +12,6 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, link }) => 
     const cardStyle: React.CSSProperties = {
         display: "flex",
         flexDirection: "column",
-        textAlign: 'justify',
         width: window.innerWidth <= 768 ? "100%" : "30%",
         alignItems: 'flex-start',
         padding: '10px'

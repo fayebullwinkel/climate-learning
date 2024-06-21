@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "adaptation_measures",
+  "info": {
+    "singularName": "adaptation-measure",
+    "pluralName": "adaptation-measures",
+    "displayName": "AdaptationMeasure"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "climate_adaptation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-adaptation.climate-adaptation",
+      "inversedBy": "adaptation_measures"
+    }
+  }
+}

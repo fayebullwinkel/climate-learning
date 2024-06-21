@@ -33,7 +33,6 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems }) => {
     };
 
     const paragraphStyle: React.CSSProperties = {
-        textAlign: 'justify',
         width: window.innerWidth <= 768 ? '95%' : 'auto'
     }
 

@@ -824,12 +824,103 @@ export interface ApiActionAction extends Schema.CollectionType {
   };
 }
 
+export interface ApiAdaptationMeasureAdaptationMeasure
+  extends Schema.CollectionType {
+  collectionName: 'adaptation_measures';
+  info: {
+    singularName: 'adaptation-measure';
+    pluralName: 'adaptation-measures';
+    displayName: 'AdaptationMeasure';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    climate_adaptation: Attribute.Relation<
+      'api::adaptation-measure.adaptation-measure',
+      'manyToOne',
+      'api::climate-adaptation.climate-adaptation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::adaptation-measure.adaptation-measure',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::adaptation-measure.adaptation-measure',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClimateAdaptationClimateAdaptation
+  extends Schema.CollectionType {
+  collectionName: 'climate_adaptations';
+  info: {
+    singularName: 'climate-adaptation';
+    pluralName: 'climate-adaptations';
+    displayName: 'ClimateAdaptation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bannerTitle: Attribute.String;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    category: Attribute.String;
+    heading: Attribute.String;
+    description: Attribute.Text;
+    videoTitle: Attribute.String;
+    videoDescription: Attribute.Text;
+    grid_items: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::grid-item.grid-item'
+    >;
+    gridHeading: Attribute.String;
+    secondBannerTitle: Attribute.String;
+    secondBannerDescription: Attribute.Text;
+    secondBannerImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    adaptation_measures: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::adaptation-measure.adaptation-measure'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
   collectionName: 'climate_changes';
   info: {
     singularName: 'climate-change';
     pluralName: 'climate-changes';
-    displayName: 'Climate Change';
+    displayName: 'ClimateChange';
     description: '';
   };
   options: {
@@ -1038,6 +1129,43 @@ export interface ApiEventEvent extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGridItemGridItem extends Schema.CollectionType {
+  collectionName: 'grid_items';
+  info: {
+    singularName: 'grid-item';
+    pluralName: 'grid-items';
+    displayName: 'GridItem';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    climate_adaptation: Attribute.Relation<
+      'api::grid-item.grid-item',
+      'manyToOne',
+      'api::climate-adaptation.climate-adaptation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::grid-item.grid-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::grid-item.grid-item',
       'oneToOne',
       'admin::user'
     > &
@@ -1265,11 +1393,14 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::action.action': ApiActionAction;
+      'api::adaptation-measure.adaptation-measure': ApiAdaptationMeasureAdaptationMeasure;
+      'api::climate-adaptation.climate-adaptation': ApiClimateAdaptationClimateAdaptation;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
       'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;
       'api::economic-consequence.economic-consequence': ApiEconomicConsequenceEconomicConsequence;
       'api::event.event': ApiEventEvent;
+      'api::grid-item.grid-item': ApiGridItemGridItem;
       'api::image-card.image-card': ApiImageCardImageCard;
       'api::page-title.page-title': ApiPageTitlePageTitle;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;

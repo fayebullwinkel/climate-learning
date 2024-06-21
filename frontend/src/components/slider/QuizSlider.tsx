@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Question } from '../../types';
-import Quiz from "../../components/container/Quiz";
+import { Quiz } from "../../components/container";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

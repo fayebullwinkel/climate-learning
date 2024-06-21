@@ -62,7 +62,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
                         Antwort prüfen
                     </Button>
                     {submitted && (
-                        <p style={{textAlign: 'justify', maxWidth: '95%'}}>
+                        <p style={{ maxWidth: '95%'}}>
                             {question.explanation}
                         </p>
                     )}

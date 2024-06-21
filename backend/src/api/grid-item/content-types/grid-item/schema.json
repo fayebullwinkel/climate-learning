@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "grid_items",
+  "info": {
+    "singularName": "grid-item",
+    "pluralName": "grid-items",
+    "displayName": "GridItem"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "climate_adaptation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-adaptation.climate-adaptation",
+      "inversedBy": "grid_items"
+    }
+  }
+}

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "climate-adaptation",
     "pluralName": "climate-adaptations",
-    "displayName": "Climate Adaptation"
+    "displayName": "ClimateAdaptation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,15 @@
       "type": "string"
     },
     "headerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "category": {
       "type": "string"
@@ -32,6 +34,44 @@
     },
     "description": {
       "type": "text"
+    },
+    "videoTitle": {
+      "type": "string"
+    },
+    "videoDescription": {
+      "type": "text"
+    },
+    "grid_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::grid-item.grid-item",
+      "mappedBy": "climate_adaptation"
+    },
+    "gridHeading": {
+      "type": "string"
+    },
+    "secondBannerTitle": {
+      "type": "string"
+    },
+    "secondBannerDescription": {
+      "type": "text"
+    },
+    "secondBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "adaptation_measures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::adaptation-measure.adaptation-measure",
+      "mappedBy": "climate_adaptation"
     }
   }
 }

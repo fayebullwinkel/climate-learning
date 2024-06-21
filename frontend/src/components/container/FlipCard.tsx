@@ -16,7 +16,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ item }) => {
     const cardStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
-        textAlign: 'justify',
         padding: '10px',
         margin: '20px',
         boxSizing: 'border-box',
@@ -54,7 +53,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ item }) => {
             </div>
 
             <div className="card back" style={cardStyle} onClick={handleClick}>
-                <p style={{textAlign: 'left'}}>{item.attributes.description}</p>
+                <p style={{padding: '10px'}}>{item.attributes.description}</p>
             </div>
         </ReactCardFlip>
     );
