@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/container/ColorBanner.css';
 
 interface ColorBannerProps {
     category: string;
@@ -8,23 +9,12 @@ interface ColorBannerProps {
 }
 
 const ColorBanner: React.FC<ColorBannerProps> = ({ category, heading, description, color }) => {
-    const bannerStyle: React.CSSProperties = {
-        backgroundColor: color,
-        padding: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    };
-
-    const textContainerStyle: React.CSSProperties = {
-        width: window.innerWidth <= 768 ? '100%' : '50%',
-        textAlign: 'center',
-    };
+    const isMobile = window.innerWidth <= 768;
 
     return (
-        <div style={bannerStyle}>
-            <div style={textContainerStyle}>
-                <h3 style={{color: '#76B900'}}>{category}</h3>
+        <div className="colorBanner" style={{ backgroundColor: color }}>
+            <div className={isMobile ? 'text-container-mobile' : 'text-container'}>
+                <h3 className="category-heading">{category}</h3>
                 <h2>{heading}</h2>
                 <p>{description}</p>
             </div>

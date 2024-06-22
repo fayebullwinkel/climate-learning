@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { Link, useLocation } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import '../css/NavigationMenu.css';
 
 function BottomMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');
@@ -32,18 +33,12 @@ function BottomMenu() {
         fetchLogoUrl();
     }, []);
 
-    const menuStyle: React.CSSProperties = {
-        backgroundColor: '#87966B',
-        color: "white",
-        padding: '1%'
-    };
-
     const location = useLocation();
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ top: 'auto', bottom: 0 }}>
-                <Toolbar sx={{ minHeight: 100 }} style={menuStyle}>
+                <Toolbar sx={{ minHeight: 100 }} className='customBottomMenu'>
                     <Grid container alignItems="center">
                         <Grid item>
                             <IconButton

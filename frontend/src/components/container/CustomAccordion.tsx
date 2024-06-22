@@ -38,6 +38,9 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({ data }) => {
                             <h3>{item.title}</h3>
                         </AccordionSummary>
                         <AccordionDetails>
+                            {index !== accordionItems.length - 1 && (
+                                <img src="./assets/klick.svg" alt="Click icon" className="arrow" />
+                            )}
                             {item.component ? item.component : <ConsequencesSlider sliderItems={data[item.dataKey!]} />}
                         </AccordionDetails>
                     </Accordion>

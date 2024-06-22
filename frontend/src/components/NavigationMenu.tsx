@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { Link, useLocation } from 'react-router-dom';
 import { Grid } from "@mui/material";
+import '../css/NavigationMenu.css'
 
 function NavigationMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');
@@ -48,12 +49,6 @@ function NavigationMenu() {
         fetchPageTitles();
     }, []);
 
-    const menuStyle: React.CSSProperties = {
-        backgroundColor: 'white',
-        color: "black",
-        padding: '1%'
-    };
-
     const location = useLocation();
 
     return (
@@ -62,7 +57,7 @@ function NavigationMenu() {
                 position="fixed"
                 sx={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}
             >
-                <Toolbar sx={{ minHeight: 100 }} style={menuStyle}>
+                <Toolbar sx={{ minHeight: 100 }} className='customMainMenu'>
                     <Grid container alignItems="center">
                         <Grid item>
                             <IconButton

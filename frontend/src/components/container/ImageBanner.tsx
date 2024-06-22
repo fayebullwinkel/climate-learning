@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { Mixed } from "../../types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../../css/container/ImageBanner.css";
 
 interface ImageBannerProps {
     title: string;
@@ -16,45 +17,13 @@ interface ImageBannerProps {
 
 const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, bannerItems, showButton = true }) => {
     const bannerStyle: React.CSSProperties = {
-        position: 'relative',
-        width: '100%',
         height: description ? '700px' : '600px',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 55%',
-        boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
         backgroundImage: `url(${process.env.REACT_APP_BACKEND}${imageUrl})`,
-        paddingTop: '2%'
     };
 
     const contentStyle: React.CSSProperties = {
-        position: 'relative',
         top: description ? '30%' : '50%',
-        left: '10%',
-        color: 'white',
         maxWidth: window.innerWidth <= 768 ? "70%" : "50%",
-        transform: 'translateY(-50%)',
-        textAlign: 'justify'
-    };
-
-    const overlayTextStyle: React.CSSProperties = {
-        fontStyle: 'italic'
-    };
-
-    const optionalDivStyle: React.CSSProperties = {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        width: '100%',
-        backgroundColor: '#76B900',
-        color: 'white'
-    };
-
-    const containerStyle: React.CSSProperties = {
-        width: '70%',
-        display: 'flex',
-        justifyContent: 'space-between',
-        margin: 'auto',
-        textAlign: 'justify'
     };
 
     const sliderSettings = {
@@ -67,9 +36,9 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     };
 
     return (
-        <div style={bannerStyle}>
-            <div style={contentStyle}>
-                <h1 style={overlayTextStyle}>{title}</h1>
+        <div className='imageBanner' style={bannerStyle}>
+            <div className='imageBannerContent' style={contentStyle}>
+                <h1 className='imageBannerTitle'>{title}</h1>
                 <p>{description}</p>
                 {showButton && (
                     <Button variant="outlined" component={Link} to="/eventList" style={{ color: 'white', borderColor: 'white' }}>
@@ -78,7 +47,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                 )}
             </div>
             {bannerItems && (
-                <div style={optionalDivStyle}>
+                <div className='optionalDiv'>
                     {window.innerWidth <= 768 ? (
                         <Slider {...sliderSettings}>
                             {bannerItems.map(consequence => (
@@ -89,7 +58,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                             ))}
                         </Slider>
                     ) : (
-                        <div style={containerStyle}>
+                        <div className='imageBannerContainer'>
                             {bannerItems.map(consequence => (
                                 <div key={consequence.id} style={{ flex: '1', margin: '0 10px' }}>
                                     <h2>{consequence.attributes.heading}</h2>

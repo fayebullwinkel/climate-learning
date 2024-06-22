@@ -1,14 +1,13 @@
 import Slider from "react-slick";
 import React from "react";
 import { SliderItem } from '../../types';
-import { FlipCard } from "../container";
+import FlipCard from "../container/FlipCard";
 
 interface ConsequencesProps {
     sliderItems: SliderItem[];
 }
 
 const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
-
     const sliderSettings = {
         dots: false,
         infinite: true,
@@ -28,11 +27,10 @@ const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
 
     return (
         <div style={{padding: '1%'}}>
-            <p style={{textAlign: 'left'}}>Klicke auf die einzelnen Karten, um mehr zu erfahren: </p>
             <Slider {...sliderSettings}>
                 {sliderItems.map((item, index) => (
                     <div key={index}>
-                        <FlipCard item={item} />
+                        <FlipCard item={item}/>
                     </div>
                 ))}
             </Slider>

@@ -1350,30 +1350,6 @@ export interface ApiSocialConsequenceSocialConsequence
   };
 }
 
-export interface ApiTabTab extends Schema.CollectionType {
-  collectionName: 'tabs';
-  info: {
-    singularName: 'tab';
-    pluralName: 'tabs';
-    displayName: 'Tab';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::tab.tab', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1406,7 +1382,6 @@ declare module '@strapi/types' {
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;
       'api::social-consequence.social-consequence': ApiSocialConsequenceSocialConsequence;
-      'api::tab.tab': ApiTabTab;
     }
   }
 }

@@ -1,0 +1,16 @@
+.slick-prev:before,
+.slick-next:before {
+    color: #76b900;
+}
+
+.slick-track {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.customSlider {
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+}
