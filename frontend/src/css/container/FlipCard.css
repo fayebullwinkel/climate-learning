@@ -31,3 +31,11 @@
     width: 80%;
     text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .card.back p {
+        font-size: 13px;
+        padding: 0 !important;
+    }
+
+}

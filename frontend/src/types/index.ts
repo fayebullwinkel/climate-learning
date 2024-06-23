@@ -1,4 +1,5 @@
 export * from './AccordionData';
+export * from './AccordionItem';
 export * from './ClimateAdaptation';
 export * from './ClimateChange';
 export * from './GridItem';

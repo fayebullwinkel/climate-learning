@@ -4,7 +4,8 @@
   "info": {
     "singularName": "action",
     "pluralName": "actions",
-    "displayName": "Action"
+    "displayName": "ClimateChangeAction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

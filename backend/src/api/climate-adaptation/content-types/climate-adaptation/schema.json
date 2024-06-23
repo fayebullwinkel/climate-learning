@@ -78,6 +78,21 @@
       "relation": "oneToMany",
       "target": "api::map-slider-item.map-slider-item",
       "mappedBy": "climate_adaptation"
+    },
+    "thirdBannerTitle": {
+      "type": "string"
+    },
+    "thirdBannerDescription": {
+      "type": "text"
+    },
+    "thirdBannerCategory": {
+      "type": "string"
+    },
+    "adaptation_unsealings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::adaptation-unsealing.adaptation-unsealing",
+      "mappedBy": "climate_adaptation"
     }
   }
 }

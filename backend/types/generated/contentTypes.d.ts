@@ -793,7 +793,8 @@ export interface ApiActionAction extends Schema.CollectionType {
   info: {
     singularName: 'action';
     pluralName: 'actions';
-    displayName: 'Action';
+    displayName: 'ClimateChangeAction';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -861,6 +862,45 @@ export interface ApiAdaptationMeasureAdaptationMeasure
   };
 }
 
+export interface ApiAdaptationUnsealingAdaptationUnsealing
+  extends Schema.CollectionType {
+  collectionName: 'adaptation_unsealings';
+  info: {
+    singularName: 'adaptation-unsealing';
+    pluralName: 'adaptation-unsealings';
+    displayName: 'AdaptationHTW';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    climate_adaptation: Attribute.Relation<
+      'api::adaptation-unsealing.adaptation-unsealing',
+      'manyToOne',
+      'api::climate-adaptation.climate-adaptation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::adaptation-unsealing.adaptation-unsealing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::adaptation-unsealing.adaptation-unsealing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClimateAdaptationClimateAdaptation
   extends Schema.CollectionType {
   collectionName: 'climate_adaptations';
@@ -901,6 +941,14 @@ export interface ApiClimateAdaptationClimateAdaptation
       'api::climate-adaptation.climate-adaptation',
       'oneToMany',
       'api::map-slider-item.map-slider-item'
+    >;
+    thirdBannerTitle: Attribute.String;
+    thirdBannerDescription: Attribute.Text;
+    thirdBannerCategory: Attribute.String;
+    adaptation_unsealings: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::adaptation-unsealing.adaptation-unsealing'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1002,7 +1050,7 @@ export interface ApiConsequenceConsequence extends Schema.CollectionType {
   info: {
     singularName: 'consequence';
     pluralName: 'consequences';
-    displayName: 'Consequence';
+    displayName: 'ConsequenceIntroduction';
     description: '';
   };
   options: {
@@ -1040,7 +1088,7 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
   info: {
     singularName: 'consequence-slider-item';
     pluralName: 'consequence-slider-items';
-    displayName: 'NaturalConsequence';
+    displayName: 'ConsequenceNatural';
     description: '';
   };
   options: {
@@ -1079,7 +1127,8 @@ export interface ApiEconomicConsequenceEconomicConsequence
   info: {
     singularName: 'economic-consequence';
     pluralName: 'economic-consequences';
-    displayName: 'EconomicConsequence';
+    displayName: 'ConsequenceEconomic';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1146,7 +1195,8 @@ export interface ApiGridItemGridItem extends Schema.CollectionType {
   info: {
     singularName: 'grid-item';
     pluralName: 'grid-items';
-    displayName: 'GridItem';
+    displayName: 'ClimateAdaptationGridItem';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1183,7 +1233,7 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
   info: {
     singularName: 'image-card';
     pluralName: 'image-cards';
-    displayName: 'ImageCard';
+    displayName: 'ClimateChangeImageCard';
     description: '';
   };
   options: {
@@ -1320,7 +1370,7 @@ export interface ApiSliderItemSliderItem extends Schema.CollectionType {
   info: {
     singularName: 'slider-item';
     pluralName: 'slider-items';
-    displayName: 'SliderItem';
+    displayName: 'ClimateChangeSliderItem';
     description: '';
   };
   options: {
@@ -1358,7 +1408,7 @@ export interface ApiSocialConsequenceSocialConsequence
   info: {
     singularName: 'social-consequence';
     pluralName: 'social-consequences';
-    displayName: 'SocialConsequence';
+    displayName: 'ConsequenceSocial';
     description: '';
   };
   options: {
@@ -1411,6 +1461,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::action.action': ApiActionAction;
       'api::adaptation-measure.adaptation-measure': ApiAdaptationMeasureAdaptationMeasure;
+      'api::adaptation-unsealing.adaptation-unsealing': ApiAdaptationUnsealingAdaptationUnsealing;
       'api::climate-adaptation.climate-adaptation': ApiClimateAdaptationClimateAdaptation;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;

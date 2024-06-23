@@ -4,13 +4,13 @@ import { SliderItem } from '../../types';
 import FlipCard from "../container/FlipCard";
 import '../../css/slider/FlipCardSlider.css';
 
-interface ConsequencesProps {
+interface AdaptationProps {
     sliderItems: SliderItem[];
 }
 
-const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
+const AdaptationSlider: React.FC<AdaptationProps> = ({ sliderItems }) => {
     const sliderSettings = {
-        dots: false,
+        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
@@ -27,7 +27,7 @@ const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
     };
 
     return (
-        <div className='flipCardContainer'>
+        <div className='flipCardContainer adaptationHTWContent'>
             <Slider {...sliderSettings}>
                 {sliderItems.map((item, index) => (
                     <div key={index}>
@@ -39,4 +39,4 @@ const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
     );
 }
 
-export default ConsequencesSlider;
+export default AdaptationSlider;

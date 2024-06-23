@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "social_consequences",
+  "collectionName": "adaptation_unsealings",
   "info": {
-    "singularName": "social-consequence",
-    "pluralName": "social-consequences",
-    "displayName": "ConsequenceSocial",
+    "singularName": "adaptation-unsealing",
+    "pluralName": "adaptation-unsealings",
+    "displayName": "AdaptationHTW",
     "description": ""
   },
   "options": {
@@ -29,11 +29,11 @@
         "audios"
       ]
     },
-    "climate_change": {
+    "climate_adaptation": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::climate-change.climate-change",
-      "inversedBy": "social_consequences"
+      "target": "api::climate-adaptation.climate-adaptation",
+      "inversedBy": "adaptation_unsealings"
     }
   }
 }

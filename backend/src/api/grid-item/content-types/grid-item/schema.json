@@ -4,7 +4,8 @@
   "info": {
     "singularName": "grid-item",
     "pluralName": "grid-items",
-    "displayName": "GridItem"
+    "displayName": "ClimateAdaptationGridItem",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,14 +19,15 @@
       "type": "text"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "climate_adaptation": {
       "type": "relation",

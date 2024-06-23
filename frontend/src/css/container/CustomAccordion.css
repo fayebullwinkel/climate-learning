@@ -15,7 +15,14 @@
 @media only screen and (max-width: 600px) {
     .arrow {
         position: absolute;
+    }
+    .accordion-item:first-child .arrow {
         top: 45px;
+    }
+
+    .accordion-item:nth-child(2) .arrow,
+    .accordion-item:nth-child(3) .arrow {
+        top: 70px;
     }
 }
 

@@ -1,0 +1,18 @@
+.slick-prev:before, .slick-next:before {
+    color: #76b900;
+}
+
+.slick-track {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.flipCardContainer {
+    padding: 1%;
+}
+
+.adaptationHTWContent {
+    width: 75%;
+    margin: 0 auto;
+}

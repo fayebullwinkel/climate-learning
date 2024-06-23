@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ClimateChangeSlider } from "./slider";
-import { AccordionData, ClimateChange as ClimateChangeType, ImageCardType } from '../types';
+import {ClimateChangeSlider, QuizSlider} from "./slider";
+import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCardType} from '../types';
 import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -78,6 +78,13 @@ function ClimateChange() {
         };
     };
 
+    const accordionItems: AccordionItem[] = [
+        { title: 'Natürliche Folgen', dataKey: 'naturalConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
+        { title: 'Gesellschaftliche Gefahren', dataKey: 'socialConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
+        { title: 'Wirtschaftliche Gefahren', dataKey: 'economicConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
+        { title: 'Teste dein Wissen', component: <QuizSlider />, link: 'https://www.geo.de/natur/naturquiz/16518-quiz-quiz-kennen-sie-die-skurrilsten-folgen-des-klimawandels' },
+    ];
+
     if (error) {
         return <div>{error}</div>;
     }
@@ -109,7 +116,7 @@ function ClimateChange() {
             <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                             color={"#F6EDD9"}/>
             <div style={{margin: '20px 0 20px 0'}}>
-                <CustomAccordion data={accordionData}/>
+                <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
             </div>
             <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
                             description={data.description_3} bannerItems={data.actions.data}/>
