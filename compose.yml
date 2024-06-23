@@ -1,25 +1,17 @@
-version: "3"
 services:
-  backend:
-    build: backend
-    image: climate-learning-backend:latest
-    restart: unless-stopped
-    env_file: ./backend/.env
-    volumes:
-      - ./backend/config:/opt/app/config
-      - ./backend/src:/opt/app/src
-      - ./backend/package.json:/opt/package.json
-      - ./backend/yarn.lock:/opt/yarn.lock
-      - ./backend/.env:/opt/app/.env
-      - ./backend/public/uploads:/opt/app/public/uploads
-    ports:
-      - "1337:1337"
-
   frontend:
-    build: frontend
-    image: climate-learning-frontend:latest
+    image: ghcr.io/fayebullwinkel/climate-learning/frontend:latest
     restart: unless-stopped
     environment:
       REACT_APP_BACKEND: http://localhost:1337
     ports:
       - "3000:80"
+
+  backend:
+    image: ghcr.io/fayebullwinkel/climate-learning/backend:latest
+    restart: unless-stopped
+    env_file: ./backend/.env
+    volumes:
+      - ./backend/.env:/opt/app/.env
+    ports:
+      - "1337:1337"

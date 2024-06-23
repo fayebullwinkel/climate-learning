@@ -36,6 +36,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
 
     const sliderSettings = {
         dots: false,
+        arrows: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,

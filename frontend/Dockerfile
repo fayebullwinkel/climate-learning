@@ -21,6 +21,8 @@ FROM nginx:alpine
 
 # Copy the built React app to Nginx's web server directory
 COPY --from=build /app/build /usr/share/nginx/html
+# Configuring for React Router
+COPY ./nginx.config /etc/nginx/conf.d/default.conf
 
 # substitute environment variables before starting nginx
 COPY substitute-env-vars.sh /docker-entrypoint.d/99-substitute-env-vars.sh

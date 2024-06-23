@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import { GridItem } from "../../types";
 import { useMediaQuery } from "react-responsive";
+import '../../css/container/ItemsGrid.css';
 
 interface ItemsGridProps {
     heading: string;
@@ -20,7 +21,7 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({ heading, items }) => {
 
     const imageStyle = (index: number) => ({
         height: 'auto',
-        maxHeight: index === 0 ? '450px' : '500px',
+        maxHeight: index === 0 ? '400px' : '450px',
         borderRadius: '10px'
     });
 
