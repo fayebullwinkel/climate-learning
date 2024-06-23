@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "map_slider_items",
+  "info": {
+    "singularName": "map-slider-item",
+    "pluralName": "map-slider-items",
+    "displayName": "MapSliderItem"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "climate_adaptation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-adaptation.climate-adaptation",
+      "inversedBy": "map_slider_items"
+    }
+  }
+}

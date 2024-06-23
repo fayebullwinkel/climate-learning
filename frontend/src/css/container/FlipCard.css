@@ -31,11 +31,3 @@
     width: 80%;
     text-align: center;
 }
-
-.arrow {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 70px;
-    right: 30px;
-}

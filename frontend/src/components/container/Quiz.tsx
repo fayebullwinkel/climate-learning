@@ -29,7 +29,6 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
 
     return (
         <div>
-            <div style={{textAlign: 'right', marginRight: '20px'}}><a href={'https://www.geo.de/natur/naturquiz/16518-quiz-quiz-kennen-sie-die-skurrilsten-folgen-des-klimawandels'} target="_blank" rel="noopener noreferrer">Quelle</a></div>
             <form onSubmit={handleSubmit}>
                 <FormControl component="fieldset">
                     <h3 style={{ textAlign: "left", marginBottom: "10px", fontFamily: 'Source Sans Pro, sans-serif', fontSize: '1.3rem'}}>

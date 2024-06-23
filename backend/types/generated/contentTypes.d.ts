@@ -897,6 +897,11 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::adaptation-measure.adaptation-measure'
     >;
+    map_slider_items: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::map-slider-item.map-slider-item'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1207,6 +1212,42 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
   };
 }
 
+export interface ApiMapSliderItemMapSliderItem extends Schema.CollectionType {
+  collectionName: 'map_slider_items';
+  info: {
+    singularName: 'map-slider-item';
+    pluralName: 'map-slider-items';
+    displayName: 'MapSliderItem';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    climate_adaptation: Attribute.Relation<
+      'api::map-slider-item.map-slider-item',
+      'manyToOne',
+      'api::climate-adaptation.climate-adaptation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::map-slider-item.map-slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::map-slider-item.map-slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageTitlePageTitle extends Schema.CollectionType {
   collectionName: 'page_titles';
   info: {
@@ -1378,6 +1419,7 @@ declare module '@strapi/types' {
       'api::event.event': ApiEventEvent;
       'api::grid-item.grid-item': ApiGridItemGridItem;
       'api::image-card.image-card': ApiImageCardImageCard;
+      'api::map-slider-item.map-slider-item': ApiMapSliderItemMapSliderItem;
       'api::page-title.page-title': ApiPageTitlePageTitle;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;

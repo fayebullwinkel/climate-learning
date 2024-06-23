@@ -19,4 +19,7 @@ export interface ClimateAdaptation {
     gridItems: {
         data:  GridItem[];
     }
+    mapSliderItems: {
+        data: Mixed[];
+    }
 }

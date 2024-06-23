@@ -1,0 +1,25 @@
+
+.accordion-item {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.arrow {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 70px;
+    right: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .arrow {
+        position: absolute;
+        top: 45px;
+    }
+}
+
+.source-link {
+    text-align: right;
+    margin-right: 20px;
+}

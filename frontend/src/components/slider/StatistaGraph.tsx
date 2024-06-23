@@ -11,7 +11,7 @@ const StatistaGraph = () => {
                     src="https://cdn.statcdn.com/Infographic/images/normal/30203.jpeg"
                     alt="Infografik: Wasser - die größte Naturgefahr des 21. Jahrhunderts? | Statista"
                     style={{
-                        width: window.innerWidth <= 768 ? '70%' : '60%',
+                        width: window.innerWidth <= 768 ? '90%' : '60%',
                         height: 'auto',
                         maxWidth: '960px',
                         margin: '0 auto'

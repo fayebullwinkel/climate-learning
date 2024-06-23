@@ -36,14 +36,27 @@
     text-align: justify;
 }
 
-@media (max-width: 768px) {
-    .imageBanner.content {
-        max-width: 70%;
-    }
+.custom-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-@media (min-width: 769px) {
-    .imageBanner.content {
-        max-width: 50%;
-    }
+.custom-arrows .MuiIconButton-root {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-arrows .MuiSvgIcon-root {
+    font-size: 1rem;
+}
+
+.custom-arrows .MuiIconButton-root:first-of-type {
+    left: 10px;
+}
+
+.custom-arrows .MuiIconButton-root:last-of-type {
+    right: 10px;
 }

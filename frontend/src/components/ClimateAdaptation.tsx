@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ClimateAdaptation as ClimateAdaptationType} from "../types";
 import {getImageCardsStyle} from "./";
 import {ColorContainer, ImageContainer, ItemsGrid} from "../components/container";
+import {MapSlider} from "../components/slider";
 import {VideoBanner} from "./container";
 
 function ClimateAdaptation() {
@@ -12,7 +13,7 @@ function ClimateAdaptation() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures, map_slider_items`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const climateAdaptationData = await response.json();
                 if (!climateAdaptationData.data) throw new Error('No climate adaptation data available');
@@ -40,7 +41,8 @@ function ClimateAdaptation() {
                 videoTitle: data.attributes.videoTitle,
                 videoDescription: data.attributes.videoDescription,
                 gridHeading: data.attributes.gridHeading,
-                gridItems: data.attributes.grid_items
+                gridItems: data.attributes.grid_items,
+                mapSliderItems: data.attributes.map_slider_items
             };
         };
 
@@ -70,9 +72,10 @@ function ClimateAdaptation() {
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
                             color={"#F6EDD9"}/>
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl} description={data.secondBannerDescription} bannerItems={data.adaptationMeasures.data} showButton={false}/>
             <VideoBanner title={data.videoTitle} description={data.videoDescription}/>
+            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl} description={data.secondBannerDescription} bannerItems={data.adaptationMeasures.data} showButton={false}/>
             <ItemsGrid heading={data.gridHeading} items={data.gridItems.data}/>
+            <MapSlider sliderItems={data.mapSliderItems.data}/>
         </div>
     )
 }

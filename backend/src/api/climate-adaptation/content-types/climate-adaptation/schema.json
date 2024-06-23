@@ -72,6 +72,12 @@
       "relation": "oneToMany",
       "target": "api::adaptation-measure.adaptation-measure",
       "mappedBy": "climate_adaptation"
+    },
+    "map_slider_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::map-slider-item.map-slider-item",
+      "mappedBy": "climate_adaptation"
     }
   }
 }
