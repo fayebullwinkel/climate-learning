@@ -4,7 +4,7 @@
   "info": {
     "singularName": "climate-adaptation",
     "pluralName": "climate-adaptations",
-    "displayName": "ClimateAdaptation",
+    "displayName": "Main Page: ClimateAdaptation",
     "description": ""
   },
   "options": {
@@ -93,6 +93,28 @@
       "relation": "oneToMany",
       "target": "api::adaptation-unsealing.adaptation-unsealing",
       "mappedBy": "climate_adaptation"
+    },
+    "adaptation_call_to_actions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::adaptation-call-to-action.adaptation-call-to-action",
+      "mappedBy": "main_page_climate_adaptation"
+    },
+    "fourthBannerTitle": {
+      "type": "string"
+    },
+    "fourthBannerDescription": {
+      "type": "text"
+    },
+    "fourthBannerImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

@@ -825,6 +825,43 @@ export interface ApiActionAction extends Schema.CollectionType {
   };
 }
 
+export interface ApiAdaptationCallToActionAdaptationCallToAction
+  extends Schema.CollectionType {
+  collectionName: 'adaptation_call_to_actions';
+  info: {
+    singularName: 'adaptation-call-to-action';
+    pluralName: 'adaptation-call-to-actions';
+    displayName: 'AdaptationCallToAction';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    main_page_climate_adaptation: Attribute.Relation<
+      'api::adaptation-call-to-action.adaptation-call-to-action',
+      'manyToOne',
+      'api::climate-adaptation.climate-adaptation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::adaptation-call-to-action.adaptation-call-to-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::adaptation-call-to-action.adaptation-call-to-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAdaptationMeasureAdaptationMeasure
   extends Schema.CollectionType {
   collectionName: 'adaptation_measures';
@@ -907,7 +944,7 @@ export interface ApiClimateAdaptationClimateAdaptation
   info: {
     singularName: 'climate-adaptation';
     pluralName: 'climate-adaptations';
-    displayName: 'ClimateAdaptation';
+    displayName: 'Main Page: ClimateAdaptation';
     description: '';
   };
   options: {
@@ -950,6 +987,16 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::adaptation-unsealing.adaptation-unsealing'
     >;
+    adaptation_call_to_actions: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::adaptation-call-to-action.adaptation-call-to-action'
+    >;
+    fourthBannerTitle: Attribute.String;
+    fourthBannerDescription: Attribute.Text;
+    fourthBannerImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -973,7 +1020,7 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
   info: {
     singularName: 'climate-change';
     pluralName: 'climate-changes';
-    displayName: 'ClimateChange';
+    displayName: 'Main Page: ClimateChange';
     description: '';
   };
   options: {
@@ -1460,6 +1507,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::action.action': ApiActionAction;
+      'api::adaptation-call-to-action.adaptation-call-to-action': ApiAdaptationCallToActionAdaptationCallToAction;
       'api::adaptation-measure.adaptation-measure': ApiAdaptationMeasureAdaptationMeasure;
       'api::adaptation-unsealing.adaptation-unsealing': ApiAdaptationUnsealingAdaptationUnsealing;
       'api::climate-adaptation.climate-adaptation': ApiClimateAdaptationClimateAdaptation;

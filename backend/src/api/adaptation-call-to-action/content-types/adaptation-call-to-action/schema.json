@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "adaptation_call_to_actions",
+  "info": {
+    "singularName": "adaptation-call-to-action",
+    "pluralName": "adaptation-call-to-actions",
+    "displayName": "AdaptationCallToAction"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "main_page_climate_adaptation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-adaptation.climate-adaptation",
+      "inversedBy": "adaptation_call_to_actions"
+    }
+  }
+}

@@ -28,4 +28,10 @@ export interface ClimateAdaptation {
     adaptationMeasuresHTW: {
         data: SliderItem[];
     }
+    fourthBannerTitle: string;
+    fourthBannerDescription: string;
+    fourthImageUrl: string;
+    callToActions: {
+        data: Mixed[];
+    }
 }

@@ -13,11 +13,10 @@ function ClimateAdaptation() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures, map_slider_items, adaptation_unsealings.image`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures, map_slider_items, adaptation_unsealings.image, fourthBannerImage, adaptation_call_to_actions`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const climateAdaptationData = await response.json();
                 if (!climateAdaptationData.data) throw new Error('No climate adaptation data available');
-                console.log("guckuck hier kommen die Daten ", climateAdaptationData.data);
                 const formattedData: ClimateAdaptationType = formatClimateAdaptationData(climateAdaptationData.data);
                 setData(formattedData);
 
@@ -46,7 +45,12 @@ function ClimateAdaptation() {
                 thirdBannerCategory: data.attributes.thirdBannerCategory,
                 thirdBannerTitle: data.attributes.thirdBannerTitle,
                 thirdBannerDescription: data.attributes.thirdBannerDescription,
-                adaptationMeasuresHTW: data.attributes.adaptation_unsealings
+                adaptationMeasuresHTW: data.attributes.adaptation_unsealings,
+                fourthBannerTitle: data.attributes.fourthBannerTitle,
+                fourthBannerDescription: data.attributes.fourthBannerDescription,
+                fourthImageUrl: data.attributes.fourthBannerImage.data.attributes.url,
+                callToActions: data.attributes.adaptation_call_to_actions
+
             };
         };
 
@@ -83,6 +87,7 @@ function ClimateAdaptation() {
             <ColorContainer category={data.thirdBannerCategory} heading={data.thirdBannerTitle} description={data.thirdBannerDescription}
                             color={"#F6EDD9"}/>
             <AdaptationSlider sliderItems={data.adaptationMeasuresHTW.data} />
+            <ImageContainer title={data.fourthBannerTitle} imageUrl={data.fourthImageUrl} description={data.fourthBannerDescription} bannerItems={data.callToActions.data}/>
         </div>
     )
 }
