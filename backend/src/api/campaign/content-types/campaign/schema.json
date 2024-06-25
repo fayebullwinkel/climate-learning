@@ -46,6 +46,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::difficulty.difficulty"
+    },
+    "description": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "tips": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tip.tip",
+      "mappedBy": "campaign"
     }
   }
 }

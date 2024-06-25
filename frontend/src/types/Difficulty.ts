@@ -1,7 +1,7 @@
 export interface Difficulty {
     data: {
+        id: number;
         attributes: {
-            id: number;
             value: string;
         }
     }

@@ -12,3 +12,4 @@ export * from './Logo';
 export * from './Mixed';
 export * from './Question';
 export * from './SliderItem';
+export * from './Tip';

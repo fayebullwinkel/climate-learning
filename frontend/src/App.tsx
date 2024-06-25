@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {Home, ClimateAdaptation, CampusCampaign, NavigationMenu, BottomMenu} from "./components";
+import {Home, ClimateAdaptation, CampusCampaign, NavigationMenu, BottomMenu, CampaignPage} from "./components";
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/climateAdaptation" element={<ClimateAdaptation />} />
                         <Route path="/campusCampaigns" element={<CampusCampaign />} />
-                        {/*<Route path="/campaign" component={Campaign} />*/}
+                        <Route path="/campaign/:id" element={<CampaignPage />} />
                     </Routes>
                 </main>
                 <BottomMenu/>

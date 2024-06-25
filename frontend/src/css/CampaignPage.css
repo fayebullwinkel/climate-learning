@@ -1,0 +1,24 @@
+.campaignPageContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    margin: 100px auto 0;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.campaignPageContent img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.campaignPageContent h2 {
+    text-align: center;
+}
+
+.customButton {
+    background-color: #76B900 !important;
+    margin-top: 20px !important;
+}

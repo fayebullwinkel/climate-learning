@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Campaign, CampusCampaign as CampusCampaignType, Category } from "@/types";
-import { Card, CategoryCheckboxGroup, ColorContainer, ImageContainer } from "../components/container";
-import { getImageCardsStyle } from './';
+import { Card, ColorContainer, ImageContainer } from "../components/container";
+import {CategoryCheckboxGroup, getImageCardsStyle} from './';
 
 const formatCampaignData = (campaign: any): Campaign => ({
+    id: campaign.id,
     imageUrl: campaign.attributes.image.data.attributes.url || '',
     title: campaign.attributes.title,
     difficulty: campaign.attributes.campaign_difficulty,
-    date: campaign.attributes.datetime ? new Date(campaign.attributes.datetime).toLocaleString() : undefined,
+    date: campaign.attributes.datetime ? new Date(campaign.attributes.datetime).toLocaleString(undefined, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+    }) : undefined,
     categories: campaign.attributes.campaign_categories.data.map((cat: any) => ({
         id: cat.id,
         value: cat.attributes.value,
@@ -112,6 +119,8 @@ function CampusCampaign() {
                         imageUrl={campaign.imageUrl}
                         heading={campaign.title}
                         difficulty={campaign.difficulty}
+                        campaignId={campaign.id}
+                        date={campaign.date}
                     />
                 ))}
             </div>

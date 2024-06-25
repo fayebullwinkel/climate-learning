@@ -969,6 +969,13 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
       'oneToOne',
       'api::difficulty.difficulty'
     >;
+    description: Attribute.Text;
+    location: Attribute.String;
+    tips: Attribute.Relation<
+      'api::campaign.campaign',
+      'oneToMany',
+      'api::tip.tip'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1615,6 +1622,35 @@ export interface ApiSocialConsequenceSocialConsequence
   };
 }
 
+export interface ApiTipTip extends Schema.CollectionType {
+  collectionName: 'tips';
+  info: {
+    singularName: 'tip';
+    pluralName: 'tips';
+    displayName: 'Tip';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    campaign: Attribute.Relation<
+      'api::tip.tip',
+      'manyToOne',
+      'api::campaign.campaign'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tip.tip', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tip.tip', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1653,6 +1689,7 @@ declare module '@strapi/types' {
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;
       'api::social-consequence.social-consequence': ApiSocialConsequenceSocialConsequence;
+      'api::tip.tip': ApiTipTip;
     }
   }
 }

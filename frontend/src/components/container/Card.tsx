@@ -11,18 +11,22 @@ interface CardProps {
     description?: string;
     difficulty?: Difficulty;
     link?: string;
+    campaignId?: number;
+    date?: string;
     external?: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty, link, external = false }) => {
+const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty, link, campaignId, date, external = false }) => {
     const navigate = useNavigate();
+    const openCampaignPage = () => {
+        navigate(`/campaign/${String(campaignId)}`);
+    };
 
     const openLink = () => {
         if (external && link) {
             window.open(link, "_blank", "noopener noreferrer");
         } else {
-            console.log("should be navigating");
-            // navigate('/campaign');
+            openCampaignPage();
         }
     };
 
@@ -30,8 +34,12 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
         width: window.innerWidth <= 768 ? "100%" : "30%",
     };
 
+    const dateDisplay = date && date.includes(':')
+        ? `${date} Uhr`
+        : date;
+
     return (
-        <div style={cardStyle} className='customCard'>
+        <div style={cardStyle} className='customCard' onClick={openCampaignPage}>
             <div className='cardContent'>
                 <img
                     src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}
@@ -39,11 +47,12 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
                     className='imageCard'
                 />
                 <div className='textContent' style={{ textAlign: 'left' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <h3>{heading}</h3>
+                    <h3>{heading}</h3>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '95%' }}>
                         {difficulty && (
                             <Chip label={difficulty.data.attributes.value} className='difficultyChip' />
                         )}
+                        {date && <p>{dateDisplay}</p>}
                     </div>
                     {description && <p>{description}</p>}
                     <Button

@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import { Category } from "@/types";
-import '../../css/container/CategoryCheckboxGroup.css';
+import '../css/container/CategoryCheckboxGroup.css';
 
 interface CategoryCheckboxGroupProps {
     categories: Category[];
@@ -37,7 +37,7 @@ const CategoryCheckboxGroup: React.FC<CategoryCheckboxGroupProps> = ({ categorie
     return (
         <Box display="flex" flexDirection="column" alignItems="center" className="category-checkbox-container">
             <Box width="50%">
-                <p>Filtere die Aktionen:</p>
+                <p>Hier kannst du die Angebote ganz einfach nach deinen Interessen filtern:</p>
                 <FormControl fullWidth>
                     <Select
                         className="category-select"
