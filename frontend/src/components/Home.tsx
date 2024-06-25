@@ -17,10 +17,11 @@ function ClimateChange() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=headerImage,secondBannerImage,consequences, actions,slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, actions,slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
+                console.log('home data: ', climateData.data);
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
                 setData(formattedData);
                 setAccordionData({
@@ -56,6 +57,13 @@ function ClimateChange() {
             id: climateData.id,
             bannerTitle: climateData.attributes.bannerTitle,
             headerImageUrl: climateData.attributes.headerImage.data.attributes.url,
+            introductionCategory: climateData.attributes.introductionCategory,
+            introductionHeading: climateData.attributes.introductionHeading,
+            introductionDescription: climateData.attributes.introductionDescription,
+            introductionBannerTitle: climateData.attributes.introductionBannerTitle,
+            introductionBannerDescription: climateData.attributes.introductionBannerDescription,
+            introductionBannerImageUrl: climateData.attributes.introductionBannerImage.data.attributes.url,
+            reasons: climateData.attributes.climate_change_reasons,
             category: climateData.attributes.category,
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
@@ -96,6 +104,8 @@ function ClimateChange() {
     return (
         <div className="page-container">
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+            <ColorContainer category={data.introductionCategory} heading={data.introductionHeading} description={data.introductionDescription} color={'#F7FbF1'}/>
+            <ImageContainer title={data.introductionBannerTitle} imageUrl={data.introductionBannerImageUrl} description={data.introductionBannerDescription} bannerItems={data.reasons.data} showButton={false}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
                             color={"#F6EDD9"}/>
             <div style={{padding: '1%'}}>

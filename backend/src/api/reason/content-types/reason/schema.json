@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reasons",
+  "info": {
+    "singularName": "reason",
+    "pluralName": "reasons",
+    "displayName": "ClimateChangeReason",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "main_page_climate_change": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-change.climate-change",
+      "inversedBy": "climate_change_reasons"
+    }
+  }
+}

@@ -4,6 +4,15 @@ export interface ClimateChange {
     id: number;
     bannerTitle: string;
     headerImageUrl: string;
+    introductionCategory: string;
+    introductionHeading: string;
+    introductionDescription: string;
+    introductionBannerTitle: string;
+    introductionBannerDescription: string;
+    introductionBannerImageUrl: string;
+    reasons: {
+        data: Mixed[];
+    }
     category: string;
     heading: string;
     description: string;

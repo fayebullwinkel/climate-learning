@@ -1207,6 +1207,19 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::action.action'
     >;
+    introductionHeading: Attribute.String;
+    introductionDescription: Attribute.Text;
+    introductionCategory: Attribute.String;
+    introductionBannerTitle: Attribute.String;
+    introductionBannerDescription: Attribute.Text;
+    introductionBannerImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    climate_change_reasons: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::reason.reason'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1546,6 +1559,43 @@ export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
   };
 }
 
+export interface ApiReasonReason extends Schema.CollectionType {
+  collectionName: 'reasons';
+  info: {
+    singularName: 'reason';
+    pluralName: 'reasons';
+    displayName: 'ClimateChangeReason';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    main_page_climate_change: Attribute.Relation<
+      'api::reason.reason',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reason.reason',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reason.reason',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSliderItemSliderItem extends Schema.CollectionType {
   collectionName: 'slider_items';
   info: {
@@ -1687,6 +1737,7 @@ declare module '@strapi/types' {
       'api::map-slider-item.map-slider-item': ApiMapSliderItemMapSliderItem;
       'api::page-title.page-title': ApiPageTitlePageTitle;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
+      'api::reason.reason': ApiReasonReason;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;
       'api::social-consequence.social-consequence': ApiSocialConsequenceSocialConsequence;
       'api::tip.tip': ApiTipTip;
