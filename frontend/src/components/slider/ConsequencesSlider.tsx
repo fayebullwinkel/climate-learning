@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import React from "react";
-import { SliderItem } from '../../types';
-import FlipCard from "../container/FlipCard";
+import { SliderItem } from '@/types';
+import { FlipCard } from "../container";
 import '../../css/slider/FlipCardSlider.css';
 
 interface ConsequencesProps {

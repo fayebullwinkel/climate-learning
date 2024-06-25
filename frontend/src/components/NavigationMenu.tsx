@@ -20,7 +20,7 @@ function NavigationMenu() {
     const [pageTitles, setPageTitles] = React.useState<string[]>([]);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
 
-    const routes = ['/', '/climateAdaptation', '/eventList'];
+    const routes = ['/', '/climateAdaptation', '/campusCampaigns'];
 
     React.useEffect(() => {
         const fetchLogoUrl = async () => {

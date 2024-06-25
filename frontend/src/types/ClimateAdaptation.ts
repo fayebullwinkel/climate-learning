@@ -1,4 +1,4 @@
-import {GridItem, SliderItem} from "../types";
+import {GridItem, SliderItem} from "@/types";
 import {Mixed} from './';
 export interface ClimateAdaptation {
     id: number;

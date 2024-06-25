@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {ClimateChangeSlider, QuizSlider} from "./slider";
-import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCardType} from '../types';
+import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCardType} from '@/types';
 import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -105,7 +105,9 @@ function ClimateChange() {
                             <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
                                   heading={imageCard.attributes.heading}
                                   description={imageCard.attributes.description}
-                                  link={imageCard.attributes.link}/>
+                                  link={imageCard.attributes.link}
+                                  external={true}
+                            />
                         ))
                     }
                 </div>

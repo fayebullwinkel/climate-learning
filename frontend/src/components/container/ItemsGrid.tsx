@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { GridItem } from "../../types";
+import { GridItem } from "@/types";
 import { useMediaQuery } from "react-responsive";
 import '../../css/container/ItemsGrid.css';
 

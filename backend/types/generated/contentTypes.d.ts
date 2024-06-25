@@ -938,6 +938,132 @@ export interface ApiAdaptationUnsealingAdaptationUnsealing
   };
 }
 
+export interface ApiCampaignCampaign extends Schema.CollectionType {
+  collectionName: 'campaigns';
+  info: {
+    singularName: 'campaign';
+    pluralName: 'campaigns';
+    displayName: 'Campaign';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    campaign_categories: Attribute.Relation<
+      'api::campaign.campaign',
+      'manyToMany',
+      'api::category.category'
+    >;
+    datetime: Attribute.DateTime;
+    main_page_campus_campaign: Attribute.Relation<
+      'api::campaign.campaign',
+      'manyToOne',
+      'api::campus-campaign.campus-campaign'
+    >;
+    campaign_difficulty: Attribute.Relation<
+      'api::campaign.campaign',
+      'oneToOne',
+      'api::difficulty.difficulty'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::campaign.campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::campaign.campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCampusCampaignCampusCampaign extends Schema.CollectionType {
+  collectionName: 'campus_campaigns';
+  info: {
+    singularName: 'campus-campaign';
+    pluralName: 'campus-campaigns';
+    displayName: 'Main Page: CampusCampaign';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bannerTitle: Attribute.String & Attribute.Required;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    category: Attribute.String & Attribute.Required;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    campaigns: Attribute.Relation<
+      'api::campus-campaign.campus-campaign',
+      'oneToMany',
+      'api::campaign.campaign'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::campus-campaign.campus-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::campus-campaign.campus-campaign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'CampaignCategory';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    value: Attribute.String & Attribute.Required;
+    campaigns: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::campaign.campaign'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClimateAdaptationClimateAdaptation
   extends Schema.CollectionType {
   collectionName: 'climate_adaptations';
@@ -1168,6 +1294,37 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
   };
 }
 
+export interface ApiDifficultyDifficulty extends Schema.CollectionType {
+  collectionName: 'difficulties';
+  info: {
+    singularName: 'difficulty';
+    pluralName: 'difficulties';
+    displayName: 'CampaignDifficulty';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    value: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::difficulty.difficulty',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::difficulty.difficulty',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEconomicConsequenceEconomicConsequence
   extends Schema.CollectionType {
   collectionName: 'economic_consequences';
@@ -1200,36 +1357,6 @@ export interface ApiEconomicConsequenceEconomicConsequence
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::economic-consequence.economic-consequence',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiEventEvent extends Schema.CollectionType {
-  collectionName: 'events';
-  info: {
-    singularName: 'event';
-    pluralName: 'events';
-    displayName: 'Event';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    item: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::event.event',
       'oneToOne',
       'admin::user'
     > &
@@ -1510,12 +1637,15 @@ declare module '@strapi/types' {
       'api::adaptation-call-to-action.adaptation-call-to-action': ApiAdaptationCallToActionAdaptationCallToAction;
       'api::adaptation-measure.adaptation-measure': ApiAdaptationMeasureAdaptationMeasure;
       'api::adaptation-unsealing.adaptation-unsealing': ApiAdaptationUnsealingAdaptationUnsealing;
+      'api::campaign.campaign': ApiCampaignCampaign;
+      'api::campus-campaign.campus-campaign': ApiCampusCampaignCampusCampaign;
+      'api::category.category': ApiCategoryCategory;
       'api::climate-adaptation.climate-adaptation': ApiClimateAdaptationClimateAdaptation;
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
       'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;
+      'api::difficulty.difficulty': ApiDifficultyDifficulty;
       'api::economic-consequence.economic-consequence': ApiEconomicConsequenceEconomicConsequence;
-      'api::event.event': ApiEventEvent;
       'api::grid-item.grid-item': ApiGridItemGridItem;
       'api::image-card.image-card': ApiImageCardImageCard;
       'api::map-slider-item.map-slider-item': ApiMapSliderItemMapSliderItem;

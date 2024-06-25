@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ConsequencesSlider } from '../slider';
-import { AccordionItem, SliderItem } from '../../types';
+import { AccordionItem, SliderItem } from '@/types';
 import Box from '@mui/material/Box';
 import '../../css/container/CustomAccordion.css';
 

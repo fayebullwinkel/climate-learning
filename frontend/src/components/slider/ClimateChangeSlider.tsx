@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import { Co2Clock, StatistaGraph, TemperatureChart } from "./";
 import React from "react";
-import { SliderItem } from '../../types';
+import { SliderItem } from '@/types';
 import '../../css/slider/ClimateChangeSlider.css';
 
 interface ClimateChangeProps {

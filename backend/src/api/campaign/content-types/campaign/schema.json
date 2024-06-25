@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campaigns",
+  "info": {
+    "singularName": "campaign",
+    "pluralName": "campaigns",
+    "displayName": "Campaign",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "campaign_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "campaigns"
+    },
+    "datetime": {
+      "type": "datetime"
+    },
+    "main_page_campus_campaign": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::campus-campaign.campus-campaign",
+      "inversedBy": "campaigns"
+    },
+    "campaign_difficulty": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::difficulty.difficulty"
+    }
+  }
+}

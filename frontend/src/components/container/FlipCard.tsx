@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import { SliderItem } from '../../types';
+import { SliderItem } from '@/types';
 import '../../css/container/FlipCard.css';
 
 interface FlipCardProps {

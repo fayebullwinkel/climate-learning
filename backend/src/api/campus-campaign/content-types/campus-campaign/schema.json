@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campus_campaigns",
+  "info": {
+    "singularName": "campus-campaign",
+    "pluralName": "campus-campaigns",
+    "displayName": "Main Page: CampusCampaign",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bannerTitle": {
+      "type": "string",
+      "required": true
+    },
+    "headerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "campaigns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::campaign.campaign",
+      "mappedBy": "main_page_campus_campaign"
+    }
+  }
+}

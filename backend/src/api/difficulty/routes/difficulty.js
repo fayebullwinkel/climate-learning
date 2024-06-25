@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * event router
+ * difficulty router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::event.event');
+module.exports = createCoreRouter('api::difficulty.difficulty');

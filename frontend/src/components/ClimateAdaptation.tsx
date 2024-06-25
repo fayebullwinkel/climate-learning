@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ClimateAdaptation as ClimateAdaptationType} from "../types";
+import {ClimateAdaptation as ClimateAdaptationType} from "@/types";
 import {getImageCardsStyle} from "./";
 import {ColorContainer, ImageContainer, ItemsGrid} from "../components/container";
 import { AdaptationSlider, MapSlider} from "../components/slider";

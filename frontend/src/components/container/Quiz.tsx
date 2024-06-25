@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Question } from '../../types';
+import { Question } from '@/types';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Button from "@mui/material/Button";
 

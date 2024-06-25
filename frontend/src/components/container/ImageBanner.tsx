@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { Mixed } from "../../types";
+import { Mixed } from "@/types";
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -50,7 +50,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                 <h1 className='imageBannerTitle'>{title}</h1>
                 <p>{description}</p>
                 {showButton && (
-                    <Button variant="outlined" component={Link} to="/eventList" style={{ color: 'white', borderColor: 'white' }}>
+                    <Button variant="outlined" component={Link} to="/campusCampaigns" style={{ color: 'white', borderColor: 'white' }}>
                         Zu den Aktionen
                     </Button>
                 )}

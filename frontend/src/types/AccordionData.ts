@@ -1,4 +1,4 @@
-import {SliderItem} from "../types/";
+import {SliderItem} from "@/types";
 
 export interface AccordionData {
     naturalConsequencesSliderItems: SliderItem[];
