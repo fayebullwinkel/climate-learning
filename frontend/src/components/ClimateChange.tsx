@@ -57,13 +57,6 @@ function ClimateChange() {
             id: climateData.id,
             bannerTitle: climateData.attributes.bannerTitle,
             headerImageUrl: climateData.attributes.headerImage.data.attributes.url,
-            introductionCategory: climateData.attributes.introductionCategory,
-            introductionHeading: climateData.attributes.introductionHeading,
-            introductionDescription: climateData.attributes.introductionDescription,
-            introductionBannerTitle: climateData.attributes.introductionBannerTitle,
-            introductionBannerDescription: climateData.attributes.introductionBannerDescription,
-            introductionBannerImageUrl: climateData.attributes.introductionBannerImage.data.attributes.url,
-            reasons: climateData.attributes.climate_change_reasons,
             category: climateData.attributes.category,
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
@@ -104,8 +97,6 @@ function ClimateChange() {
     return (
         <div className="page-container">
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
-            <ColorContainer category={data.introductionCategory} heading={data.introductionHeading} description={data.introductionDescription} color={'#F7FbF1'}/>
-            <ImageContainer title={data.introductionBannerTitle} imageUrl={data.introductionBannerImageUrl} description={data.introductionBannerDescription} bannerItems={data.reasons.data} showButton={false}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
                             color={"#F6EDD9"}/>
             <div style={{padding: '1%'}}>

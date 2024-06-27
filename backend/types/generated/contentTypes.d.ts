@@ -1207,19 +1207,6 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::action.action'
     >;
-    introductionHeading: Attribute.String;
-    introductionDescription: Attribute.Text;
-    introductionCategory: Attribute.String;
-    introductionBannerTitle: Attribute.String;
-    introductionBannerDescription: Attribute.Text;
-    introductionBannerImage: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    climate_change_reasons: Attribute.Relation<
-      'api::climate-change.climate-change',
-      'oneToMany',
-      'api::reason.reason'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1422,6 +1409,41 @@ export interface ApiGridItemGridItem extends Schema.CollectionType {
   };
 }
 
+export interface ApiHomeHome extends Schema.CollectionType {
+  collectionName: 'homes';
+  info: {
+    singularName: 'home';
+    pluralName: 'homes';
+    displayName: 'Main Page: Home';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bannerTitle: Attribute.String;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String;
+    description: Attribute.Text;
+    category: Attribute.String;
+    bannerDescription: Attribute.Text;
+    bannerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    climate_change_reasons: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::reason.reason'
+    >;
+    secondBannerTitle: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiImageCardImageCard extends Schema.CollectionType {
   collectionName: 'image_cards';
   info: {
@@ -1573,10 +1595,10 @@ export interface ApiReasonReason extends Schema.CollectionType {
   attributes: {
     heading: Attribute.String;
     description: Attribute.Text;
-    main_page_climate_change: Attribute.Relation<
+    home: Attribute.Relation<
       'api::reason.reason',
       'manyToOne',
-      'api::climate-change.climate-change'
+      'api::home.home'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1733,6 +1755,7 @@ declare module '@strapi/types' {
       'api::difficulty.difficulty': ApiDifficultyDifficulty;
       'api::economic-consequence.economic-consequence': ApiEconomicConsequenceEconomicConsequence;
       'api::grid-item.grid-item': ApiGridItemGridItem;
+      'api::home.home': ApiHomeHome;
       'api::image-card.image-card': ApiImageCardImageCard;
       'api::map-slider-item.map-slider-item': ApiMapSliderItemMapSliderItem;
       'api::page-title.page-title': ApiPageTitlePageTitle;

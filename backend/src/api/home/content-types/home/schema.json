@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Main Page: Home",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bannerTitle": {
+      "type": "string"
+    },
+    "headerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
+      "type": "string"
+    },
+    "bannerDescription": {
+      "type": "text"
+    },
+    "bannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "climate_change_reasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reason.reason",
+      "mappedBy": "home"
+    },
+    "secondBannerTitle": {
+      "type": "string"
+    }
+  }
+}

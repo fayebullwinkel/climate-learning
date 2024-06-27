@@ -22,7 +22,7 @@ interface ImageBannerProps {
 const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, bannerItems, showButton = true }) => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
-    const sliderRef = useRef<Slider>(null); // Ref for the Slider component
+    const sliderRef = useRef<Slider>(null);
 
     const bannerStyle: React.CSSProperties = {
         height: description ? '700px' : '500px',

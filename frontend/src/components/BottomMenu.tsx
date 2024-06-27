@@ -12,6 +12,7 @@ import {useMediaQuery} from "react-responsive";
 
 function BottomMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');
+    const [logoSmallUrl, setLogoSmallUrl] = React.useState<string>('');
     const [pageTitles] = React.useState<string[]>(['Mehr zum Projekt']);
 
     const routes = ['https://projekte.htw-berlin.de/hochschule/wegweiser-zum-gruenen-und-nachhaltigen-campus/'];
@@ -23,6 +24,18 @@ function BottomMenu() {
                 if (response.ok) {
                     const url = response.url;
                     setLogoUrl(url);
+                } else {
+                    console.error('Failed to fetch logo:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching logo:', error);
+            }
+
+            try {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/uploads/htw_gruen_b0a56b3fbf.jpg`);
+                if (response.ok) {
+                    const url = await response.url;
+                    setLogoSmallUrl(url);
                 } else {
                     console.error('Failed to fetch logo:', response.statusText);
                 }
@@ -48,15 +61,15 @@ function BottomMenu() {
                         aria-label="menu"
                         component={Link}
                         to="/"
-                        sx={{mr: 2, position: 'absolute'}}
+                        sx={{mr: 2, position: 'absolute', top: isMobile ? "25%": 0, "&:hover": { backgroundColor: "transparent" }}}
                     >
                         {logoUrl ? (
                             <img
-                                src={logoUrl}
+                                src={isMobile ? logoSmallUrl : logoUrl}
                                 alt="logo"
                                 style={{
                                     width: 'auto',
-                                    height: isMobile? '50px' : '70px',
+                                    height: isMobile? '25px' : '70px',
                                     objectFit: 'contain'
                                 }}
                             />

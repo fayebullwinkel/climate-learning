@@ -116,38 +116,6 @@
       "relation": "oneToMany",
       "target": "api::action.action",
       "mappedBy": "climate_change"
-    },
-    "introductionHeading": {
-      "type": "string"
-    },
-    "introductionDescription": {
-      "type": "text"
-    },
-    "introductionCategory": {
-      "type": "string"
-    },
-    "introductionBannerTitle": {
-      "type": "string"
-    },
-    "introductionBannerDescription": {
-      "type": "text"
-    },
-    "introductionBannerImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "climate_change_reasons": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reason.reason",
-      "mappedBy": "main_page_climate_change"
     }
   }
 }

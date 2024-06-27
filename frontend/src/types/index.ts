@@ -7,6 +7,7 @@ export * from './ClimateAdaptation';
 export * from './ClimateChange';
 export * from './Difficulty';
 export * from './GridItem';
+export * from './Home';
 export * from './ImageCardType';
 export * from './Logo';
 export * from './Mixed';

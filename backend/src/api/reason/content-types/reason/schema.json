@@ -18,10 +18,10 @@
     "description": {
       "type": "text"
     },
-    "main_page_climate_change": {
+    "home": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::climate-change.climate-change",
+      "target": "api::home.home",
       "inversedBy": "climate_change_reasons"
     }
   }

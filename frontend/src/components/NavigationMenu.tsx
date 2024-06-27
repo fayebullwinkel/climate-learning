@@ -20,7 +20,7 @@ function NavigationMenu() {
     const [pageTitles, setPageTitles] = React.useState<string[]>([]);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
 
-    const routes = ['/', '/climateAdaptation', '/campusCampaigns'];
+    const routes = ['/', '/climateChange', '/climateAdaptation', '/campusCampaigns'];
 
     React.useEffect(() => {
         const fetchLogoUrl = async () => {
@@ -107,7 +107,7 @@ function NavigationMenu() {
                         aria-label="menu"
                         component={Link}
                         to="/"
-                        sx={{ mr: 2, position: 'absolute' }}
+                        sx={{ mr: 2, position: 'absolute',  "&:hover": { backgroundColor: "transparent" }}}
                     >
                         {logoUrl ? (
                             <img
