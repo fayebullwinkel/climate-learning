@@ -60,10 +60,10 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                     {isMobile ? (
                         <div>
                             <Slider {...sliderSettings} ref={sliderRef}>
-                                {bannerItems.map((consequence) => (
-                                    <div key={consequence.id}>
-                                        <h3>{consequence.attributes.heading}</h3>
-                                        <p style={{ maxWidth: "65%", margin: '0 auto' }}>{consequence.attributes.description}</p>
+                                {bannerItems.map((bannerItem) => (
+                                    <div key={bannerItem.id}>
+                                        <h3>{bannerItem.attributes.heading}</h3>
+                                        <p style={{ maxWidth: "65%", margin: '0 auto' }}>{bannerItem.attributes.description}</p>
                                     </div>
                                 ))}
                             </Slider>
@@ -78,10 +78,10 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                         </div>
                     ) : (
                         <div className='imageBannerContainer'>
-                            {bannerItems.map(consequence => (
-                                <div key={consequence.id} style={{ flex: '1', margin: '0 10px' }}>
-                                    <h2>{consequence.attributes.heading}</h2>
-                                    <p>{consequence.attributes.description}</p>
+                            {bannerItems.map(bannerItem => (
+                                <div key={bannerItem.id} style={{ flex: '1', margin: '0 10px' }}>
+                                    <h2>{bannerItem.attributes.heading}</h2>
+                                    <p>{bannerItem.attributes.description}</p>
                                 </div>
                             ))}
                         </div>

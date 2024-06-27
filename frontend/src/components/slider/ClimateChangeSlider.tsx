@@ -35,7 +35,7 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems }) => {
         <div style={{ width: '70%', margin: '0 auto', padding: '1%' }}>
             <Slider {...sliderSettings}>
                 <div className='customSlider'>
-                    <h2 style={{ textAlign: 'justify' }}>{sliderItems[0].attributes.heading}</h2>
+                    <h2>{sliderItems[0].attributes.heading}</h2>
                     <p style={paragraphStyle}>{sliderItems[0].attributes.description} Quelle: <a
                         href="https://climate.nasa.gov/vital-signs/global-temperature/?intent=121"
                         target="_blank"
@@ -45,12 +45,12 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems }) => {
                     <TemperatureChart />
                 </div>
                 <div className='customSlider'>
-                    <h2 style={{ textAlign: 'justify' }}>{sliderItems[1].attributes.heading}</h2>
+                    <h2>{sliderItems[1].attributes.heading}</h2>
                     <p style={paragraphStyle}>{sliderItems[1].attributes.description}</p>
                 </div>
                 <div className='customSlider'><StatistaGraph /></div>
                 <div className='customSlider'>
-                    <h2 style={{ textAlign: 'justify' }}>{sliderItems[2].attributes.heading}</h2>
+                    <h2>{sliderItems[2].attributes.heading}</h2>
                     <p style={paragraphStyle}>{sliderItems[2].attributes.description}</p>
                 </div>
                 <div className='customSlider'><Co2Clock /></div>

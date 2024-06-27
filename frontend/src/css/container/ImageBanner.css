@@ -12,7 +12,7 @@
     left: 10%;
     color: white;
     transform: translateY(-50%);
-    text-align: justify;
+    text-align: left;
 }
 
 .imageBannerTitle {
@@ -59,4 +59,8 @@
 
 .custom-arrows .MuiIconButton-root:last-of-type {
     right: 10px;
+}
+
+.optionalDiv h3 {
+    text-align: center;
 }
