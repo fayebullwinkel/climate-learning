@@ -5,9 +5,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { Link, useLocation } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import {Link, useLocation} from 'react-router-dom';
+import {Grid} from '@mui/material';
 import '../css/NavigationMenu.css';
+import {useMediaQuery} from "react-responsive";
 
 function BottomMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');
@@ -18,7 +19,7 @@ function BottomMenu() {
     React.useEffect(() => {
         const fetchLogoUrl = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/uploads/htw_gruen_2bd9f9687e.jpg`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/uploads/htw_Logo_Weiss_89d599b873.png`);
                 if (response.ok) {
                     const url = response.url;
                     setLogoUrl(url);
@@ -34,45 +35,40 @@ function BottomMenu() {
     }, []);
 
     const location = useLocation();
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ top: 'auto', bottom: 0 }}>
-                <Toolbar sx={{ minHeight: 100 }} className='customBottomMenu'>
+        <Box sx={{flexGrow: 1}}>
+            <AppBar position="static" sx={{top: 'auto', bottom: 0}}>
+                <Toolbar sx={{minHeight: 100}} className='customBottomMenu'>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        component={Link}
+                        to="/"
+                        sx={{mr: 2, position: 'absolute'}}
+                    >
+                        {logoUrl ? (
+                            <img
+                                src={logoUrl}
+                                alt="logo"
+                                style={{
+                                    width: 'auto',
+                                    height: isMobile? '50px' : '70px',
+                                    objectFit: 'contain'
+                                }}
+                            />
+                        ) : (
+                            <Typography variant="h6" component="div">
+                                Loading...
+                            </Typography>
+                        )}
+                    </IconButton>
                     <Grid container alignItems="center">
-                        <Grid item>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                component={Link}
-                                to="/"
-                                sx={{ mr: 2 }}
-                            >
-                                {logoUrl ? (
-                                    <img
-                                        src={logoUrl}
-                                        alt="logo"
-                                        style={{
-                                            width: 'auto',
-                                            height: '40px',
-                                            objectFit: 'contain'
-                                        }}
-                                    />
-                                ) : (
-                                    <Typography variant="h6" component="div">
-                                        Loading...
-                                    </Typography>
-                                )}
-                            </IconButton>
-                        </Grid>
-
-                        {/* Spacer to push the next items to the center */}
-                        <Grid item xs />
-
-                        <Grid item>
-                            <Grid container direction="column" alignItems="center">
+                        <Grid container alignItems="center" justifyContent="center">
+                            <Grid item>
                                 {pageTitles.map((title, index) => (
                                     <Button
                                         key={index}
@@ -91,9 +87,6 @@ function BottomMenu() {
                                 ))}
                             </Grid>
                         </Grid>
-
-                        {/* Spacer to push the next items to the right */}
-                        <Grid item xs />
                     </Grid>
                 </Toolbar>
             </AppBar>

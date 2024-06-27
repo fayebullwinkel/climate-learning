@@ -100,35 +100,32 @@ function NavigationMenu() {
                 sx={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}
             >
                 <Toolbar sx={{ minHeight: 100 }} className='customMainMenu'>
-                    <Grid container alignItems="center" justifyContent="space-between">
-                        <Grid item>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                component={Link}
-                                to="/"
-                                sx={{ mr: 2 }}
-                            >
-                                {logoUrl ? (
-                                    <img
-                                        src={logoUrl}
-                                        alt="logo"
-                                        style={{
-                                            width: 'auto',
-                                            height: '40px',
-                                            objectFit: 'contain'
-                                        }}
-                                    />
-                                ) : (
-                                    <Typography variant="h6" component="div">
-                                        Loading...
-                                    </Typography>
-                                )}
-                            </IconButton>
-                        </Grid>
-
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        component={Link}
+                        to="/"
+                        sx={{ mr: 2, position: 'absolute' }}
+                    >
+                        {logoUrl ? (
+                            <img
+                                src={logoUrl}
+                                alt="logo"
+                                style={{
+                                    width: 'auto',
+                                    height: isMobile? '50px' : '70px',
+                                    objectFit: 'contain'
+                                }}
+                            />
+                        ) : (
+                            <Typography variant="h6" component="div">
+                                Loading...
+                            </Typography>
+                        )}
+                    </IconButton>
+                    <Grid container alignItems="center" justifyContent={isMobile ? "flex-end" : "center"}>
                         {isMobile ? (
                             <>
                                 <Grid item>
@@ -153,11 +150,9 @@ function NavigationMenu() {
                             </>
                         ) : (
                             <>
-                                <Grid item xs />
                                 <Grid item>
                                     {renderMenuItems()}
                                 </Grid>
-                                <Grid item xs />
                             </>
                         )}
                     </Grid>

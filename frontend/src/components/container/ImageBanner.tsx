@@ -25,13 +25,13 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     const sliderRef = useRef<Slider>(null); // Ref for the Slider component
 
     const bannerStyle: React.CSSProperties = {
-        height: description ? '700px' : '600px',
+        height: description ? '700px' : '500px',
         backgroundImage: `url(${process.env.REACT_APP_BACKEND}${imageUrl})`,
     };
 
     const contentStyle: React.CSSProperties = {
         top: description ? '30%' : '50%',
-        maxWidth: isMobile ? "80%" : "50%",
+        maxWidth: isMobile ? "80%" : "80%",
     };
 
     const sliderSettings = {
