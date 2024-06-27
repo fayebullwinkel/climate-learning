@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.colorBanner h3, .colorBanner h2 {
+    text-align: center;
+}
+
 .text-container {
     width: 50%;
     text-align: center;

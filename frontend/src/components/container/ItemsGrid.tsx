@@ -27,7 +27,7 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({ heading, items }) => {
 
     return (
         <Grid container spacing={2} style={{ backgroundColor: '#E9F3F4', paddingBottom: '20px' }}>
-            <Grid item xs={12} style={{ textAlign: 'center', backgroundColor: '#E9F3F4' }}>
+            <Grid item xs={12} className="coloredHeading">
                 <h1>{heading}</h1>
             </Grid>
             {isMobile ? (

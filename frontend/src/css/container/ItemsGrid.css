@@ -11,14 +11,18 @@
     border-radius: 10px;
 }
 
-.item-heading {
-    text-align: center;
-}
-
 .item-description {
     text-align: justify;
     max-width: 85%;
     margin: 0 auto;
+}
+
+.coloredHeading {
+    background-color: #E9F3F4;
+}
+
+.coloredHeading h1 {
+    text-align: center;
 }
 
 @media (min-width: 769px) {
@@ -26,3 +30,4 @@
         flex-direction: row-reverse;
     }
 }
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery } from 'react-responsive';
+import '../../css/container/VideoBanner.css';
 
 interface VideoBannerProps {
     title: string,
@@ -25,7 +26,7 @@ const VideoBanner: React.FC<VideoBannerProps> = ({ title, description }) => {
     }, [isMobile]);
 
     return (
-        <div>
+        <div className="video-banner">
             <h2>{title}</h2>
             <iframe
                 width={isMobile ? '100%' : '560'}
@@ -35,7 +36,7 @@ const VideoBanner: React.FC<VideoBannerProps> = ({ title, description }) => {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
             ></iframe>
-            <p style={{ width: iframeWidth, margin: '20px auto' }}>{description}</p>
+            <p style={{ width: iframeWidth }}>{description}</p>
         </div>
     );
 };
