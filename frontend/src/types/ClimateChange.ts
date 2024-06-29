@@ -13,6 +13,8 @@ export interface ClimateChange {
     consequences: {
         data: Mixed[];
     }
+    sliderHeading: string;
+    sliderDescription: string;
     sliderItems: {
         data: SliderItem[];
     }

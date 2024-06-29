@@ -16,13 +16,11 @@
     .arrow {
         position: absolute;
     }
-    .accordion-item:first-child .arrow {
-        top: 45px;
+    .accordion-item {
+        width: 90%;
     }
-
-    .accordion-item:nth-child(2) .arrow,
-    .accordion-item:nth-child(3) .arrow {
-        top: 70px;
+    .accordion-item .arrow {
+        top: 45px;
     }
 }
 

@@ -64,6 +64,8 @@ function ClimateChange() {
             secondBannerTitle: climateData.attributes.secondBannerTitle,
             secondBannerDescription: climateData.attributes.secondBannerDescription,
             consequences: climateData.attributes.consequences,
+            sliderHeading: climateData.attributes.sliderHeading,
+            sliderDescription: climateData.attributes.sliderDescription,
             sliderItems: climateData.attributes.slider_items,
             category_2: climateData.attributes.category_2,
             heading_2: climateData.attributes.heading_2,
@@ -115,7 +117,7 @@ function ClimateChange() {
             </div>
             <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
                             description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
-            <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
+            <ClimateChangeSlider sliderItems={data.sliderItems.data} heading={data.sliderHeading} description={data.sliderDescription}/>
             <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                             color={"#F6EDD9"}/>
             <div style={{margin: '20px 0 20px 0'}}>

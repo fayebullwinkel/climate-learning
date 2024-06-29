@@ -2,8 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import { Mixed } from "@/types";
 import { useMediaQuery } from 'react-responsive';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import '../../css/slider/MapSlider.css';
 
 interface MapSliderProps {

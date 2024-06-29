@@ -1,0 +1,19 @@
+.text-container {
+    width: 50%;
+}
+
+.text-container-mobile {
+    width: 85%;
+}
+
+.centered-container {
+    margin: 0 auto;
+}
+
+.text-container h2, .text-container h3{
+    text-align: center;
+}
+
+.text-container-mobile h2, .text-container-mobile h3{
+    text-align: center;
+}

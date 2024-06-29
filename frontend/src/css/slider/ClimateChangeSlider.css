@@ -1,16 +1,24 @@
-.slick-prev:before,
-.slick-next:before {
-    color: #76b900;
+.slick-prev:before, .slick-next:before {
+    color: #76b900 !important;
+    font-size: 30px !important;
 }
 
 .slick-track {
-    display: flex;
-    align-items: center;
-    padding: 10px;
+    display: flex !important;
 }
 
-.customSlider {
-    width: 50%;
-    height: 100%;
-    display: inline-block;
+.custom-slider {
+    width: 70%;
+    margin: 0 auto;
+    padding: 1%;
+}
+
+.custom-slider .slick-list {
+    padding: 0 10px 0 15px !important;
+}
+
+@media (max-width: 768px) {
+    .custom-slider .slick-list {
+        padding: 0 !important;
+    }
 }

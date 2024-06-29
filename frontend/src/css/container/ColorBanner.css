@@ -1,21 +1,8 @@
-.colorBanner {
+.color-banner {
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.colorBanner h3, .colorBanner h2 {
-    text-align: center;
-}
-
-.text-container {
-    width: 50%;
-    text-align: center;
-}
-
-.text-container-mobile {
-    width: 85%;
 }
 
 .category-heading {
