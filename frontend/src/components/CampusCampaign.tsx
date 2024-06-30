@@ -108,7 +108,7 @@ function CampusCampaign() {
     };
 
     return (
-        <div>
+        <div id='aktionen'>
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
             <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
             <CategoryCheckboxGroup categories={categories} onCategoryChange={handleCategoryChange} />

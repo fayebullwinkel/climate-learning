@@ -1,22 +1,22 @@
 import React from 'react';
-import { Grid } from '@mui/material';
-import { GridItem } from "@/types";
-import { useMediaQuery } from "react-responsive";
+import {Grid} from '@mui/material';
+import {GridItem} from "@/types";
+import {useMediaQuery} from "react-responsive";
 import '../../css/container/ItemsGrid.css';
 
 interface ItemsGridProps {
-    heading: string;
     items: GridItem[];
 }
 
-const ItemsGrid: React.FC<ItemsGridProps> = ({ heading, items }) => {
-    const isMobile = useMediaQuery({ maxWidth: 768 });
+const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
+    const isMobile = useMediaQuery({maxWidth: 768});
 
     const itemContainerStyle = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 200,
+        margin: '20px 0 20px 0'
     };
 
     const imageStyle = (index: number) => ({
@@ -26,18 +26,19 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({ heading, items }) => {
     });
 
     return (
-        <Grid container spacing={2} style={{ backgroundColor: '#E9F3F4', paddingBottom: '20px' }}>
-            <Grid item xs={12} className="coloredHeading">
-                <h1>{heading}</h1>
-            </Grid>
+        <Grid container spacing={2}>
             {isMobile ? (
                 items.map((item, index) => (
-                    <Grid container item xs={12} key={index} style={{ ...itemContainerStyle }}>
-                        <Grid item xs={12} style={{ textAlign: 'justify' }}>
-                            <h2 style={{ textAlign: 'center' }}>{item.attributes.title}</h2>
-                            <p style={{ textAlign: 'justify', maxWidth: '85%', margin: '0 auto' }}>{item.attributes.description}</p>
+                    <Grid container item xs={12} key={index} style={{...itemContainerStyle}}>
+                        <Grid item xs={12} style={{textAlign: 'justify'}}>
+                            <h2 style={{textAlign: 'center'}}>{item.attributes.title}</h2>
+                            <p style={{
+                                textAlign: 'justify',
+                                maxWidth: '85%',
+                                margin: '0 auto'
+                            }}>{item.attributes.description}</p>
                         </Grid>
-                        <Grid item xs={12} style={{ textAlign: 'center' }}>
+                        <Grid item xs={12} style={{textAlign: 'center'}}>
                             <img
                                 src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}
                                 alt={item.attributes.title}
@@ -58,11 +59,12 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({ heading, items }) => {
                             ...itemContainerStyle
                         }}
                     >
-                        <Grid item xs={12} sm={3} style={{ textAlign: 'justify' }}>
-                            <h2 style={{ textAlign: 'center' }}>{item.attributes.title}</h2>
-                            <p style={{ textAlign: 'justify' }}>{item.attributes.description}</p>
+                        <Grid item xs={12} sm={3} style={{textAlign: 'justify'}}>
+                            <h2 style={{textAlign: 'center'}}>{item.attributes.title}</h2>
+                            <p style={{textAlign: 'justify'}}>{item.attributes.description}</p>
                         </Grid>
-                        <Grid item xs={12} sm={3} style={{ display: 'flex', justifyContent: index % 2 === 0 ? 'right' : 'left' }}>
+                        <Grid item xs={12} sm={3}
+                              style={{display: 'flex', justifyContent: index % 2 === 0 ? 'right' : 'left'}}>
                             <img
                                 src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}
                                 alt={item.attributes.title}

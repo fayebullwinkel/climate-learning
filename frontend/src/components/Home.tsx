@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {Home as HomeType} from '@/types';
-import {Card, ColorContainer, ImageContainer} from "./container";
+import { Home as HomeType } from '@/types';
+import { Card, ColorContainer, ImageContainer } from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {getImageCardsStyle} from "./utils";
+import { getImageCardsStyle } from "./utils";
 
 function Home() {
     const [data, setData] = useState<HomeType | null>(null);
     const [error, setError] = useState<string | null>(null);
-    const [pageTitles, setPageTitles] = React.useState<string[]>([]);
+    const [pageTitles, setPageTitles] = useState<string[]>([]);
     const [imageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
 
     useEffect(() => {
@@ -64,14 +64,23 @@ function Home() {
         };
     };
 
-    const dynamicImageCardsStyle: React.CSSProperties = {
-        ...imageCardsStyle,
-        justifyContent: (data?.pageSections?.data?.length ?? 0) === 2
-            ? 'center'
-            : (data?.pageSections?.data?.length ?? 0) < 3
-                ? 'space-between'
-                : 'flex-start'
+    const groupSectionsByPageTitle = () => {
+        const groupedSections: { [key: string]: any[] } = {};
+
+        if (data && data.pageSections.data.length > 0) {
+            data.pageSections.data.forEach((section: any) => {
+                const pageTitle = section.attributes.page.toLowerCase();
+                if (!groupedSections[pageTitle]) {
+                    groupedSections[pageTitle] = [];
+                }
+                groupedSections[pageTitle].push(section);
+            });
+        }
+
+        return groupedSections;
     };
+
+    const groupedSections = groupSectionsByPageTitle();
 
     if (error) {
         return <div>{error}</div>;
@@ -81,25 +90,45 @@ function Home() {
         return <div>Loading...</div>;
     }
 
+    const filteredPageTitles = pageTitles.filter(title => {
+        const lowerCaseTitle = title.toLowerCase();
+        return groupedSections[lowerCaseTitle] && groupedSections[lowerCaseTitle].length > 0;
+    });
+
     return (
         <div className="page-container">
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
-            <ColorContainer category={data.category} heading={data.heading} description={data.description} color={'#F7FbF1'}/>
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.bannerImageUrl} description={data.bannerDescription} bannerItems={data.reasons.data} showButton={false}/>
-            <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2} color={'#F7FbF1'}/>
-            <h2 style={{textAlign: "center"}}>{pageTitles[1]}</h2>
-            <div style={dynamicImageCardsStyle}>
-                {data.pageSections.data.map((section, index) => (
-                    <Card
-                        key={index}
-                        imageUrl={section.attributes.image.data.attributes.url}
-                        heading={section.attributes.title}
-                        description={section.attributes.description}
-                        link={section.attributes.link}
-                        section={true}
-                    />
-                ))}
-            </div>
+            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
+            <ColorContainer category={data.category} heading={data.heading} description={data.description} color={'#F7FbF1'} />
+            <ImageContainer title={data.secondBannerTitle} imageUrl={data.bannerImageUrl} description={data.bannerDescription} bannerItems={data.reasons.data} showButton={false} />
+            <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2} color={'#F7FbF1'} />
+
+            {filteredPageTitles.map((title, index) => {
+                const lowerCaseTitle = title.toLowerCase();
+                return (
+                    <div key={index}>
+                        <h2 style={{ textAlign: "center" }}>{title}</h2>
+                        <div style={{
+                            ...imageCardsStyle,
+                            justifyContent: (groupedSections[lowerCaseTitle]?.length ?? 0) === 2
+                                ? 'center'
+                                : (groupedSections[lowerCaseTitle]?.length ?? 0) < 3
+                                    ? 'space-between'
+                                    : 'flex-start'
+                        }}>
+                            {groupedSections[lowerCaseTitle]?.map((section, sectionIndex) => (
+                                <Card
+                                    key={sectionIndex}
+                                    imageUrl={section.attributes.image.data.attributes.url}
+                                    heading={section.attributes.title}
+                                    description={section.attributes.description}
+                                    link={section.attributes.link}
+                                    section={true}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                );
+            })}
         </div>
     );
 }

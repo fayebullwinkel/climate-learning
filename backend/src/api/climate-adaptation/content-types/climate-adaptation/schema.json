@@ -47,7 +47,7 @@
       "target": "api::grid-item.grid-item",
       "mappedBy": "climate_adaptation"
     },
-    "gridHeading": {
+    "heading_2": {
       "type": "string"
     },
     "secondBannerTitle": {
@@ -107,14 +107,21 @@
       "type": "text"
     },
     "fourthBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "category_2": {
+      "type": "string"
+    },
+    "description_2": {
+      "type": "text"
     }
   }
 }

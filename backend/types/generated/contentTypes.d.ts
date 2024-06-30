@@ -1096,7 +1096,7 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::grid-item.grid-item'
     >;
-    gridHeading: Attribute.String;
+    heading_2: Attribute.String;
     secondBannerTitle: Attribute.String;
     secondBannerDescription: Attribute.Text;
     secondBannerImage: Attribute.Media<
@@ -1130,6 +1130,8 @@ export interface ApiClimateAdaptationClimateAdaptation
     fourthBannerImage: Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    category_2: Attribute.String;
+    description_2: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

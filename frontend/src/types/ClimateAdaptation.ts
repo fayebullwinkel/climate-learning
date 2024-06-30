@@ -15,7 +15,6 @@ export interface ClimateAdaptation {
     }
     videoTitle: string;
     videoDescription: string;
-    gridHeading: string;
     gridItems: {
         data:  GridItem[];
     }
@@ -34,4 +33,7 @@ export interface ClimateAdaptation {
     callToActions: {
         data: Mixed[];
     }
+    category_2: string;
+    heading_2: string;
+    description_2: string;
 }
