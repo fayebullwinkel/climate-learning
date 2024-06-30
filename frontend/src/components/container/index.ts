@@ -6,3 +6,4 @@ export { default as ItemsGrid } from './ItemsGrid';
 export { default as ImageContainer } from './ImageBanner';
 export { default as Quiz } from './Quiz';
 export { default as VideoBanner } from './VideoBanner';
+export { default as StructureAccordion } from './StructureAccordion';

@@ -121,9 +121,7 @@ function ClimateChange() {
             <div id='folgen'>
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                                 color={"#F6EDD9"}/>
-                <div style={{margin: '20px 0 20px 0'}}>
-                    <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
-                </div>
+                <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
                 <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
                                 description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
             </div>

@@ -9,7 +9,7 @@ interface MapSliderProps {
 }
 
 const MapSlider: React.FC<MapSliderProps> = ({ sliderItems }) => {
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     const containerStyle = {
         width: isMobile ? '85%' : '75%',

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/container/ColorBanner.css';
 import '../../css/container/Banner.css';
+import {useMediaQuery} from "react-responsive";
 
 interface ColorBannerProps {
     category: string;
@@ -10,7 +11,7 @@ interface ColorBannerProps {
 }
 
 const ColorBanner: React.FC<ColorBannerProps> = ({ category, heading, description, color }) => {
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
         <div className="color-banner center-heading" style={{ backgroundColor: color }}>

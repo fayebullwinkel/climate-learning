@@ -24,7 +24,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({ data, accordionItems 
     }
 
     return (
-        <>
+        <div className="accordion-container">
             {accordionItems.map((item, index) => (
                 <Box key={item.title} className="accordion-item">
                     <Accordion>
@@ -47,7 +47,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({ data, accordionItems 
                     </Accordion>
                 </Box>
             ))}
-        </>
+        </div>
     );
 };
 
