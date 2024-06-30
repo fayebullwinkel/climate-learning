@@ -1,4 +1,4 @@
-.imageBanner {
+.image-banner {
     position: relative;
     width: 100%;
     background-size: cover;
@@ -7,7 +7,7 @@
     padding-top: 2%;
 }
 
-.imageBannerContent {
+.image-banner-content {
     position: relative;
     left: 10%;
     color: white;
@@ -15,11 +15,17 @@
     text-align: left;
 }
 
-.imageBannerTitle {
+.image-banner-title {
     font-style: italic;
 }
 
-.optionalDiv {
+@media only screen and (max-width: 600px) {
+    .image-banner-title {
+        margin-top: 40px;
+    }
+}
+
+.optional-div {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -28,7 +34,7 @@
     color: white;
 }
 
-.imageBannerContainer {
+.image-banner-container {
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -61,6 +67,6 @@
     right: 10px;
 }
 
-.optionalDiv h3 {
+.optional-div h3 {
     text-align: center;
 }

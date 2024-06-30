@@ -39,7 +39,7 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
         : date;
 
     return (
-        <div style={cardStyle} className='customCard' onClick={openCampaignPage}>
+        <div style={cardStyle} className='customCard' onClick={() => { if (!external) openCampaignPage(); }}>
             <div className='cardContent'>
                 <img
                     src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}

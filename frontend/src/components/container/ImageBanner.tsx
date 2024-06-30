@@ -31,7 +31,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
 
     const contentStyle: React.CSSProperties = {
         top: description ? '30%' : '50%',
-        maxWidth: isMobile ? "80%" : "80%",
+        maxWidth: "80%",
     };
 
     const sliderSettings = {
@@ -45,18 +45,18 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     };
 
     return (
-        <div className='imageBanner' style={bannerStyle}>
-            <div className='imageBannerContent' style={contentStyle}>
-                <h1 className='imageBannerTitle'>{title}</h1>
+        <div className='image-banner' style={bannerStyle}>
+            <div className='image-banner-content' style={contentStyle}>
+                <h1 className='image-banner-title'>{title}</h1>
                 <p>{description}</p>
                 {showButton && (
                     <Button variant="outlined" component={Link} to="/campusCampaigns" style={{ color: 'white', borderColor: 'white' }}>
-                        Zu den Aktionen
+                        Erkunde die Aktionen
                     </Button>
                 )}
             </div>
             {bannerItems && (
-                <div className='optionalDiv'>
+                <div className='optional-div'>
                     {isMobile ? (
                         <div>
                             <Slider {...sliderSettings} ref={sliderRef}>
@@ -77,7 +77,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                             </div>
                         </div>
                     ) : (
-                        <div className='imageBannerContainer'>
+                        <div className='image-banner-container'>
                             {bannerItems.map(bannerItem => (
                                 <div key={bannerItem.id} style={{ flex: '1', margin: '0 10px' }}>
                                     <h2>{bannerItem.attributes.heading}</h2>

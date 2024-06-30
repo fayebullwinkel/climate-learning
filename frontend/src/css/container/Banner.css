@@ -17,3 +17,7 @@
 .text-container-mobile h2, .text-container-mobile h3{
     text-align: center;
 }
+
+.category-heading {
+    color: #76B900;
+}

@@ -3,15 +3,12 @@ import { Co2Clock, StatistaGraph, TemperatureChart } from "./";
 import React from "react";
 import { SliderItem } from '@/types';
 import '../../css/slider/ClimateChangeSlider.css';
-import '../../css/container/Banner.css';
 
 interface ClimateChangeProps {
     sliderItems: SliderItem[];
-    heading: string;
-    description: string;
 }
 
-const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems, heading, description }) => {
+const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems}) => {
 
     const sliderSettings = {
         dots: false,
@@ -34,14 +31,8 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems, headin
         width: window.innerWidth <= 768 ? '95%' : 'auto',
     }
 
-    const isMobile = window.innerWidth <= 768;
-
     return (
-        <div>
-            <div className={isMobile ? 'text-container-mobile centered-container' : 'text-container centered-container'}>
-                <h2>{heading}</h2>
-                <p>{description}</p>
-            </div>
+        <div className='slider-container'>
             <div className='custom-slider'>
                 <Slider {...sliderSettings}>
                     <div>

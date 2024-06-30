@@ -98,6 +98,7 @@ function ClimateChange() {
 
     return (
         <div className="page-container">
+            {/*Ursachen*/}
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
                             color={"#F6EDD9"}/>
@@ -115,14 +116,21 @@ function ClimateChange() {
                     }
                 </div>
             </div>
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
-                            description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
-            <ClimateChangeSlider sliderItems={data.sliderItems.data} heading={data.sliderHeading} description={data.sliderDescription}/>
+
+            {/*Folgen*/}
             <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                             color={"#F6EDD9"}/>
             <div style={{margin: '20px 0 20px 0'}}>
                 <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
             </div>
+            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
+                            description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
+
+            {/*Schutz*/}
+            <ColorContainer category={data.category_3} heading={data.sliderHeading} description={data.sliderDescription}
+                            color={"#F6EDD9"}/>
+            <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
+
             <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
                             description={data.description_3} bannerItems={data.actions.data}/>
         </div>
