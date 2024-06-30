@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import {ClimateChangeSlider, QuizSlider} from "./slider";
 import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCardType} from '@/types';
 import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
+import { SectionMenu } from "./";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getImageCardsStyle } from './';
+import {useMediaQuery} from "react-responsive";
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
@@ -13,6 +15,7 @@ function ClimateChange() {
     const [error, setError] = useState<string | null>(null);
 
     const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -98,8 +101,11 @@ function ClimateChange() {
 
     return (
         <div className="page-container">
+            {!isMobile && (
+                <SectionMenu page='Klimawandel'/>
+            )}
+            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
             <div id='ursachen'>
-                <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}
                                 color={"#F6EDD9"}/>
                 <div style={{padding: '1%'}}>

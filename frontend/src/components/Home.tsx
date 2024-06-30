@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Home as HomeType } from '@/types';
+import React, {useEffect, useState} from "react";
+import {Home as HomeType} from '@/types';
 import {Card, ColorContainer, ImageContainer, StructureAccordion} from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getImageCardsStyle } from "./utils";
+import {getImageCardsStyle} from "./utils";
 import {useMediaQuery} from "react-responsive";
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
     const [error, setError] = useState<string | null>(null);
     const [pageTitles, setPageTitles] = useState<string[]>([]);
     const [imageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
-    const isMobile = useMediaQuery({ maxWidth: 768 });
+    const isMobile = useMediaQuery({maxWidth: 768});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -99,42 +99,46 @@ function Home() {
 
     return (
         <div className="page-container">
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
-            <ColorContainer category={data.category} heading={data.heading} description={data.description} color={'#F7FbF1'} />
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.bannerImageUrl} description={data.bannerDescription} bannerItems={data.reasons.data} showButton={false} />
-            <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2} color={'#F7FbF1'} />
-
-            {isMobile ? (
-                <StructureAccordion titles={filteredPageTitles} groupedSections={groupedSections} />
-            ) : (
-                filteredPageTitles.map((title, index) => {
-                    const lowerCaseTitle = title.toLowerCase();
-                    return (
-                        <div key={index}>
-                            <h2 style={{ textAlign: "center" }}>{title}</h2>
-                            <div style={{
-                                ...imageCardsStyle,
-                                justifyContent: (groupedSections[lowerCaseTitle]?.length ?? 0) === 2
-                                    ? 'center'
-                                    : (groupedSections[lowerCaseTitle]?.length ?? 0) < 3
-                                        ? 'space-between'
-                                        : 'flex-start'
-                            }}>
-                                {groupedSections[lowerCaseTitle]?.map((section, sectionIndex) => (
-                                    <Card
-                                        key={sectionIndex}
-                                        imageUrl={section.attributes.image.data.attributes.url}
-                                        heading={section.attributes.title}
-                                        description={section.attributes.description}
-                                        link={section.attributes.link}
-                                        section={true}
-                                    />
-                                ))}
+            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+            <ColorContainer category={data.category} heading={data.heading} description={data.description}
+                            color={'#F7FbF1'}/>
+            <ImageContainer title={data.secondBannerTitle} imageUrl={data.bannerImageUrl}
+                            description={data.bannerDescription} bannerItems={data.reasons.data} showButton={false}/>
+            <div style={{backgroundColor: '#F7FbF1'}}>
+                <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
+                                color={'#F7FbF1'}/>
+                {isMobile ? (
+                    <StructureAccordion titles={filteredPageTitles} groupedSections={groupedSections}/>
+                ) : (
+                    filteredPageTitles.map((title, index) => {
+                        const lowerCaseTitle = title.toLowerCase();
+                        return (
+                            <div key={index}>
+                                <h2 style={{textAlign: "center"}}>{title}</h2>
+                                <div style={{
+                                    ...imageCardsStyle,
+                                    justifyContent: (groupedSections[lowerCaseTitle]?.length ?? 0) === 2
+                                        ? 'center'
+                                        : (groupedSections[lowerCaseTitle]?.length ?? 0) < 3
+                                            ? 'space-between'
+                                            : 'flex-start'
+                                }}>
+                                    {groupedSections[lowerCaseTitle]?.map((section, sectionIndex) => (
+                                        <Card
+                                            key={sectionIndex}
+                                            imageUrl={section.attributes.image.data.attributes.url}
+                                            heading={section.attributes.title}
+                                            description={section.attributes.description}
+                                            link={section.attributes.link}
+                                            section={true}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })
-            )}
+                        );
+                    })
+                )}
+            </div>
         </div>
     );
 }

@@ -7,3 +7,4 @@ export { default as ClimateAdaptation } from './ClimateAdaptation';
 export { default as ClimateChange } from './ClimateChange';
 export { default as Home } from './Home';
 export { default as NavigationMenu } from './NavigationMenu';
+export { default as SectionMenu } from './SectionMenu';

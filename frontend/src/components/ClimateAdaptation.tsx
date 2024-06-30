@@ -3,10 +3,13 @@ import {ClimateAdaptation as ClimateAdaptationType} from "@/types";
 import {ColorContainer, ImageContainer, ItemsGrid} from "../components/container";
 import { AdaptationSlider, MapSlider} from "../components/slider";
 import {VideoBanner} from "./container";
+import {SectionMenu} from "../components";
+import {useMediaQuery} from "react-responsive";
 
 function ClimateAdaptation() {
     const [data, setData] = useState<ClimateAdaptationType | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -66,6 +69,9 @@ function ClimateAdaptation() {
 
     return(
         <div>
+            {!isMobile && (
+                <SectionMenu page='Klimaanpassung'/>
+            )}
             <div id='definition'>
                 <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}
