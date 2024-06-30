@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "page_sections",
+  "info": {
+    "singularName": "page-section",
+    "pluralName": "page-sections",
+    "displayName": "PageSection"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "main_page_home": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::home.home",
+      "inversedBy": "page_sections"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {Mixed} from "./";
+import {Mixed, PageSection} from "./";
 
 export interface Home {
     id: number;
@@ -12,5 +12,11 @@ export interface Home {
     bannerImageUrl: string;
     reasons: {
         data: Mixed[];
-    }
+    },
+    pageSections: {
+        data: PageSection[];
+    },
+    category_2: string;
+    heading_2: string;
+    description_2: string;
 }

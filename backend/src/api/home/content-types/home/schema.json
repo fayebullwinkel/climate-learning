@@ -57,6 +57,21 @@
     },
     "secondBannerTitle": {
       "type": "string"
+    },
+    "page_sections": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page-section.page-section",
+      "mappedBy": "main_page_home"
+    },
+    "category_2": {
+      "type": "string"
+    },
+    "heading_2": {
+      "type": "string"
+    },
+    "description_2": {
+      "type": "text"
     }
   }
 }

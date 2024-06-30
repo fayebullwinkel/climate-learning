@@ -12,5 +12,6 @@ export * from './ImageCardType';
 export * from './Logo';
 export * from './Mixed';
 export * from './Question';
+export * from './PageSection';
 export * from './SliderItem';
 export * from './Tip';

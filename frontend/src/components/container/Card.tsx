@@ -14,9 +14,10 @@ interface CardProps {
     campaignId?: number;
     date?: string;
     external?: boolean;
+    section?: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty, link, campaignId, date, external = false }) => {
+const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty, link, campaignId, date, external = false, section = false }) => {
     const navigate = useNavigate();
     const openCampaignPage = () => {
         navigate(`/campaign/${String(campaignId)}`);
@@ -24,7 +25,10 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
 
     const openLink = () => {
         if (external && link) {
+            console.log("should not be here")
             window.open(link, "_blank", "noopener noreferrer");
+        } else if (section && link) {
+            window.location.href = link;
         } else {
             openCampaignPage();
         }
@@ -39,7 +43,7 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
         : date;
 
     return (
-        <div style={cardStyle} className='customCard' onClick={() => { if (!external) openCampaignPage(); }}>
+        <div style={cardStyle} className='customCard' onClick={() => { if (!external && !section) openCampaignPage(); }}>
             <div className='cardContent'>
                 <img
                     src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}
@@ -61,7 +65,7 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
                         size="small"
                         className='customButton'
                     >
-                        {external ? "Mehr erfahren" : "Zur Aktion"}
+                        {external || section ? "Mehr erfahren" : "Zur Aktion"}
                     </Button>
                 </div>
             </div>

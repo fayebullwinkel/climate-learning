@@ -98,41 +98,44 @@ function ClimateChange() {
 
     return (
         <div className="page-container">
-            {/*Ursachen*/}
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
-            <ColorContainer category={data.category} heading={data.heading} description={data.description}
-                            color={"#F6EDD9"}/>
-            <div style={{padding: '1%'}}>
-                <div style={imageCardsStyle}>
-                    {
-                        imageCards.map((imageCard: ImageCardType) => (
-                            <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
-                                  heading={imageCard.attributes.heading}
-                                  description={imageCard.attributes.description}
-                                  link={imageCard.attributes.link}
-                                  external={true}
-                            />
-                        ))
-                    }
+            <div id='ursachen'>
+                <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+                <ColorContainer category={data.category} heading={data.heading} description={data.description}
+                                color={"#F6EDD9"}/>
+                <div style={{padding: '1%'}}>
+                    <div style={imageCardsStyle}>
+                        {
+                            imageCards.map((imageCard: ImageCardType) => (
+                                <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
+                                      heading={imageCard.attributes.heading}
+                                      description={imageCard.attributes.description}
+                                      link={imageCard.attributes.link}
+                                      external={true}
+                                />
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
 
-            {/*Folgen*/}
-            <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
-                            color={"#F6EDD9"}/>
-            <div style={{margin: '20px 0 20px 0'}}>
-                <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
+            <div id='folgen'>
+                <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
+                                color={"#F6EDD9"}/>
+                <div style={{margin: '20px 0 20px 0'}}>
+                    <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
+                </div>
+                <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
+                                description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
             </div>
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
-                            description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
 
-            {/*Schutz*/}
-            <ColorContainer category={data.category_3} heading={data.sliderHeading} description={data.sliderDescription}
-                            color={"#F6EDD9"}/>
-            <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
+            <div id='schutz'>
+                <ColorContainer category={data.category_3} heading={data.sliderHeading} description={data.sliderDescription}
+                                color={"#F6EDD9"}/>
+                <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
 
-            <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
-                            description={data.description_3} bannerItems={data.actions.data}/>
+                <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
+                                description={data.description_3} bannerItems={data.actions.data}/>
+            </div>
         </div>
     );
 }

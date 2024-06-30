@@ -1436,6 +1436,14 @@ export interface ApiHomeHome extends Schema.CollectionType {
       'api::reason.reason'
     >;
     secondBannerTitle: Attribute.String;
+    page_sections: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::page-section.page-section'
+    >;
+    category_2: Attribute.String;
+    heading_2: Attribute.String;
+    description_2: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1509,6 +1517,45 @@ export interface ApiMapSliderItemMapSliderItem extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::map-slider-item.map-slider-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPageSectionPageSection extends Schema.CollectionType {
+  collectionName: 'page_sections';
+  info: {
+    singularName: 'page-section';
+    pluralName: 'page-sections';
+    displayName: 'PageSection';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    page: Attribute.String;
+    title: Attribute.String;
+    description: Attribute.String;
+    link: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    main_page_home: Attribute.Relation<
+      'api::page-section.page-section',
+      'manyToOne',
+      'api::home.home'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::page-section.page-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::page-section.page-section',
       'oneToOne',
       'admin::user'
     > &
@@ -1760,6 +1807,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::image-card.image-card': ApiImageCardImageCard;
       'api::map-slider-item.map-slider-item': ApiMapSliderItemMapSliderItem;
+      'api::page-section.page-section': ApiPageSectionPageSection;
       'api::page-title.page-title': ApiPageTitlePageTitle;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::reason.reason': ApiReasonReason;
