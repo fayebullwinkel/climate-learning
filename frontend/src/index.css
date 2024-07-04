@@ -1,9 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/source-sans-pro');
-
 body {
   margin: 0;
-  font-family: 'Plantagenet Cherokee', sans-serif;
   font-size: 20px;
   line-height: 1.5rem;
   -webkit-font-smoothing: antialiased;
@@ -19,11 +15,11 @@ body {
 }
 
 code {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'HTWBerlinOffice', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Merriweather', serif;
+  font-family: 'HTWBerlinOffice', sans-serif;
   line-height: normal;
   text-align: left;
 }

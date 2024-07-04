@@ -31,7 +31,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <FormControl component="fieldset">
-                    <h3 style={{ textAlign: "left", marginBottom: "10px", fontFamily: 'Source Sans Pro, sans-serif', fontSize: '1.3rem'}}>
+                    <h3 style={{ textAlign: "left", marginBottom: "10px", fontFamily: 'HTWBerlinOffice, sans-serif', fontSize: '1.3rem'}}>
                         {question.question}
                     </h3>
                     <RadioGroup
@@ -45,7 +45,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
                                 key={`${question.question}-${index}`}
                                 value={index.toString()}
                                 control={<Radio />}
-                                label={<span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontSize: '1.3rem' }}>{answer}</span>}
+                                label={<span style={{ fontFamily: 'HTWBerlinOffice, sans-serif', fontSize: '1.3rem' }}>{answer}</span>}
                                 disabled={submitted}
                                 className={submitted && index === question.correctAnswer ? 'correct-answer' : ''}
                             />

@@ -69,3 +69,12 @@
   max-width: 190.34px;
   text-align: left;
 }
+
+@font-face {
+  font-family: 'HTWBerlinOffice';
+  src: url('./fonts/HTWBerlinOffice-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: 'HTWBerlinOffice', sans-serif;
+}
