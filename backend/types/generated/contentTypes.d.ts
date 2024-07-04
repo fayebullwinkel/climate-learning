@@ -788,80 +788,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiActionAction extends Schema.CollectionType {
-  collectionName: 'actions';
-  info: {
-    singularName: 'action';
-    pluralName: 'actions';
-    displayName: 'ClimateChangeAction';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    climate_change: Attribute.Relation<
-      'api::action.action',
-      'manyToOne',
-      'api::climate-change.climate-change'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::action.action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::action.action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiAdaptationCallToActionAdaptationCallToAction
-  extends Schema.CollectionType {
-  collectionName: 'adaptation_call_to_actions';
-  info: {
-    singularName: 'adaptation-call-to-action';
-    pluralName: 'adaptation-call-to-actions';
-    displayName: 'AdaptationCallToAction';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    main_page_climate_adaptation: Attribute.Relation<
-      'api::adaptation-call-to-action.adaptation-call-to-action',
-      'manyToOne',
-      'api::climate-adaptation.climate-adaptation'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::adaptation-call-to-action.adaptation-call-to-action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::adaptation-call-to-action.adaptation-call-to-action',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiAdaptationMeasureAdaptationMeasure
   extends Schema.CollectionType {
   collectionName: 'adaptation_measures';
@@ -931,6 +857,53 @@ export interface ApiAdaptationUnsealingAdaptationUnsealing
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::adaptation-unsealing.adaptation-unsealing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCallToActionCallToAction extends Schema.CollectionType {
+  collectionName: 'call_to_actions';
+  info: {
+    singularName: 'call-to-action';
+    pluralName: 'call-to-actions';
+    displayName: 'CallToAction';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    page: Attribute.String;
+    main_page_home: Attribute.Relation<
+      'api::call-to-action.call-to-action',
+      'manyToOne',
+      'api::home.home'
+    >;
+    main_page_climate_change: Attribute.Relation<
+      'api::call-to-action.call-to-action',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    main_page_climate_adaptation: Attribute.Relation<
+      'api::call-to-action.call-to-action',
+      'manyToOne',
+      'api::climate-adaptation.climate-adaptation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::call-to-action.call-to-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::call-to-action.call-to-action',
       'oneToOne',
       'admin::user'
     > &
@@ -1120,11 +1093,6 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::adaptation-unsealing.adaptation-unsealing'
     >;
-    adaptation_call_to_actions: Attribute.Relation<
-      'api::climate-adaptation.climate-adaptation',
-      'oneToMany',
-      'api::adaptation-call-to-action.adaptation-call-to-action'
-    >;
     fourthBannerTitle: Attribute.String;
     fourthBannerDescription: Attribute.Text;
     fourthBannerImage: Attribute.Media<
@@ -1132,6 +1100,11 @@ export interface ApiClimateAdaptationClimateAdaptation
     >;
     category_2: Attribute.String;
     description_2: Attribute.Text;
+    call_to_actions: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::call-to-action.call-to-action'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1204,13 +1177,13 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     heading_3: Attribute.String;
     description_3: Attribute.Text;
     thirdBannerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    actions: Attribute.Relation<
-      'api::climate-change.climate-change',
-      'oneToMany',
-      'api::action.action'
-    >;
     sliderHeading: Attribute.String;
     sliderDescription: Attribute.Text;
+    call_to_actions: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::call-to-action.call-to-action'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1425,7 +1398,7 @@ export interface ApiHomeHome extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    bannerTitle: Attribute.String;
+    headerTitle: Attribute.String;
     headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     heading: Attribute.String;
     description: Attribute.Text;
@@ -1437,15 +1410,20 @@ export interface ApiHomeHome extends Schema.CollectionType {
       'oneToMany',
       'api::reason.reason'
     >;
-    secondBannerTitle: Attribute.String;
-    page_sections: Attribute.Relation<
-      'api::home.home',
-      'oneToMany',
-      'api::page-section.page-section'
-    >;
+    bannerTitle: Attribute.String;
     category_2: Attribute.String;
     heading_2: Attribute.String;
     description_2: Attribute.Text;
+    secondBannerTitle: Attribute.String;
+    secondBannerDescription: Attribute.Text;
+    secondBannerImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    call_to_actions: Attribute.Relation<
+      'api::home.home',
+      'oneToMany',
+      'api::call-to-action.call-to-action'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1526,26 +1504,55 @@ export interface ApiMapSliderItemMapSliderItem extends Schema.CollectionType {
   };
 }
 
+export interface ApiPagePage extends Schema.CollectionType {
+  collectionName: 'pages';
+  info: {
+    singularName: 'page';
+    pluralName: 'pages';
+    displayName: 'Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    route: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    page_sections: Attribute.Relation<
+      'api::page.page',
+      'oneToMany',
+      'api::page-section.page-section'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageSectionPageSection extends Schema.CollectionType {
   collectionName: 'page_sections';
   info: {
     singularName: 'page-section';
     pluralName: 'page-sections';
     displayName: 'PageSection';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    page: Attribute.String;
-    title: Attribute.String;
-    description: Attribute.String;
-    link: Attribute.String;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    main_page_home: Attribute.Relation<
+    menuName: Attribute.String;
+    oneWordHashtag: Attribute.String;
+    page: Attribute.Relation<
       'api::page-section.page-section',
       'manyToOne',
-      'api::home.home'
+      'api::page.page'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1558,36 +1565,6 @@ export interface ApiPageSectionPageSection extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::page-section.page-section',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPageTitlePageTitle extends Schema.CollectionType {
-  collectionName: 'page_titles';
-  info: {
-    singularName: 'page-title';
-    pluralName: 'page-titles';
-    displayName: 'PageTitle';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::page-title.page-title',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::page-title.page-title',
       'oneToOne',
       'admin::user'
     > &
@@ -1792,10 +1769,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::action.action': ApiActionAction;
-      'api::adaptation-call-to-action.adaptation-call-to-action': ApiAdaptationCallToActionAdaptationCallToAction;
       'api::adaptation-measure.adaptation-measure': ApiAdaptationMeasureAdaptationMeasure;
       'api::adaptation-unsealing.adaptation-unsealing': ApiAdaptationUnsealingAdaptationUnsealing;
+      'api::call-to-action.call-to-action': ApiCallToActionCallToAction;
       'api::campaign.campaign': ApiCampaignCampaign;
       'api::campus-campaign.campus-campaign': ApiCampusCampaignCampusCampaign;
       'api::category.category': ApiCategoryCategory;
@@ -1809,8 +1785,8 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::image-card.image-card': ApiImageCardImageCard;
       'api::map-slider-item.map-slider-item': ApiMapSliderItemMapSliderItem;
+      'api::page.page': ApiPagePage;
       'api::page-section.page-section': ApiPageSectionPageSection;
-      'api::page-title.page-title': ApiPageTitlePageTitle;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::reason.reason': ApiReasonReason;
       'api::slider-item.slider-item': ApiSliderItemSliderItem;

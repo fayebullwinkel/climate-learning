@@ -1,4 +1,5 @@
 export * from './utils';
+export { default as BioDiversity } from './BioDiversity';
 export { default as BottomMenu } from './BottomMenu';
 export { default as CampaignPage } from './CampaignPage';
 export { default as CampusCampaign } from './CampusCampaign';

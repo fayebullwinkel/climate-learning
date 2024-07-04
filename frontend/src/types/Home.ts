@@ -1,22 +1,25 @@
-import {Mixed, PageSection} from "./";
+import {Mixed} from "./";
 
 export interface Home {
     id: number;
-    bannerTitle: string;
-    secondBannerTitle: string;
+    headerTitle: string;
     headerImageUrl: string;
     category: string;
     heading: string;
     description: string;
+    bannerTitle: string;
     bannerDescription: string;
     bannerImageUrl: string;
     reasons: {
         data: Mixed[];
     },
-    pageSections: {
-        data: PageSection[];
-    },
     category_2: string;
     heading_2: string;
     description_2: string;
+    secondBannerTitle: string;
+    secondBannerDescription: string;
+    secondBannerImageUrl: string;
+    callToActions: {
+        data: Mixed[];
+    }
 }

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "call_to_actions",
+  "info": {
+    "singularName": "call-to-action",
+    "pluralName": "call-to-actions",
+    "displayName": "CallToAction"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "page": {
+      "type": "string"
+    },
+    "main_page_home": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::home.home",
+      "inversedBy": "call_to_actions"
+    },
+    "main_page_climate_change": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-change.climate-change",
+      "inversedBy": "call_to_actions"
+    },
+    "main_page_climate_adaptation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::climate-adaptation.climate-adaptation",
+      "inversedBy": "call_to_actions"
+    }
+  }
+}

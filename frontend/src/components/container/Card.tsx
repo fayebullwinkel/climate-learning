@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import {Difficulty} from "@/types";
 import '../../css/container/Card.css';
+import {usePages} from '../../contexts';
 
 interface CardProps {
     imageUrl: string;
@@ -17,15 +18,25 @@ interface CardProps {
     section?: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty, link, campaignId, date, external = false, section = false }) => {
+const Card: React.FC<CardProps> = ({
+                                       imageUrl,
+                                       heading,
+                                       description,
+                                       difficulty,
+                                       link,
+                                       campaignId,
+                                       date,
+                                       external = false,
+                                       section = false
+                                   }) => {
     const navigate = useNavigate();
+    const pages = usePages();
     const openCampaignPage = () => {
-        navigate(`/campaign/${String(campaignId)}`);
+        navigate(`${pages[pages.length - 1].route}/${String(campaignId)}`);
     };
 
     const openLink = () => {
         if (external && link) {
-            console.log("should not be here")
             window.open(link, "_blank", "noopener noreferrer");
         } else if (section && link) {
             window.location.href = link;
@@ -43,18 +54,20 @@ const Card: React.FC<CardProps> = ({ imageUrl, heading, description, difficulty,
         : date;
 
     return (
-        <div style={cardStyle} className='customCard' onClick={() => { if (!external && !section) openCampaignPage(); }}>
+        <div style={cardStyle} className='customCard' onClick={() => {
+            if (!external && !section) openCampaignPage();
+        }}>
             <div className='cardContent'>
                 <img
                     src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}
                     alt="Thematisch passendes Bild"
                     className='imageCard'
                 />
-                <div className='textContent' style={{ textAlign: 'left' }}>
+                <div className='textContent' style={{textAlign: 'left'}}>
                     <h3>{heading}</h3>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '95%' }}>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '95%'}}>
                         {difficulty && (
-                            <Chip label={difficulty.data.attributes.value} className='difficultyChip' />
+                            <Chip label={difficulty.data.attributes.value} className='difficultyChip'/>
                         )}
                         {date && <p>{dateDisplay}</p>}
                     </div>

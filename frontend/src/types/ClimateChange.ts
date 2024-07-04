@@ -34,7 +34,7 @@ export interface ClimateChange {
     category_3: string;
     heading_3: string;
     description_3: string;
-    actions: {
+    callToActions: {
         data: Mixed[];
     }
 }

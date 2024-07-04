@@ -3,5 +3,6 @@ export interface Mixed {
     attributes: {
         heading: string;
         description: string;
+        page?: string;
     };
 }

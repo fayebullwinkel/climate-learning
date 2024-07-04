@@ -14,13 +14,12 @@ import ListItemText from '@mui/material/ListItemText';
 import { Grid } from "@mui/material";
 import { useMediaQuery } from 'react-responsive';
 import '../css/NavigationMenu.css';
+import {usePages} from "../contexts";
 
 function NavigationMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');
-    const [pageTitles, setPageTitles] = React.useState<string[]>([]);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
-
-    const routes = ['/', '/climateChange', '/climateAdaptation', '/campusCampaigns'];
+    const pages = usePages();
 
     React.useEffect(() => {
         const fetchLogoUrl = async () => {
@@ -37,23 +36,7 @@ function NavigationMenu() {
             }
         };
 
-        const fetchPageTitles = async () => {
-            try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/page-titles`);
-                if (response.ok) {
-                    const data = await response.json();
-                    const titles = data.data.map((item: { attributes: { title: string; }; }) => item.attributes.title);
-                    setPageTitles(titles);
-                } else {
-                    console.error('Failed to fetch page titles:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching page titles:', error);
-            }
-        };
-
         fetchLogoUrl();
-        fetchPageTitles();
     }, []);
 
     const location = useLocation();
@@ -67,27 +50,27 @@ function NavigationMenu() {
     };
 
     const renderMenuItems = () => (
-        pageTitles.map((title, index) => (
+        pages.map((page, index) => (
             <Button
                 key={index}
                 color="inherit"
                 component={Link}
-                to={routes[index]}
+                to={page.route}
                 sx={{
                     mx: 1,
-                    fontWeight: location.pathname === routes[index] ? 'bold' : 'normal'
+                    fontWeight: location.pathname === page.route ? 'bold' : 'normal'
                 }}
             >
-                {title}
+                {page.title}
             </Button>
         ))
     );
 
     const renderDrawerItems = () => (
         <List>
-            {pageTitles.map((title, index) => (
-                <ListItem button key={index} component={Link} to={routes[index]} onClick={toggleDrawer(false)}>
-                    <ListItemText primary={title} />
+            {pages.map((page, index) => (
+                <ListItem button key={index} component={Link} to={page.route} onClick={toggleDrawer(false)}>
+                    <ListItemText primary={page.title} />
                 </ListItem>
             ))}
         </List>

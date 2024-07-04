@@ -3,15 +3,17 @@ import {useNavigate, useParams} from 'react-router-dom';
 import { Campaign } from '@/types';
 import '../css/CampaignPage.css';
 import Button from "@mui/material/Button";
+import {usePages} from "../contexts";
 
 const CampaignPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [campaign, setCampaign] = useState<Campaign | null>(null);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const pages = usePages();
 
     const openCampaignPage = () => {
-        navigate(`/campusCampaigns`);
+        navigate(`/${pages[pages.length - 1]}`);
     };
 
     useEffect(() => {
@@ -23,7 +25,6 @@ const CampaignPage: React.FC = () => {
                 if (!campaignData.data) throw new Error('Campaign data not found');
 
                 const attributes = campaignData.data.attributes;
-                console.log("attributes ", attributes);
 
                 const formattedCampaign: Campaign = {
                     id: campaignData.data.id,
@@ -46,7 +47,6 @@ const CampaignPage: React.FC = () => {
                     tips: attributes.tips.data
                 };
 
-                console.log('formatted ', formattedCampaign)
                 setCampaign(formattedCampaign);
             } catch (error) {
                 setError((error as Error).message);

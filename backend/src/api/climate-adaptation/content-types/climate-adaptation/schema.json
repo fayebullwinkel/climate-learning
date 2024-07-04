@@ -94,12 +94,6 @@
       "target": "api::adaptation-unsealing.adaptation-unsealing",
       "mappedBy": "climate_adaptation"
     },
-    "adaptation_call_to_actions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::adaptation-call-to-action.adaptation-call-to-action",
-      "mappedBy": "main_page_climate_adaptation"
-    },
     "fourthBannerTitle": {
       "type": "string"
     },
@@ -122,6 +116,12 @@
     },
     "description_2": {
       "type": "text"
+    },
+    "call_to_actions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::call-to-action.call-to-action",
+      "mappedBy": "main_page_climate_adaptation"
     }
   }
 }

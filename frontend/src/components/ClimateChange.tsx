@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getImageCardsStyle } from './';
 import {useMediaQuery} from "react-responsive";
+import {usePages} from "../contexts";
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
@@ -16,15 +17,16 @@ function ClimateChange() {
 
     const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
     const isMobile = useMediaQuery({ maxWidth: 768 });
+    const pages = usePages();
+    const currentPage = pages.find(page => page.route === window.location.pathname);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, actions,slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, call_to_actions, slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
-                console.log('home data: ', climateData.data);
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
                 setData(formattedData);
                 setAccordionData({
@@ -80,7 +82,7 @@ function ClimateChange() {
             category_3: climateData.attributes.category_3,
             heading_3: climateData.attributes.heading_3,
             description_3: climateData.attributes.description_3,
-            actions: climateData.attributes.actions
+            callToActions: climateData.attributes.call_to_actions
         };
     };
 
@@ -102,10 +104,10 @@ function ClimateChange() {
     return (
         <div className="page-container">
             {!isMobile && (
-                <SectionMenu page='Klimawandel'/>
+                <SectionMenu />
             )}
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
-            <div id='ursachen'>
+            <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}
                                 color={"#F6EDD9"}/>
                 <div style={{padding: '1%'}}>
@@ -124,7 +126,7 @@ function ClimateChange() {
                 </div>
             </div>
 
-            <div id='folgen'>
+            <div id={currentPage?.pageSections[1].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                                 color={"#F6EDD9"}/>
                 <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
@@ -132,13 +134,13 @@ function ClimateChange() {
                                 description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
             </div>
 
-            <div id='schutz'>
+            <div id={currentPage?.pageSections[2].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category_3} heading={data.sliderHeading} description={data.sliderDescription}
                                 color={"#F6EDD9"}/>
                 <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
 
                 <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
-                                description={data.description_3} bannerItems={data.actions.data}/>
+                                description={data.description_3} bannerItems={data.callToActions.data}/>
             </div>
         </div>
     );

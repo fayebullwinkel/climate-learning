@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "bannerTitle": {
+    "headerTitle": {
       "type": "string"
     },
     "headerImage": {
@@ -55,14 +55,8 @@
       "target": "api::reason.reason",
       "mappedBy": "home"
     },
-    "secondBannerTitle": {
+    "bannerTitle": {
       "type": "string"
-    },
-    "page_sections": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::page-section.page-section",
-      "mappedBy": "main_page_home"
     },
     "category_2": {
       "type": "string"
@@ -72,6 +66,29 @@
     },
     "description_2": {
       "type": "text"
+    },
+    "secondBannerTitle": {
+      "type": "string"
+    },
+    "secondBannerDescription": {
+      "type": "text"
+    },
+    "secondBannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "call_to_actions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::call-to-action.call-to-action",
+      "mappedBy": "main_page_home"
     }
   }
 }

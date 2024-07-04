@@ -111,17 +111,17 @@
         "audios"
       ]
     },
-    "actions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::action.action",
-      "mappedBy": "climate_change"
-    },
     "sliderHeading": {
       "type": "string"
     },
     "sliderDescription": {
       "type": "text"
+    },
+    "call_to_actions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::call-to-action.call-to-action",
+      "mappedBy": "main_page_climate_change"
     }
   }
 }

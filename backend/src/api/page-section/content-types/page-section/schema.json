@@ -4,39 +4,24 @@
   "info": {
     "singularName": "page-section",
     "pluralName": "page-sections",
-    "displayName": "PageSection"
+    "displayName": "PageSection",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "menuName": {
+      "type": "string"
+    },
+    "oneWordHashtag": {
+      "type": "string"
+    },
     "page": {
-      "type": "string"
-    },
-    "title": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "link": {
-      "type": "string"
-    },
-    "image": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
-    "main_page_home": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::home.home",
+      "target": "api::page.page",
       "inversedBy": "page_sections"
     }
   }
