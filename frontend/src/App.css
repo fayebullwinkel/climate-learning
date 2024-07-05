@@ -73,6 +73,15 @@
 @font-face {
   font-family: 'HTWBerlinOffice';
   src: url('./fonts/HTWBerlinOffice-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HTWBerlinOffice';
+  src: url('./fonts/HTWBerlinOffice-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 body {

@@ -20,6 +20,7 @@ code {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'HTWBerlinOffice', sans-serif;
+  font-weight: bold;
   line-height: normal;
   text-align: left;
 }
