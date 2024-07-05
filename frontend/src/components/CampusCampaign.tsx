@@ -16,6 +16,7 @@ const formatCampaignData = (campaign: any): Campaign => ({
     }) : undefined,
     shortDescription: campaign.attributes.shortDescription ?? undefined,
     description: campaign.attributes.description ?? undefined,
+    location: campaign.attributes.location ?? undefined,
     link: campaign.attributes.link ?? undefined,
     categories: campaign.attributes.campaign_categories ? campaign.attributes.campaign_categories.data.map((cat: any) => ({
         id: cat.id,
@@ -32,6 +33,7 @@ const formatCampusCampaignData = (campusCampaign: any, campaigns: Campaign[], fo
     description: campusCampaign.attributes.description,
     currentCampaigns: formattedCurrentCampaigns,
     campaigns: campaigns,
+    filterText: campusCampaign.attributes.filterText
 });
 
 function CampusCampaign() {
@@ -64,7 +66,6 @@ function CampusCampaign() {
                 setCategories(uniqueCategories);
 
                 const formattedData: CampusCampaignType = formatCampusCampaignData(campusCampaignData.data, formattedCampaigns, formattedCurrentCampaigns);
-                console.log('to delete formatted ', formattedData);
 
                 setData(formattedData);
 
@@ -107,11 +108,7 @@ function CampusCampaign() {
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
-        justifyContent: filteredCampaigns.length == 2
-            ? 'center'
-            : filteredCampaigns.length < 3
-                ? 'space-between'
-                : 'flex-start'
+        justifyContent: filteredCampaigns.length == 2 ? 'center' : 'space-between'
     };
 
     return (
@@ -125,6 +122,7 @@ function CampusCampaign() {
                             <Card key={currentCampaign.id} imageUrl={currentCampaign.imageUrl}
                                   heading={currentCampaign.title}
                                   description={currentCampaign.description}
+                                  location={currentCampaign.location}
                                   link={currentCampaign.link}
                                   external={true}
                                   date={currentCampaign.date}
@@ -133,7 +131,7 @@ function CampusCampaign() {
                     }
                 </div>
             </div>
-            <CategoryCheckboxGroup categories={categories} onCategoryChange={handleCategoryChange} />
+            <CategoryCheckboxGroup categories={categories} onCategoryChange={handleCategoryChange} filterText={data.filterText} />
             <div style={dynamicImageCardsStyle}>
                 {filteredCampaigns.map((campaign, index) => (
                     <Card

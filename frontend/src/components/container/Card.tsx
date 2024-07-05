@@ -11,6 +11,7 @@ interface CardProps {
     link?: string;
     campaignId?: number;
     date?: string;
+    location?: string;
     external?: boolean;
     section?: boolean;
 }
@@ -22,6 +23,7 @@ const Card: React.FC<CardProps> = ({
                                        link,
                                        campaignId,
                                        date,
+                                       location,
                                        external = false,
                                        section = false
                                    }) => {
@@ -60,6 +62,7 @@ const Card: React.FC<CardProps> = ({
             />
             <h3>{heading}</h3>
             {date && <p>{dateDisplay}</p>}
+            {location && <p>{location}</p>}
             {description && <p className='card-description'>{description}</p>}
             <Button
                 variant="contained"

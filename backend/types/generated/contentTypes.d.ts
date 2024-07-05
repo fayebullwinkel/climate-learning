@@ -1030,6 +1030,7 @@ export interface ApiCampusCampaignCampusCampaign extends Schema.CollectionType {
       'oneToMany',
       'api::current-campaign.current-campaign'
     >;
+    filterText: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

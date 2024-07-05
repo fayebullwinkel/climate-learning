@@ -11,9 +11,10 @@ import '../css/container/CategoryCheckboxGroup.css';
 interface CategoryCheckboxGroupProps {
     categories: Category[];
     onCategoryChange: (selectedCategories: Category[]) => void;
+    filterText: string;
 }
 
-const CategoryCheckboxGroup: React.FC<CategoryCheckboxGroupProps> = ({ categories, onCategoryChange }) => {
+const CategoryCheckboxGroup: React.FC<CategoryCheckboxGroupProps> = ({ categories, onCategoryChange, filterText }) => {
     const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
     const [availableCategories, setAvailableCategories] = useState<Category[]>(categories);
 
@@ -36,40 +37,38 @@ const CategoryCheckboxGroup: React.FC<CategoryCheckboxGroupProps> = ({ categorie
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" className="category-checkbox-container">
-            <Box width="50%">
-                <p>Hier kannst du die Angebote ganz einfach nach deinen Interessen filtern:</p>
-                <FormControl fullWidth>
-                    <Select
-                        className="category-select"
-                        multiple
-                        value={selectedCategories.map(cat => cat.id)}
-                        onChange={handleCategoryChange}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selectedCategories.map((cat) => (
-                                    <Chip
-                                        key={cat.id}
-                                        label={cat.value}
-                                        onDelete={() => handleDelete(cat.id)}
-                                        deleteIcon={<CloseIcon />}
-                                        size="small"
-                                        style={{ margin: 2 }}
-                                        onMouseDown={(event) => {
-                                            event.stopPropagation();
-                                        }}
-                                    />
-                                ))}
-                            </Box>
-                        )}
-                    >
-                        {availableCategories.map(category => (
-                            <MenuItem key={category.id} value={category.id}>
-                                {category.value}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </Box>
+            <p>{filterText}</p>
+            <FormControl fullWidth>
+                <Select
+                    className="category-select"
+                    multiple
+                    value={selectedCategories.map(cat => cat.id)}
+                    onChange={handleCategoryChange}
+                    renderValue={() => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                            {selectedCategories.map((cat) => (
+                                <Chip
+                                    key={cat.id}
+                                    label={cat.value}
+                                    onDelete={() => handleDelete(cat.id)}
+                                    deleteIcon={<CloseIcon />}
+                                    size="small"
+                                    style={{ margin: 2 }}
+                                    onMouseDown={(event) => {
+                                        event.stopPropagation();
+                                    }}
+                                />
+                            ))}
+                        </Box>
+                    )}
+                >
+                    {availableCategories.map(category => (
+                        <MenuItem key={category.id} value={category.id}>
+                            {category.value}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
         </Box>
     );
 };

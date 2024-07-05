@@ -9,4 +9,5 @@ export interface CampusCampaign {
     description: string;
     currentCampaigns: Campaign[];
     campaigns: Campaign[];
+    filterText: string;
 }

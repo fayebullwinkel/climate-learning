@@ -50,6 +50,9 @@
       "relation": "oneToMany",
       "target": "api::current-campaign.current-campaign",
       "mappedBy": "main_page_campus_campaign"
+    },
+    "filterText": {
+      "type": "string"
     }
   }
 }
