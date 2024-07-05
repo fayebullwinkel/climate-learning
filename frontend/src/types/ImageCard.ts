@@ -1,4 +1,4 @@
-export interface ImageCardType {
+export interface ImageCard {
     id: number;
     attributes: {
         id: number;

@@ -122,6 +122,12 @@
       "relation": "oneToMany",
       "target": "api::call-to-action.call-to-action",
       "mappedBy": "main_page_climate_change"
+    },
+    "image_cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::image-card.image-card",
+      "mappedBy": "main_page_climate_change"
     }
   }
 }

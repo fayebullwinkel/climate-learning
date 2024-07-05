@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bio_diversities",
+  "info": {
+    "singularName": "bio-diversity",
+    "pluralName": "bio-diversities",
+    "displayName": "Main Page: BioDiversity",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bannerTitle": {
+      "type": "string"
+    },
+    "headerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image_cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::image-card.image-card",
+      "mappedBy": "main_page_bio_diversity"
+    }
+  }
+}

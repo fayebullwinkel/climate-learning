@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {ClimateChangeSlider, QuizSlider} from "./slider";
-import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCardType} from '@/types';
+import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCard} from '@/types';
 import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
 import { SectionMenu } from "./";
 import "slick-carousel/slick/slick.css";
@@ -12,7 +12,6 @@ import {usePages} from "../contexts";
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
     const [accordionData, setAccordionData] = useState<AccordionData | null>(null);
-    const [imageCards, setImageCards] = useState<ImageCardType[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     const [imageCardsStyle, setImageCardsStyle] = useState<React.CSSProperties>(getImageCardsStyle());
@@ -23,10 +22,11 @@ function ClimateChange() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, call_to_actions, slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, call_to_actions, slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage, image_cards.image`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
+                console.log('to delete climateChange ', climateData.data);
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
                 setData(formattedData);
                 setAccordionData({
@@ -34,11 +34,6 @@ function ClimateChange() {
                     socialConsequencesSliderItems: formattedData.socialConsequences.data,
                     economicConsequencesSliderItems: formattedData.economicConsequences.data
                 });
-
-                const imageResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/image-cards?populate=*`);
-                if (!imageResponse.ok) throw new Error('Network response was not ok');
-                const imageData = await imageResponse.json();
-                setImageCards(imageData.data);
             } catch (error) {
                 setError((error as Error).message);
             }
@@ -65,6 +60,7 @@ function ClimateChange() {
             category: climateData.attributes.category,
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
+            imageCards: climateData.attributes.image_cards,
             secondImageUrl: climateData.attributes.secondBannerImage.data.attributes.url,
             secondBannerTitle: climateData.attributes.secondBannerTitle,
             secondBannerDescription: climateData.attributes.secondBannerDescription,
@@ -113,7 +109,7 @@ function ClimateChange() {
                 <div style={{padding: '1%'}}>
                     <div style={imageCardsStyle}>
                         {
-                            imageCards.map((imageCard: ImageCardType) => (
+                            data.imageCards.data.map((imageCard: ImageCard) => (
                                 <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
                                       heading={imageCard.attributes.heading}
                                       description={imageCard.attributes.description}

@@ -864,6 +864,46 @@ export interface ApiAdaptationUnsealingAdaptationUnsealing
   };
 }
 
+export interface ApiBioDiversityBioDiversity extends Schema.CollectionType {
+  collectionName: 'bio_diversities';
+  info: {
+    singularName: 'bio-diversity';
+    pluralName: 'bio-diversities';
+    displayName: 'Main Page: BioDiversity';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bannerTitle: Attribute.String;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    category: Attribute.String;
+    heading: Attribute.String;
+    description: Attribute.Text;
+    image_cards: Attribute.Relation<
+      'api::bio-diversity.bio-diversity',
+      'oneToMany',
+      'api::image-card.image-card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::bio-diversity.bio-diversity',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::bio-diversity.bio-diversity',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCallToActionCallToAction extends Schema.CollectionType {
   collectionName: 'call_to_actions';
   info: {
@@ -1184,6 +1224,11 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::call-to-action.call-to-action'
     >;
+    image_cards: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::image-card.image-card'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1439,7 +1484,7 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
   info: {
     singularName: 'image-card';
     pluralName: 'image-cards';
-    displayName: 'ClimateChangeImageCard';
+    displayName: 'ImageCard';
     description: '';
   };
   options: {
@@ -1450,6 +1495,16 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
     heading: Attribute.String;
     description: Attribute.Text;
     link: Attribute.String;
+    main_page_climate_change: Attribute.Relation<
+      'api::image-card.image-card',
+      'manyToOne',
+      'api::climate-change.climate-change'
+    >;
+    main_page_bio_diversity: Attribute.Relation<
+      'api::image-card.image-card',
+      'manyToOne',
+      'api::bio-diversity.bio-diversity'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1771,6 +1826,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::adaptation-measure.adaptation-measure': ApiAdaptationMeasureAdaptationMeasure;
       'api::adaptation-unsealing.adaptation-unsealing': ApiAdaptationUnsealingAdaptationUnsealing;
+      'api::bio-diversity.bio-diversity': ApiBioDiversityBioDiversity;
       'api::call-to-action.call-to-action': ApiCallToActionCallToAction;
       'api::campaign.campaign': ApiCampaignCampaign;
       'api::campus-campaign.campus-campaign': ApiCampusCampaignCampusCampaign;

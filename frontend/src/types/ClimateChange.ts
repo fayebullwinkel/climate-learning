@@ -1,4 +1,4 @@
-import {Mixed, SliderItem} from "./";
+import {ImageCard, Mixed, SliderItem} from "./";
 
 export interface ClimateChange {
     id: number;
@@ -7,6 +7,9 @@ export interface ClimateChange {
     category: string;
     heading: string;
     description: string;
+    imageCards: {
+        data: ImageCard[];
+    }
     secondBannerTitle: string;
     secondBannerDescription: string;
     secondImageUrl: string;
