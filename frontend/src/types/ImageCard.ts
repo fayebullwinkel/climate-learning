@@ -12,5 +12,6 @@ export interface ImageCard {
         heading: string;
         description: string;
         link: string;
+        date?: string;
     }
 }

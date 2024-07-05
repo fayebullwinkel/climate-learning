@@ -956,7 +956,7 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
   info: {
     singularName: 'campaign';
     pluralName: 'campaigns';
-    displayName: 'Campaign';
+    displayName: 'CampaignPast';
     description: '';
   };
   options: {
@@ -971,16 +971,10 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
-    datetime: Attribute.DateTime;
     main_page_campus_campaign: Attribute.Relation<
       'api::campaign.campaign',
       'manyToOne',
       'api::campus-campaign.campus-campaign'
-    >;
-    campaign_difficulty: Attribute.Relation<
-      'api::campaign.campaign',
-      'oneToOne',
-      'api::difficulty.difficulty'
     >;
     description: Attribute.Text;
     location: Attribute.String;
@@ -989,6 +983,7 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
       'oneToMany',
       'api::tip.tip'
     >;
+    shortDescription: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1029,6 +1024,11 @@ export interface ApiCampusCampaignCampusCampaign extends Schema.CollectionType {
       'api::campus-campaign.campus-campaign',
       'oneToMany',
       'api::campaign.campaign'
+    >;
+    current_campaigns: Attribute.Relation<
+      'api::campus-campaign.campus-campaign',
+      'oneToMany',
+      'api::current-campaign.current-campaign'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1323,30 +1323,41 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
   };
 }
 
-export interface ApiDifficultyDifficulty extends Schema.CollectionType {
-  collectionName: 'difficulties';
+export interface ApiCurrentCampaignCurrentCampaign
+  extends Schema.CollectionType {
+  collectionName: 'current_campaigns';
   info: {
-    singularName: 'difficulty';
-    pluralName: 'difficulties';
-    displayName: 'CampaignDifficulty';
+    singularName: 'current-campaign';
+    pluralName: 'current-campaigns';
+    displayName: 'CampaignCurrent';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    value: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Attribute.String;
+    datetime: Attribute.DateTime;
+    location: Attribute.String;
+    description: Attribute.String;
+    main_page_campus_campaign: Attribute.Relation<
+      'api::current-campaign.current-campaign',
+      'manyToOne',
+      'api::campus-campaign.campus-campaign'
+    >;
+    link: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::difficulty.difficulty',
+      'api::current-campaign.current-campaign',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::difficulty.difficulty',
+      'api::current-campaign.current-campaign',
       'oneToOne',
       'admin::user'
     > &
@@ -1835,7 +1846,7 @@ declare module '@strapi/types' {
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
       'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;
-      'api::difficulty.difficulty': ApiDifficultyDifficulty;
+      'api::current-campaign.current-campaign': ApiCurrentCampaignCurrentCampaign;
       'api::economic-consequence.economic-consequence': ApiEconomicConsequenceEconomicConsequence;
       'api::grid-item.grid-item': ApiGridItemGridItem;
       'api::home.home': ApiHomeHome;

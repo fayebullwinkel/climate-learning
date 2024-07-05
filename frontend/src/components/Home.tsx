@@ -19,9 +19,7 @@ function Home() {
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
-                console.log('home data: ', climateData.data);
                 const formattedData: HomeType = formatHomeData(climateData.data);
-                console.log('formatted: ', formattedData);
                 setData(formattedData);
             } catch (error) {
                 setError((error as Error).message);

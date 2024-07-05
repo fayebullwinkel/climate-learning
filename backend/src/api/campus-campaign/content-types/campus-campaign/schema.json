@@ -44,6 +44,12 @@
       "relation": "oneToMany",
       "target": "api::campaign.campaign",
       "mappedBy": "main_page_campus_campaign"
+    },
+    "current_campaigns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::current-campaign.current-campaign",
+      "mappedBy": "main_page_campus_campaign"
     }
   }
 }

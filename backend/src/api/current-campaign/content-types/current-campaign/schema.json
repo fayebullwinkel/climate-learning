@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "current_campaigns",
+  "info": {
+    "singularName": "current-campaign",
+    "pluralName": "current-campaigns",
+    "displayName": "CampaignCurrent",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "datetime": {
+      "type": "datetime"
+    },
+    "location": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "main_page_campus_campaign": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::campus-campaign.campus-campaign",
+      "inversedBy": "current_campaigns"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

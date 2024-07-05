@@ -26,7 +26,6 @@ function ClimateChange() {
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
-                console.log('to delete climateChange ', climateData.data);
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
                 setData(formattedData);
                 setAccordionData({

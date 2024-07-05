@@ -6,7 +6,6 @@ export * from './CampusCampaign';
 export * from './Category';
 export * from './ClimateAdaptation';
 export * from './ClimateChange';
-export * from './Difficulty';
 export * from './GridItem';
 export * from './Home';
 export * from './ImageCard';

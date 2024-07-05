@@ -7,5 +7,6 @@ export interface CampusCampaign {
     category: string;
     heading: string;
     description: string;
+    currentCampaigns: Campaign[];
     campaigns: Campaign[];
 }

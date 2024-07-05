@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Campaign, CampusCampaign as CampusCampaignType, Category } from "@/types";
+import {Campaign, CampusCampaign as CampusCampaignType, Category} from "@/types";
 import { Card, ColorContainer, ImageContainer } from "../components/container";
 import {CategoryCheckboxGroup, getImageCardsStyle} from './';
 
@@ -7,7 +7,6 @@ const formatCampaignData = (campaign: any): Campaign => ({
     id: campaign.id,
     imageUrl: campaign.attributes.image.data.attributes.url || '',
     title: campaign.attributes.title,
-    difficulty: campaign.attributes.campaign_difficulty,
     date: campaign.attributes.datetime ? new Date(campaign.attributes.datetime).toLocaleString(undefined, {
         year: 'numeric',
         month: '2-digit',
@@ -15,19 +14,23 @@ const formatCampaignData = (campaign: any): Campaign => ({
         hour: '2-digit',
         minute: '2-digit'
     }) : undefined,
-    categories: campaign.attributes.campaign_categories.data.map((cat: any) => ({
+    shortDescription: campaign.attributes.shortDescription ?? undefined,
+    description: campaign.attributes.description ?? undefined,
+    link: campaign.attributes.link ?? undefined,
+    categories: campaign.attributes.campaign_categories ? campaign.attributes.campaign_categories.data.map((cat: any) => ({
         id: cat.id,
         value: cat.attributes.value,
-    })),
+    })) : [],
 });
 
-const formatCampusCampaignData = (campusCampaign: any, campaigns: Campaign[]): CampusCampaignType => ({
+const formatCampusCampaignData = (campusCampaign: any, campaigns: Campaign[], formattedCurrentCampaigns: Campaign[]): CampusCampaignType => ({
     id: campusCampaign.id,
     bannerTitle: campusCampaign.attributes.bannerTitle,
     headerImageUrl: campusCampaign.attributes.headerImage.data.attributes.url,
     category: campusCampaign.attributes.category,
     heading: campusCampaign.attributes.heading,
     description: campusCampaign.attributes.description,
+    currentCampaigns: formattedCurrentCampaigns,
     campaigns: campaigns,
 });
 
@@ -41,12 +44,13 @@ function CampusCampaign() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/campus-campaigns/1?populate=*,headerImage,campaigns.image,campaigns.campaign_categories,campaigns.campaign_difficulty`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/campus-campaigns/1?populate=*,headerImage,campaigns.image,campaigns.campaign_categories, current_campaigns.image`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const campusCampaignData = await response.json();
                 if (!campusCampaignData.data) throw new Error('No climate adaptation data available');
 
                 const formattedCampaigns: Campaign[] = campusCampaignData.data.attributes.campaigns.data.map(formatCampaignData);
+                const formattedCurrentCampaigns: Campaign[] = campusCampaignData.data.attributes.current_campaigns.data.map(formatCampaignData);
 
                 const uniqueCategories: Category[] = [];
                 formattedCampaigns.forEach(campaign => {
@@ -59,7 +63,9 @@ function CampusCampaign() {
 
                 setCategories(uniqueCategories);
 
-                const formattedData: CampusCampaignType = formatCampusCampaignData(campusCampaignData.data, formattedCampaigns);
+                const formattedData: CampusCampaignType = formatCampusCampaignData(campusCampaignData.data, formattedCampaigns, formattedCurrentCampaigns);
+                console.log('to delete formatted ', formattedData);
+
                 setData(formattedData);
 
             } catch (error) {
@@ -94,9 +100,10 @@ function CampusCampaign() {
 
     const filteredCampaigns = selectedCategories.length === 0
         ? data.campaigns
-        : data.campaigns.filter(campaign =>
-            campaign.categories.some(cat => selectedCategories.some(selCat => selCat.id === cat.id))
-        );
+        : data.campaigns.filter(campaign => {
+            return campaign.categories.some(cat => selectedCategories.some(selCat => selCat.id === cat.id));
+        });
+    console.log('filtered campaigns ', filteredCampaigns);
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
@@ -111,6 +118,21 @@ function CampusCampaign() {
         <div>
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
             <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
+            <div style={{padding: '1%'}}>
+                <div style={imageCardsStyle}>
+                    {
+                        data.currentCampaigns.map((currentCampaign: Campaign) => (
+                            <Card key={currentCampaign.id} imageUrl={currentCampaign.imageUrl}
+                                  heading={currentCampaign.title}
+                                  description={currentCampaign.description}
+                                  link={currentCampaign.link}
+                                  external={true}
+                                  date={currentCampaign.date}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
             <CategoryCheckboxGroup categories={categories} onCategoryChange={handleCategoryChange} />
             <div style={dynamicImageCardsStyle}>
                 {filteredCampaigns.map((campaign, index) => (
@@ -118,9 +140,8 @@ function CampusCampaign() {
                         key={index}
                         imageUrl={campaign.imageUrl}
                         heading={campaign.title}
-                        difficulty={campaign.difficulty}
+                        description={campaign.shortDescription}
                         campaignId={campaign.id}
-                        date={campaign.date}
                     />
                 ))}
             </div>

@@ -30,7 +30,6 @@ const CampaignPage: React.FC = () => {
                     id: campaignData.data.id,
                     imageUrl: attributes.image.data.attributes.url || '',
                     title: attributes.title,
-                    difficulty: attributes.campaign_difficulty.data.attributes.value,
                     date: attributes.datetime ? new Date(attributes.datetime).toLocaleString(undefined, {
                         year: 'numeric',
                         month: '2-digit',
