@@ -1,15 +1,17 @@
-.customCard {
+.custom-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
     padding: 10px;
 }
 
-.customButton {
+.custom-button {
     background-color: #76B900 !important;
+    text-align: left;
 }
 
-.imageCard {
+.image-card {
     width: 100%;
     height: auto;
     max-height: 60%;

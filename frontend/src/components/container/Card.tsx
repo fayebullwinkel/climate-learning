@@ -54,34 +54,30 @@ const Card: React.FC<CardProps> = ({
         : date;
 
     return (
-        <div style={cardStyle} className='customCard' onClick={() => {
+        <div style={cardStyle} className='custom-card' onClick={() => {
             if (!external && !section) openCampaignPage();
         }}>
-            <div className='cardContent'>
-                <img
-                    src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}
-                    alt="Thematisch passendes Bild"
-                    className='imageCard'
-                />
-                <div className='textContent' style={{textAlign: 'left'}}>
-                    <h3>{heading}</h3>
-                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '95%'}}>
-                        {difficulty && (
-                            <Chip label={difficulty.data.attributes.value} className='difficultyChip'/>
-                        )}
-                        {date && <p>{dateDisplay}</p>}
-                    </div>
-                    {description && <p>{description}</p>}
-                    <Button
-                        variant="contained"
-                        onClick={openLink}
-                        size="small"
-                        className='customButton'
-                    >
-                        {external || section ? "Mehr erfahren" : "Zur Aktion"}
-                    </Button>
-                </div>
+            <img
+                src={`${process.env.REACT_APP_BACKEND}${imageUrl}`}
+                alt="Thematisch passendes Bild"
+                className='image-card'
+            />
+            <h3>{heading}</h3>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '95%'}}>
+                {difficulty && (
+                    <Chip label={difficulty.data.attributes.value}/>
+                )}
+                {date && <p>{dateDisplay}</p>}
             </div>
+            {description && <p>{description}</p>}
+            <Button
+                variant="contained"
+                onClick={openLink}
+                size="small"
+                className='custom-button'
+            >
+                {external || section ? "Mehr erfahren" : "Zur Aktion"}
+            </Button>
         </div>
     );
 }

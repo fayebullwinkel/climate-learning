@@ -11,7 +11,7 @@
     height: 100px;
     position: absolute;
     top: 70px;
-    right: 30px;
+    left: 45%;
 }
 
 @media only screen and (max-width: 600px) {

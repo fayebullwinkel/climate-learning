@@ -96,7 +96,7 @@ const CampaignPage: React.FC = () => {
                 variant="contained"
                 onClick={openCampaignPage}
                 size="small"
-                className='customButton'
+                className='custom-button'
             >
                 Zurück zu den Aktionen
             </Button>
