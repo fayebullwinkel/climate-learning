@@ -13,7 +13,7 @@ const CampaignPage: React.FC = () => {
     const pages = usePages();
 
     const openCampaignPage = () => {
-        navigate(`/${pages[pages.length - 1]}`);
+        navigate(`${pages[pages.length - 1].route}`);
     };
 
     useEffect(() => {
@@ -95,7 +95,7 @@ const CampaignPage: React.FC = () => {
                 variant="contained"
                 onClick={openCampaignPage}
                 size="small"
-                className='custom-button'
+                className="my-button"
             >
                 Zurück zu den Aktionen
             </Button>

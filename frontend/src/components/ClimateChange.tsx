@@ -113,7 +113,7 @@ function ClimateChange() {
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}
                                 color={"#F6EDD9"}/>
-                <div style={{padding: '1%'}}>
+                <div>
                     <div style={imageCardsStyle}>
                         {
                             data.imageCards.data.map((imageCard: ImageCard) => (

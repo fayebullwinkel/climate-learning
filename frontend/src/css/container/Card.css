@@ -1,7 +1,6 @@
 .custom-card {
-    padding: 10px;
     position: relative;
-    margin-bottom: 20px;
+    margin: 20px 0 20px 0;
 }
 
 .custom-button {
@@ -9,7 +8,7 @@
     text-align: left;
     position: absolute !important;
     bottom: 0;
-    left: 0;
+    left: 10px;
 }
 
 .image-card {

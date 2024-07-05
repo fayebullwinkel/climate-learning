@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/container/ImageBanner.css";
 import { useMediaQuery } from 'react-responsive';
+import '../../css/Shared.css';
 
 interface ImageBannerProps {
     title: string;
@@ -48,7 +49,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         <div className='image-banner' style={bannerStyle}>
             <div className='image-banner-content' style={contentStyle}>
                 <h1 className='image-banner-title'>{title}</h1>
-                <p>{description}</p>
+                <p className='image-banner-description'>{description}</p>
                 {showButton && (
                     <Button variant="outlined" component={Link} to="/campusCampaigns" style={{ color: 'white', borderColor: 'white' }}>
                         Erkunde die Aktionen
@@ -79,7 +80,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                     ) : (
                         <div className='image-banner-container'>
                             {bannerItems.map(bannerItem => (
-                                <div key={bannerItem.id} style={{ flex: '1', margin: '0 10px' }}>
+                                <div key={bannerItem.id} style={{ flex: '1' }}>
                                     <h2>{bannerItem.attributes.heading}</h2>
                                     <p>{bannerItem.attributes.description}</p>
                                 </div>

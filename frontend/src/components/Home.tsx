@@ -69,7 +69,7 @@ function Home() {
             <div style={{backgroundColor: '#F7FbF1'}}>
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                                 color={'#F7FbF1'}/>
-                <div style={{padding: '1%'}}>
+                <div>
                     <div style={imageCardsStyle}>
                         {pages.map((page, index) =>
                                 page.imageUrl && (

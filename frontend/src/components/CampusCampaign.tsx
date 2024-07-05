@@ -108,14 +108,14 @@ function CampusCampaign() {
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
-        justifyContent: filteredCampaigns.length == 2 ? 'center' : 'space-between'
+        justifyContent: filteredCampaigns.length == 2 ? 'left' : 'space-between'
     };
 
     return (
         <div>
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
             <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
-            <div style={{padding: '1%'}}>
+            <div>
                 <div style={imageCardsStyle}>
                     {
                         data.currentCampaigns.map((currentCampaign: Campaign) => (

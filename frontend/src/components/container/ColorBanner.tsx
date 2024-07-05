@@ -14,7 +14,7 @@ const ColorBanner: React.FC<ColorBannerProps> = ({ category, heading, descriptio
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
-        <div className="color-banner center-heading" style={{ backgroundColor: color }}>
+        <div className="color-banner" style={{ backgroundColor: color }}>
             <div className={isMobile ? 'text-container-mobile' : 'text-container'}>
                 <h3 className="category-heading">{category}</h3>
                 <h2>{heading}</h2>
