@@ -1230,6 +1230,10 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::image-card.image-card'
     >;
+    quizCategory: Attribute.String;
+    quizHeading: Attribute.String;
+    quizDescription: Attribute.Text;
+    quizSource: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

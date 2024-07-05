@@ -1,0 +1,30 @@
+.correct-answer .MuiFormControlLabel-label {
+    color: green !important;
+}
+
+.centered {
+    margin: 0 auto !important;
+}
+
+.quiz-question {
+    text-align: left;
+    margin-bottom: 10px;
+    font-family: 'HTWBerlinOffice', sans-serif;
+    font-size: 1.3rem;
+
+}
+
+.quiz-answer {
+    font-family: 'HTWBerlinOffice', sans-serif;
+    font-size: 1.3rem;
+}
+
+.submit-button {
+    background-color: #76B900 !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.explanation {
+    max-width: 70%;
+}

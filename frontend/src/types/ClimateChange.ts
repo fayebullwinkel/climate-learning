@@ -4,6 +4,10 @@ export interface ClimateChange {
     id: number;
     bannerTitle: string;
     headerImageUrl: string;
+    quizCategory: string;
+    quizHeading: string;
+    quizDescription: string;
+    quizSource: string;
     category: string;
     heading: string;
     description: string;

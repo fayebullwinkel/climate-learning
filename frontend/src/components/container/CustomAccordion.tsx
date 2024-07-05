@@ -12,16 +12,28 @@ interface CustomAccordionProps {
     data: {
         naturalConsequencesSliderItems: SliderItem[],
         socialConsequencesSliderItems: SliderItem[],
-        economicConsequencesSliderItems: SliderItem[],
-        [key: string]: SliderItem[];
+        economicConsequencesSliderItems: SliderItem[]
     } | null;
     accordionItems: AccordionItem[];
 }
 
 const CustomAccordion: React.FC<CustomAccordionProps> = ({ data, accordionItems }) => {
     if (!data) {
-        throw new Error('CustomAccordion component requires non-null data prop.');
+        return <div>Error: CustomAccordion component requires non-null data prop.</div>;
     }
+
+    const getSliderItems = (index: number) => {
+        switch (index) {
+            case 0:
+                return data.naturalConsequencesSliderItems;
+            case 1:
+                return data.socialConsequencesSliderItems;
+            case 2:
+                return data.economicConsequencesSliderItems;
+            default:
+                return [];
+        }
+    };
 
     return (
         <div className="accordion-container">
@@ -33,12 +45,10 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({ data, accordionItems 
                         </AccordionSummary>
                         <AccordionDetails>
                             <>
-                                {index !== accordionItems.length - 1 && (
-                                    <div>
-                                        <img src="./assets/klick.svg" alt="Click icon" className="arrow" />
-                                    </div>
-                                )}
-                                {item.component ? item.component : <ConsequencesSlider sliderItems={data[item.dataKey!]} />}
+                                <div>
+                                    <img src="./assets/klick.svg" alt="Click icon" className="arrow" />
+                                </div>
+                                <ConsequencesSlider sliderItems={getSliderItems(index)} />
                                 <div className="source-link">
                                     <a href={item.link} target="_blank" rel="noopener noreferrer">Quelle</a>
                                 </div>

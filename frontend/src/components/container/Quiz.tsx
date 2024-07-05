@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Question } from '@/types';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Button from "@mui/material/Button";
+import '../../css/container/Quiz.css';
 
 interface QuizProps {
     question: Question;
@@ -31,7 +32,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <FormControl component="fieldset">
-                    <h3 style={{ textAlign: "left", marginBottom: "10px", fontFamily: 'HTWBerlinOffice, sans-serif', fontSize: '1.3rem'}}>
+                    <h3 className="quiz-question centered">
                         {question.question}
                     </h3>
                     <RadioGroup
@@ -39,13 +40,14 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
                         name="quiz"
                         value={selectedAnswer?.toString() ?? ''}
                         onChange={handleAnswerChange}
+                        className='centered'
                     >
                         {question.answers.map((answer, index) => (
                             <FormControlLabel
                                 key={`${question.question}-${index}`}
                                 value={index.toString()}
                                 control={<Radio />}
-                                label={<span style={{ fontFamily: 'HTWBerlinOffice, sans-serif', fontSize: '1.3rem' }}>{answer}</span>}
+                                label={<span className="quiz-answer">{answer}</span>}
                                 disabled={submitted}
                                 className={submitted && index === question.correctAnswer ? 'correct-answer' : ''}
                             />
@@ -56,24 +58,17 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
                         type="submit"
                         size="small"
                         disabled={submitted}
-                        style={{ backgroundColor: '#76B900', marginTop: '10px', maxWidth: "200px" }}
+                        className="submit-button centered"
                     >
                         Antwort prüfen
                     </Button>
                     {submitted && (
-                        <p style={{ maxWidth: '95%'}}>
+                        <p className="explanation centered">
                             {question.explanation}
                         </p>
                     )}
                 </FormControl>
             </form>
-            <style>
-                {`
-                .correct-answer .MuiFormControlLabel-label {
-                    color: green !important;
-                }
-                `}
-            </style>
         </div>
     );
 };

@@ -56,6 +56,10 @@ function ClimateChange() {
             id: climateData.id,
             bannerTitle: climateData.attributes.bannerTitle,
             headerImageUrl: climateData.attributes.headerImage.data.attributes.url,
+            quizCategory: climateData.attributes.quizCategory,
+            quizHeading: climateData.attributes.quizHeading,
+            quizDescription: climateData.attributes.quizDescription,
+            quizSource: climateData.attributes.quizSource,
             category: climateData.attributes.category,
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
@@ -85,7 +89,6 @@ function ClimateChange() {
         { title: 'Natürliche Folgen', dataKey: 'naturalConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
         { title: 'Gesellschaftliche Gefahren', dataKey: 'socialConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
         { title: 'Wirtschaftliche Gefahren', dataKey: 'economicConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
-        { title: 'Teste dein Wissen', component: <QuizSlider />, link: 'https://www.geo.de/natur/naturquiz/16518-quiz-quiz-kennen-sie-die-skurrilsten-folgen-des-klimawandels' },
     ];
 
     if (error) {
@@ -97,11 +100,16 @@ function ClimateChange() {
     }
 
     return (
-        <div className="page-container">
+        <div>
             {!isMobile && (
                 <SectionMenu />
             )}
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+            <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
+                            color={"#F6EDD9"}/>
+            <QuizSlider />
+            <div style={{textAlign: 'right', marginRight: '20%'}}><a href={data.quizSource} target="_blank" rel="noopener noreferrer">Quelle</a></div>
+
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}
                                 color={"#F6EDD9"}/>

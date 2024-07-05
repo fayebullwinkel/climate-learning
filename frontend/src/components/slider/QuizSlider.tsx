@@ -4,6 +4,7 @@ import { Question } from '@/types';
 import { Quiz } from "../../components/container";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../../css/Shared.css';
 
 const QuizSlider: React.FC = () => {
     const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -63,7 +64,7 @@ const QuizSlider: React.FC = () => {
     }
 
     return (
-        <div style={{ width: '70%', margin: '0 auto', padding: '1%' }}>
+        <div className='default-container'>
             <ToastContainer position="bottom-right" />
             <Slider {...sliderSettings}>
                 {questions.map((question, index) => (
