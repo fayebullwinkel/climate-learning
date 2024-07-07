@@ -37,6 +37,11 @@ a {
   color: #76B900;
 }
 
+.slick-prev, .slick-next {
+  width: 50px !important;
+  height: 50px !important;
+}
+
 .slick-prev:before, .slick-next:before {
   color: #76b900 !important;
   font-size: 30px !important;

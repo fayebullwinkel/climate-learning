@@ -1031,6 +1031,9 @@ export interface ApiCampusCampaignCampusCampaign extends Schema.CollectionType {
       'api::current-campaign.current-campaign'
     >;
     filterText: Attribute.String;
+    category2: Attribute.String;
+    heading2: Attribute.String;
+    description2: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

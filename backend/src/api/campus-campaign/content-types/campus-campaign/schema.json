@@ -53,6 +53,15 @@
     },
     "filterText": {
       "type": "string"
+    },
+    "category2": {
+      "type": "string"
+    },
+    "heading2": {
+      "type": "string"
+    },
+    "description2": {
+      "type": "text"
     }
   }
 }

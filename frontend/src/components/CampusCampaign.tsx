@@ -33,7 +33,10 @@ const formatCampusCampaignData = (campusCampaign: any, campaigns: Campaign[], fo
     description: campusCampaign.attributes.description,
     currentCampaigns: formattedCurrentCampaigns,
     campaigns: campaigns,
-    filterText: campusCampaign.attributes.filterText
+    filterText: campusCampaign.attributes.filterText,
+    category2: campusCampaign.attributes.category2,
+    heading2: campusCampaign.attributes.heading2,
+    description2: campusCampaign.attributes.description2,
 });
 
 function CampusCampaign() {
@@ -131,6 +134,7 @@ function CampusCampaign() {
                     }
                 </div>
             </div>
+            <ColorContainer category={data.category2} heading={data.heading2} description={data.description2} color={"#F6EDD9"} />
             <CategoryCheckboxGroup categories={categories} onCategoryChange={handleCategoryChange} filterText={data.filterText} />
             <div style={dynamicImageCardsStyle}>
                 {filteredCampaigns.map((campaign, index) => (
