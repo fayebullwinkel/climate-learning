@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: left;
 }
 
 .image-banner-content {
@@ -15,10 +16,6 @@
     position: relative;
     color: white;
     transform: translateY(-50%);
-}
-
-.image-banner-title {
-    text-align: center;
 }
 
 .optional-div {
@@ -36,10 +33,6 @@
     justify-content: space-between;
     margin: 0 auto;
     column-gap: 20px;
-}
-
-.optional-div h3 {
-    text-align: center;
 }
 
 .slider-container {

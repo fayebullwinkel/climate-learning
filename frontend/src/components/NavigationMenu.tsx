@@ -91,6 +91,7 @@ function NavigationMenu() {
                         component={Link}
                         to="/"
                         sx={{ mr: 2, position: 'absolute',  "&:hover": { backgroundColor: "transparent" }}}
+                        disableRipple
                     >
                         {logoUrl ? (
                             <img

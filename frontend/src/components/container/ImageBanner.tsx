@@ -35,6 +35,12 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         maxWidth: "80%",
     };
 
+    const h3Style: React.CSSProperties = {
+        textAlign: isMobile ? 'center': 'left',
+    }
+
+    const TitleTag = description ? 'h2' : 'h1';
+
     function SampleNextArrow(props: any) {
         const { style, onClick } = props;
         return (
@@ -70,7 +76,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     return (
         <div className='image-banner' style={bannerStyle}>
             <div className='image-banner-content' style={contentStyle}>
-                <h1 className='image-banner-title'>{title}</h1>
+                <TitleTag>{title}</TitleTag>
                 {description && <p>{description}</p>}
                 {showButton && (
                     <Button
@@ -90,7 +96,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                             <Slider {...sliderSettings} ref={sliderRef}>
                                 {bannerItems.map((bannerItem) => (
                                     <div key={bannerItem.id}>
-                                        <h3>{bannerItem.attributes.heading}</h3>
+                                        <h3 style={h3Style}>{bannerItem.attributes.heading}</h3>
                                         <p>{bannerItem.attributes.description}</p>
                                     </div>
                                 ))}
@@ -100,7 +106,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
                         <div className='image-banner-container'>
                             {bannerItems.map(bannerItem => (
                                 <div key={bannerItem.id} style={{ flex: '1' }}>
-                                    <h2>{bannerItem.attributes.heading}</h2>
+                                    <h3 style={h3Style}>{bannerItem.attributes.heading}</h3>
                                     <p>{bannerItem.attributes.description}</p>
                                 </div>
                             ))}
