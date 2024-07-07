@@ -40,11 +40,6 @@
     z-index: 1000;
 }
 
-.slick-prev:before,
-.slick-next:before {
-    color: #76b900;
-}
-
 .slick-prev {
     left: -35px;
 }

@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
-import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { Mixed } from "@/types";
-import IconButton from '@mui/material/IconButton';
+import { Button, IconButton } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useMediaQuery } from 'react-responsive';
+import { usePages } from "../../contexts";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/container/ImageBanner.css";
-import { useMediaQuery } from 'react-responsive';
 import '../../css/Shared.css';
+import {Mixed} from "@/types";
 
 interface ImageBannerProps {
     title: string;
@@ -22,7 +22,7 @@ interface ImageBannerProps {
 
 const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description, bannerItems, showButton = true }) => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
-
+    const pages = usePages();
     const sliderRef = useRef<Slider>(null);
 
     const bannerStyle: React.CSSProperties = {
@@ -35,23 +35,50 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         maxWidth: "80%",
     };
 
+    function SampleNextArrow(props: any) {
+        const { style, onClick } = props;
+        return (
+            <div className="arrow-right" onClick={onClick} style={style}>
+                <IconButton style={{ color: '#87966B', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                    <ArrowForwardIcon />
+                </IconButton>
+            </div>
+        );
+    }
+
+    function SamplePrevArrow(props: any) {
+        const { style, onClick } = props;
+        return (
+            <div className="arrow-left" onClick={onClick} style={style}>
+                <IconButton style={{ color: '#87966B', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                    <ArrowBackIcon />
+                </IconButton>
+            </div>
+        );
+    }
+
     const sliderSettings = {
         dots: false,
-        arrows: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        adaptiveHeight: false
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
     };
 
     return (
         <div className='image-banner' style={bannerStyle}>
             <div className='image-banner-content' style={contentStyle}>
                 <h1 className='image-banner-title'>{title}</h1>
-                <p className='image-banner-description'>{description}</p>
+                {description && <p>{description}</p>}
                 {showButton && (
-                    <Button variant="outlined" component={Link} to="/campusCampaigns" style={{ color: 'white', borderColor: 'white' }}>
+                    <Button
+                        variant="outlined"
+                        component={Link}
+                        to={pages[pages.length - 1].route}
+                        style={{ color: 'white', borderColor: 'white' }}
+                    >
                         Erkunde die Aktionen
                     </Button>
                 )}
@@ -59,23 +86,15 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
             {bannerItems && (
                 <div className='optional-div'>
                     {isMobile ? (
-                        <div>
+                        <div className="slider-container">
                             <Slider {...sliderSettings} ref={sliderRef}>
                                 {bannerItems.map((bannerItem) => (
                                     <div key={bannerItem.id}>
                                         <h3>{bannerItem.attributes.heading}</h3>
-                                        <p style={{ maxWidth: "65%", margin: '0 auto' }}>{bannerItem.attributes.description}</p>
+                                        <p>{bannerItem.attributes.description}</p>
                                     </div>
                                 ))}
                             </Slider>
-                            <div className="custom-arrows">
-                                <IconButton onClick={() => sliderRef.current?.slickPrev()} style={{ color: '#87966B' }}>
-                                    <ArrowBackIcon />
-                                </IconButton>
-                                <IconButton onClick={() => sliderRef.current?.slickNext()} style={{ color: '#87966B' }}>
-                                    <ArrowForwardIcon />
-                                </IconButton>
-                            </div>
                         </div>
                     ) : (
                         <div className='image-banner-container'>

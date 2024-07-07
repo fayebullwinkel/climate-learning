@@ -32,3 +32,8 @@ p {
 a {
   color: #76B900;
 }
+
+.slick-prev:before, .slick-next:before {
+  color: #76b900 !important;
+  font-size: 30px !important;
+}
