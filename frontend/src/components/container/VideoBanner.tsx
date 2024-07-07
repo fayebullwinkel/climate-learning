@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery } from 'react-responsive';
@@ -11,19 +11,6 @@ interface VideoBannerProps {
 
 const VideoBanner: React.FC<VideoBannerProps> = ({ title, description }) => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
-    const [iframeWidth, setIframeWidth] = useState<string>(isMobile ? '80%' : '50%');
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIframeWidth(isMobile ? '80%' : '50%');
-        };
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, [isMobile]);
 
     return (
         <div className="video-banner">
@@ -36,7 +23,7 @@ const VideoBanner: React.FC<VideoBannerProps> = ({ title, description }) => {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
             ></iframe>
-            <p style={{ width: iframeWidth }}>{description}</p>
+            <p>{description}</p>
         </div>
     );
 };

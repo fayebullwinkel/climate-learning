@@ -18,6 +18,13 @@
     transform: translateY(-50%);
 }
 
+.image-banner-content-mobile {
+    width: 100%;
+    color: white;
+    position: relative;
+    transform: translateY(-50%);
+}
+
 .optional-div {
     position: absolute;
     bottom: 0;
@@ -34,6 +41,7 @@
     margin: 0 auto;
     column-gap: 20px;
 }
+
 
 .slider-container {
     width: calc(85% + 20px);

@@ -32,7 +32,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
 
     const contentStyle: React.CSSProperties = {
         top: description ? '30%' : '50%',
-        maxWidth: "80%",
+        maxWidth: "85%",
     };
 
     const h3Style: React.CSSProperties = {
@@ -45,8 +45,8 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         const { style, onClick } = props;
         return (
             <div className="arrow-right" onClick={onClick} style={style}>
-                <IconButton style={{ color: '#87966B', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                    <ArrowForwardIcon />
+                <IconButton>
+                    <ArrowForwardIcon style={{color: 'white'}} />
                 </IconButton>
             </div>
         );
@@ -56,8 +56,8 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
         const { style, onClick } = props;
         return (
             <div className="arrow-left" onClick={onClick} style={style}>
-                <IconButton style={{ color: '#87966B', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                    <ArrowBackIcon />
+                <IconButton >
+                    <ArrowBackIcon style={{color: 'white'}} />
                 </IconButton>
             </div>
         );
@@ -75,7 +75,7 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
 
     return (
         <div className='image-banner' style={bannerStyle}>
-            <div className='image-banner-content' style={contentStyle}>
+            <div className={isMobile ? 'image-banner-content-mobile' : 'image-banner-content'} style={contentStyle}>
                 <TitleTag>{title}</TitleTag>
                 {description && <p>{description}</p>}
                 {showButton && (

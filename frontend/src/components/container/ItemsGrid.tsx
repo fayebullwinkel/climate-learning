@@ -25,8 +25,10 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
         borderRadius: '10px'
     });
 
+    const containerWidth = isMobile ? '85%' : '70%';
+
     return (
-        <Grid container spacing={2}>
+        <Grid container style={{ width: containerWidth, margin: '0 auto'}}>
             {isMobile ? (
                 items.map((item, index) => (
                     <Grid container item xs={12} key={index} style={{...itemContainerStyle}}>
@@ -34,7 +36,7 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
                             <h2 style={{textAlign: 'center'}}>{item.attributes.title}</h2>
                             <p style={{
                                 textAlign: 'justify',
-                                maxWidth: '85%',
+                                maxWidth: isMobile ? '100%' : '85%',
                                 margin: '0 auto'
                             }}>{item.attributes.description}</p>
                         </Grid>
@@ -59,11 +61,11 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
                             ...itemContainerStyle
                         }}
                     >
-                        <Grid item xs={12} sm={3} style={{textAlign: 'justify'}}>
+                        <Grid item xs={12} sm={7} style={{textAlign: 'justify'}}>
                             <h2 style={{textAlign: 'center'}}>{item.attributes.title}</h2>
                             <p style={{textAlign: 'justify'}}>{item.attributes.description}</p>
                         </Grid>
-                        <Grid item xs={12} sm={3}
+                        <Grid item xs={12} sm={5}
                               style={{display: 'flex', justifyContent: index % 2 === 0 ? 'right' : 'left'}}>
                             <img
                                 src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}

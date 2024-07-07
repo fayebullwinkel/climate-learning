@@ -8,6 +8,13 @@
     padding: 1%;
 }
 
+@media (max-width: 768px) {
+    .custom-slider {
+        width: 85%;
+        margin: 0 auto;
+    }
+}
+
 .custom-slider .slick-list {
     padding: 0 10px 0 15px !important;
 }

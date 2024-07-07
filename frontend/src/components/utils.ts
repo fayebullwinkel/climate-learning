@@ -4,7 +4,7 @@ export const getImageCardsStyle = (): React.CSSProperties => {
         justifyContent: 'space-between',
         flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
         flexWrap: 'wrap',
-        width: '70%',
+        width:  window.innerWidth <= 768 ? '85%' : '70%',
         margin: '0 auto'
     };
 };

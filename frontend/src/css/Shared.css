@@ -3,3 +3,9 @@
     margin: 0 auto;
     padding: 1%;
 }
+
+@media (max-width: 768px) {
+    .default-container {
+        width: 85%;
+    }
+}
