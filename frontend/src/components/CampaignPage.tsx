@@ -3,7 +3,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import { Campaign } from '@/types';
 import '../css/CampaignPage.css';
 import Button from "@mui/material/Button";
-import {usePages} from "../contexts";
+import {usePages} from "../utils";
 
 const CampaignPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();

@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Grid } from "@mui/material";
 import { useMediaQuery } from 'react-responsive';
 import '../css/NavigationMenu.css';
-import {usePages} from "../contexts";
+import {usePages} from "../utils";
 
 function NavigationMenu() {
     const [logoUrl, setLogoUrl] = React.useState<string>('');

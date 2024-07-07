@@ -1,11 +1,9 @@
 import React, { useRef } from 'react';
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { Button, IconButton } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Button } from "@mui/material";
 import { useMediaQuery } from 'react-responsive';
-import { usePages } from "../../contexts";
+import {SampleNextArrow, SamplePrevArrow, usePages} from "../../utils";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/container/ImageBanner.css";
@@ -40,28 +38,6 @@ const ImageBanner: React.FC<ImageBannerProps> = ({ title, imageUrl, description,
     }
 
     const TitleTag = description ? 'h2' : 'h1';
-
-    function SampleNextArrow(props: any) {
-        const { style, onClick } = props;
-        return (
-            <div className="arrow-right" onClick={onClick} style={style}>
-                <IconButton>
-                    <ArrowForwardIcon style={{color: 'white'}} />
-                </IconButton>
-            </div>
-        );
-    }
-
-    function SamplePrevArrow(props: any) {
-        const { style, onClick } = props;
-        return (
-            <div className="arrow-left" onClick={onClick} style={style}>
-                <IconButton >
-                    <ArrowBackIcon style={{color: 'white'}} />
-                </IconButton>
-            </div>
-        );
-    }
 
     const sliderSettings = {
         dots: false,

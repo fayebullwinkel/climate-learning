@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { Grid } from "@mui/material";
 import { useMediaQuery } from 'react-responsive';
-import { usePages } from "../contexts";
+import { usePages } from "../utils";
 
 function SectionMenu() {
     const isMobile = useMediaQuery({ maxWidth: 768 });

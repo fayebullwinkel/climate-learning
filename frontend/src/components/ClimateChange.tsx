@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getImageCardsStyle } from './';
 import {useMediaQuery} from "react-responsive";
-import {usePages} from "../contexts";
+import {usePages} from "../utils";
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);

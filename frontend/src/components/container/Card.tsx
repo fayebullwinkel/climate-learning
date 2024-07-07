@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from "@mui/material/Button";
 import '../../css/container/Card.css';
-import {usePages} from '../../contexts';
+import {usePages} from '../../utils';
 
 interface CardProps {
     imageUrl: string;

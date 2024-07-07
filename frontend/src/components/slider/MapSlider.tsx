@@ -23,7 +23,7 @@ const MapSlider: React.FC<MapSliderProps> = ({ sliderItems }) => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToScroll: 1
     };
 
     const renderContent = (item: Mixed, index: number) => (

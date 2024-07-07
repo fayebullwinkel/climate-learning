@@ -4,7 +4,7 @@ import {Card, ColorContainer, ImageContainer} from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {getImageCardsStyle} from "./";
-import {usePages} from "../contexts";
+import {usePages} from "../utils";
 
 function Home() {
     const [data, setData] = useState<HomeType | null>(null);

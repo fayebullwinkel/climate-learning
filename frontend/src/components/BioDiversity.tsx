@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {BioDiversity as BioDiversityType, ImageCard} from "@/types";
 import {getImageCardsStyle, SectionMenu} from "./";
 import {useMediaQuery} from "react-responsive";
-import {usePages} from "../contexts";
+import {usePages} from "../utils";
 import {Card, ColorContainer, ImageContainer} from "../components/container";
 
 function BioDiversity() {

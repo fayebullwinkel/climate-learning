@@ -111,7 +111,7 @@ function CampusCampaign() {
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
-        justifyContent: filteredCampaigns.length == 2 ? 'left' : 'space-between'
+        justifyContent: filteredCampaigns.length === 2 ? 'left' : 'space-between'
     };
 
     return (

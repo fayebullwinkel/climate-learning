@@ -5,7 +5,7 @@ import { AdaptationSlider, MapSlider } from "../components/slider";
 import { VideoBanner } from "./container";
 import { SectionMenu } from "../components";
 import { useMediaQuery } from "react-responsive";
-import { usePages } from "../contexts";
+import { usePages } from "../utils";
 
 function ClimateAdaptation() {
     const [data, setData] = useState<ClimateAdaptationType | null>(null);

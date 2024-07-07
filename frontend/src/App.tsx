@@ -11,7 +11,7 @@ import {
     CampaignPage,
     BioDiversity
 } from "./components";
-import { PagesProvider, usePages } from "./contexts/";
+import { PagesProvider, usePages } from "./utils";
 
 const App: React.FC = () => {
     const componentsArray = [

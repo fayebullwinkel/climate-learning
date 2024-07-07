@@ -56,14 +56,16 @@
     padding: 0;
 }
 
-.arrow-left {
-    position: absolute;
-    top: calc(50% - 18px);
-    left: -36px;
-}
+@media (max-width: 768px) {
+    .arrow-left {
+        position: absolute;
+        top: calc(50% - 18px);
+        left: calc(100% - 95vw);
+    }
 
-.arrow-right {
-    position: absolute;
-    top: calc(50% - 18px);
-    right: -36px;
+    .arrow-right {
+        position: absolute;
+        top: calc(50% - 18px);
+        right: calc(100% - 95vw);
+    }
 }
