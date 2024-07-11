@@ -7,9 +7,10 @@ import '../../css/container/Quiz.css';
 interface QuizProps {
     question: Question;
     triggerToast: (message: string, type: "success" | "info") => void;
+    onAnswerCorrect: () => void;
 }
 
-const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
+const Quiz: React.FC<QuizProps> = ({ question, triggerToast, onAnswerCorrect }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -23,6 +24,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
 
         if (selectedAnswer !== null && selectedAnswer === question.correctAnswer) {
             triggerToast("Super gemacht!", "success");
+            onAnswerCorrect();
         } else {
             triggerToast(`Nicht ganz. Die richtige Antwort ist: ${question.answers[question.correctAnswer]}`, "info");
         }
@@ -48,7 +50,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast }) => {
                                 value={index.toString()}
                                 control={<Radio />}
                                 label={<span className="quiz-answer">{answer}</span>}
-                                disabled={submitted}
+                                disabled={submitted }
                                 className={submitted && index === question.correctAnswer ? 'correct-answer' : ''}
                             />
                         ))}

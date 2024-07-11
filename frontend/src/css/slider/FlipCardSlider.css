@@ -15,7 +15,7 @@
         padding: 5%;
         margin-bottom: 50px !important;
     }
-    .slick-dots {
+    .flipCardContainer .slick-dots {
         bottom: -50px !important;
     }
 }

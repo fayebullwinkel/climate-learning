@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Slider from "react-slick";
 import { Question } from '@/types';
 import { Quiz } from "../../components/container";
@@ -10,12 +11,14 @@ interface QuizSliderProps {
 }
 
 const QuizSlider: React.FC<QuizSliderProps> = ({ questions }) => {
+    const [correctCount, setCorrectCount] = useState<number>(0);
+
     const sliderSettings = {
         dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToScroll: 1
     };
 
     const triggerToastNotification = (message: string, type: "success" | "info") => {
@@ -26,15 +29,34 @@ const QuizSlider: React.FC<QuizSliderProps> = ({ questions }) => {
         }
     };
 
+    const handleAnswerCorrect = () => {
+        setCorrectCount(prevCount => prevCount + 1);
+    };
+
     return (
         <div className='default-container' style={{marginBottom: '20px'}}>
             <ToastContainer position="bottom-right" />
             <Slider {...sliderSettings}>
                 {questions.map((question, index) => (
                     <div key={index}>
-                        <Quiz question={question} triggerToast={triggerToastNotification} />
+                        <Quiz
+                            question={question}
+                            triggerToast={triggerToastNotification}
+                            onAnswerCorrect={handleAnswerCorrect}
+                        />
                     </div>
                 ))}
+                <div >
+                    <div className="quiz-result">
+                        <h3>Ergebnis:</h3>
+                        <p>Du hast {correctCount} von {questions.length} Fragen richtig beantwortet.</p>
+                        <p>
+                            {correctCount <= 2 && "Hoppla, das war nicht so gut."}
+                            {correctCount === 3 || correctCount === 4 ? "Das war schon super, aber..." : ""}
+                            {correctCount >= 5 && "Klasse gemacht!"}
+                        </p>
+                    </div>
+                </div>
             </Slider>
             <style>{`
                 .toast-success {
