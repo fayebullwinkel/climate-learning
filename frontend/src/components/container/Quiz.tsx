@@ -8,9 +8,10 @@ interface QuizProps {
     question: Question;
     triggerToast: (message: string, type: "success" | "info") => void;
     onAnswerCorrect: () => void;
+    onAnswer: () => void;  // Added onAnswer to the QuizProps interface
 }
 
-const Quiz: React.FC<QuizProps> = ({ question, triggerToast, onAnswerCorrect }) => {
+const Quiz: React.FC<QuizProps> = ({ question, triggerToast, onAnswerCorrect, onAnswer }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -21,6 +22,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast, onAnswerCorrect }) 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setSubmitted(true);
+        onAnswer();  // Call onAnswer when the form is submitted
 
         if (selectedAnswer !== null && selectedAnswer === question.correctAnswer) {
             triggerToast("Super gemacht!", "success");

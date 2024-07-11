@@ -10,6 +10,7 @@ import { usePages } from "../utils";
 function ClimateAdaptation() {
     const [data, setData] = useState<ClimateAdaptationType | null>(null);
     const [questions, setQuestions] = useState<Question[]>([]);
+    const [feedbacks, setFeedbacks] = useState<String[]>([]);
     const [error, setError] = useState<string | null>(null);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const pages = usePages();
@@ -25,7 +26,7 @@ function ClimateAdaptation() {
                 const formattedData: ClimateAdaptationType = formatClimateAdaptationData(climateAdaptationData.data);
                 setData(formattedData);
                 setQuestions(formatQuestions(climateAdaptationData.data.attributes.quiz_questions.data));
-
+                setFeedbacks([climateAdaptationData.data.attributes.quizFeedbackGreat, climateAdaptationData.data.attributes.quizFeedbackOk, climateAdaptationData.data.attributes.quizFeedbackBad]);
             } catch (error) {
                 setError((error as Error).message);
             }
@@ -83,7 +84,7 @@ function ClimateAdaptation() {
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
             <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
                             color={"#F6EDD9"}/>
-            <QuizSlider questions={questions}/>
+            <QuizSlider questions={questions} feedbacks={feedbacks}/>
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
                 <VideoBanner title={data.videoTitle} description={data.videoDescription} />

@@ -1157,6 +1157,9 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::quiz-question.quiz-question'
     >;
+    quizFeedbackGreat: Attribute.String;
+    quizFeedbackOk: Attribute.String;
+    quizFeedbackBad: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1249,6 +1252,9 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::quiz-question.quiz-question'
     >;
+    quizFeedbackGreat: Attribute.String;
+    quizFeedbackOk: Attribute.String;
+    quizFeedbackBad: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

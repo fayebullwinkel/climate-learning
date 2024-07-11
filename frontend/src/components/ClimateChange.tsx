@@ -12,6 +12,7 @@ import {usePages} from "../utils";
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
     const [questions, setQuestions] = useState<Question[]>([]);
+    const [feedbacks, setFeedbacks] = useState<String[]>([]);
     const [accordionData, setAccordionData] = useState<AccordionData | null>(null);
     const [error, setError] = useState<string | null>(null);
 
@@ -36,6 +37,8 @@ function ClimateChange() {
                     economicConsequencesSliderItems: formattedData.economicConsequences.data
                 });
                 setQuestions(formatQuestions(climateData.data.attributes.quiz_questions.data));
+                console.log('looking ', climateData.data.attributes);
+                setFeedbacks([climateData.data.attributes.quizFeedbackGreat, climateData.data.attributes.quizFeedbackOk, climateData.data.attributes.quizFeedbackBad]);
             } catch (error) {
                 setError((error as Error).message);
             }
@@ -109,7 +112,7 @@ function ClimateChange() {
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
             <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
                             color={"#F6EDD9"}/>
-            <QuizSlider questions={questions}/>
+            <QuizSlider questions={questions} feedbacks={feedbacks}/>
 
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}

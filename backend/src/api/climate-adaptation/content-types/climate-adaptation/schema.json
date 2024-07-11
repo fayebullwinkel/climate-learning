@@ -136,6 +136,15 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quiz-question.quiz-question"
+    },
+    "quizFeedbackGreat": {
+      "type": "string"
+    },
+    "quizFeedbackOk": {
+      "type": "string"
+    },
+    "quizFeedbackBad": {
+      "type": "string"
     }
   }
 }

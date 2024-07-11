@@ -8,10 +8,12 @@ import '../../css/Shared.css';
 
 interface QuizSliderProps {
     questions: Question[];
+    feedbacks: String[]
 }
 
-const QuizSlider: React.FC<QuizSliderProps> = ({ questions }) => {
+const QuizSlider: React.FC<QuizSliderProps> = ({ questions, feedbacks }) => {
     const [correctCount, setCorrectCount] = useState<number>(0);
+    const [answeredCount, setAnsweredCount] = useState<number>(0);
 
     const sliderSettings = {
         dots: true,
@@ -33,6 +35,10 @@ const QuizSlider: React.FC<QuizSliderProps> = ({ questions }) => {
         setCorrectCount(prevCount => prevCount + 1);
     };
 
+    const handleAnswer = () => {
+        setAnsweredCount(prevCount => prevCount + 1);
+    };
+
     return (
         <div className='default-container' style={{marginBottom: '20px'}}>
             <ToastContainer position="bottom-right" />
@@ -43,18 +49,21 @@ const QuizSlider: React.FC<QuizSliderProps> = ({ questions }) => {
                             question={question}
                             triggerToast={triggerToastNotification}
                             onAnswerCorrect={handleAnswerCorrect}
+                            onAnswer={handleAnswer}  // Pass the onAnswer prop to the Quiz component
                         />
                     </div>
                 ))}
-                <div >
+                <div>
                     <div className="quiz-result">
                         <h3>Ergebnis:</h3>
                         <p>Du hast {correctCount} von {questions.length} Fragen richtig beantwortet.</p>
-                        <p>
-                            {correctCount <= 2 && "Hoppla, das war nicht so gut."}
-                            {correctCount === 3 || correctCount === 4 ? "Das war schon super, aber..." : ""}
-                            {correctCount >= 5 && "Klasse gemacht!"}
-                        </p>
+                        {answeredCount > 0 && (
+                            <p>
+                                {correctCount <= 2 && feedbacks[2]}
+                                {correctCount === 3 || correctCount === 4 ? feedbacks[1] : ""}
+                                {correctCount >= 5 && feedbacks[0]}
+                            </p>
+                        )}
                     </div>
                 </div>
             </Slider>
