@@ -10,6 +10,16 @@
     padding: 1%;
 }
 
+@media (max-width: 768px) {
+    .flipCardContainer {
+        padding: 5%;
+        margin-bottom: 50px !important;
+    }
+    .slick-dots {
+        bottom: -50px !important;
+    }
+}
+
 .adaptationHTWContent {
     width: 73.5%;
     margin: 0 auto 20px auto;

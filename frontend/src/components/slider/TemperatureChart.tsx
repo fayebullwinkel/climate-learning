@@ -9,13 +9,13 @@ const TemperatureChart = () => {
                 <LineChart data={temperatureData} margin={{ top: 5, right: 30, left: 20, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year">
-                        <Label value="Jahr" offset={-5} position="insideBottom" />
+                        <Label value="Jahr" offset={-15} position="insideBottom" />
                     </XAxis>
                     <YAxis>
                         <Label value="Temperaturanomalie (°C)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
                     </YAxis>
                     <Tooltip />
-                    <Legend verticalAlign="top" wrapperStyle={{ marginBottom: 10 }}/>
+                    <Legend verticalAlign="top" wrapperStyle={{ marginBottom: 10, marginTop: -10 }}/>
                     <Line type="monotone" dataKey="Ohne Glättung" stroke="#87966B" dot={false}/>
                     <Line type="monotone" dataKey="Lowess Glättung" stroke="#00C8EF" dot={false}/>
                 </LineChart>

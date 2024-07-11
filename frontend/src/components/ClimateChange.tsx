@@ -141,7 +141,7 @@ function ClimateChange() {
             <div id={currentPage?.pageSections[2].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category_3} heading={data.sliderHeading} description={data.sliderDescription}
                                 color={"#F6EDD9"}/>
-                <ClimateChangeSlider sliderItems={data.sliderItems.data}/>
+                <ClimateChangeSlider sliderItems={data.sliderItems.data} />
 
                 <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
                                 description={data.description_3} bannerItems={data.callToActions.data}/>

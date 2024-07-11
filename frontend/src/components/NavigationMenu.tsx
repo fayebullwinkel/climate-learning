@@ -50,7 +50,9 @@ function NavigationMenu() {
     };
 
     const renderMenuItems = () => (
-        pages.map((page, index) => (
+        pages
+            .filter(page => page.title !== 'Biodiversität')
+            .map((page, index) => (
             <Button
                 key={index}
                 color="inherit"

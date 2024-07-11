@@ -19,10 +19,11 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
         margin: '20px 0 20px 0'
     };
 
-    const imageStyle = (index: number) => ({
+    const imageStyle = () => ({
         height: 'auto',
-        maxHeight: index === 0 ? '400px' : '450px',
-        borderRadius: '10px'
+        maxHeight: '400px',
+        borderRadius: '10px',
+        marginTop: isMobile ? '20px' : ''
     });
 
     const containerWidth = isMobile ? '85%' : '70%';
@@ -44,7 +45,7 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
                             <img
                                 src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}
                                 alt={item.attributes.title}
-                                style={imageStyle(index)}
+                                style={imageStyle()}
                             />
                         </Grid>
                     </Grid>
@@ -70,7 +71,7 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
                             <img
                                 src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}
                                 alt={item.attributes.title}
-                                style={imageStyle(index)}
+                                style={imageStyle()}
                             />
                         </Grid>
                     </Grid>
