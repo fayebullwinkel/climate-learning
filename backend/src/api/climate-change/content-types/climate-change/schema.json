@@ -138,8 +138,10 @@
     "quizDescription": {
       "type": "text"
     },
-    "quizSource": {
-      "type": "string"
+    "quiz_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz-question.quiz-question"
     }
   }
 }

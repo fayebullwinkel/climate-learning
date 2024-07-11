@@ -1149,6 +1149,14 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::call-to-action.call-to-action'
     >;
+    quizCategory: Attribute.String;
+    quizHeading: Attribute.String;
+    quizDescription: Attribute.Text;
+    quiz_questions: Attribute.Relation<
+      'api::climate-adaptation.climate-adaptation',
+      'oneToMany',
+      'api::quiz-question.quiz-question'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1236,7 +1244,11 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     quizCategory: Attribute.String;
     quizHeading: Attribute.String;
     quizDescription: Attribute.Text;
-    quizSource: Attribute.String;
+    quiz_questions: Attribute.Relation<
+      'api::climate-change.climate-change',
+      'oneToMany',
+      'api::quiz-question.quiz-question'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1651,7 +1663,7 @@ export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
   info: {
     singularName: 'quiz-question';
     pluralName: 'quiz-questions';
-    displayName: 'ConsequencesQuizQuestion';
+    displayName: 'QuizQuestion';
     description: '';
   };
   options: {
@@ -1662,7 +1674,6 @@ export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
     answer1: Attribute.String;
     answer2: Attribute.String;
     answer3: Attribute.String;
-    answer4: Attribute.String;
     correctAnswer: Attribute.Integer;
     explanation: Attribute.Text;
     createdAt: Attribute.DateTime;

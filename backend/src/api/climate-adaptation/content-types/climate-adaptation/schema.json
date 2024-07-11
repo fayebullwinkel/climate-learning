@@ -122,6 +122,20 @@
       "relation": "oneToMany",
       "target": "api::call-to-action.call-to-action",
       "mappedBy": "main_page_climate_adaptation"
+    },
+    "quizCategory": {
+      "type": "string"
+    },
+    "quizHeading": {
+      "type": "string"
+    },
+    "quizDescription": {
+      "type": "text"
+    },
+    "quiz_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz-question.quiz-question"
     }
   }
 }

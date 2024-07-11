@@ -7,7 +7,6 @@ export interface ClimateChange {
     quizCategory: string;
     quizHeading: string;
     quizDescription: string;
-    quizSource: string;
     category: string;
     heading: string;
     description: string;

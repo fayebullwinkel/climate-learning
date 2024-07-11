@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { ClimateAdaptation as ClimateAdaptationType } from "@/types";
+import {ClimateAdaptation as ClimateAdaptationType, Question} from "@/types";
 import { ColorContainer, ImageContainer, ItemsGrid } from "../components/container";
-import { AdaptationSlider, MapSlider } from "../components/slider";
+import {AdaptationSlider, MapSlider, QuizSlider} from "../components/slider";
 import { VideoBanner } from "./container";
-import { SectionMenu } from "../components";
+import {formatQuestions, SectionMenu} from "../components";
 import { useMediaQuery } from "react-responsive";
 import { usePages } from "../utils";
 
 function ClimateAdaptation() {
     const [data, setData] = useState<ClimateAdaptationType | null>(null);
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [error, setError] = useState<string | null>(null);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const pages = usePages();
@@ -17,12 +18,13 @@ function ClimateAdaptation() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures, map_slider_items, adaptation_unsealings.image, fourthBannerImage, call_to_actions`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures, map_slider_items, adaptation_unsealings.image, fourthBannerImage, call_to_actions, quiz_questions`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const climateAdaptationData = await response.json();
                 if (!climateAdaptationData.data) throw new Error('No climate adaptation data available');
                 const formattedData: ClimateAdaptationType = formatClimateAdaptationData(climateAdaptationData.data);
                 setData(formattedData);
+                setQuestions(formatQuestions(climateAdaptationData.data.attributes.quiz_questions.data));
 
             } catch (error) {
                 setError((error as Error).message);
@@ -34,6 +36,9 @@ function ClimateAdaptation() {
                 id: data.id,
                 bannerTitle: data.attributes.bannerTitle,
                 headerImageUrl: data.attributes.headerImage.data.attributes.url,
+                quizCategory: data.attributes.quizCategory,
+                quizHeading: data.attributes.quizHeading,
+                quizDescription: data.attributes.quizDescription,
                 category: data.attributes.category,
                 heading: data.attributes.heading,
                 description: data.attributes.description,
@@ -75,23 +80,24 @@ function ClimateAdaptation() {
             {!isMobile && (
                 <SectionMenu />
             )}
-            <div>
-                <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
-                    <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
-                    <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
-                    <VideoBanner title={data.videoTitle} description={data.videoDescription} />
-                    <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl} description={data.secondBannerDescription} bannerItems={data.adaptationMeasures.data} showButton={false} />
-                </div>
-                <div id={currentPage?.pageSections[1].attributes.oneWordHashtag}>
-                    <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2} color={"#F6EDD9"} />
-                    <ItemsGrid items={data.gridItems.data} />
-                    <MapSlider sliderItems={data.mapSliderItems.data} />
-                </div>
-                <div id={currentPage?.pageSections[2].attributes.oneWordHashtag}>
-                    <ColorContainer category={data.thirdBannerCategory} heading={data.thirdBannerTitle} description={data.thirdBannerDescription} color={"#F6EDD9"} />
-                    <AdaptationSlider sliderItems={data.adaptationMeasuresHTW.data} />
-                    <ImageContainer title={data.fourthBannerTitle} imageUrl={data.fourthImageUrl} description={data.fourthBannerDescription} bannerItems={data.callToActions.data} />
-                </div>
+            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
+            <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
+                            color={"#F6EDD9"}/>
+            <QuizSlider questions={questions}/>
+            <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
+                <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
+                <VideoBanner title={data.videoTitle} description={data.videoDescription} />
+                <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl} description={data.secondBannerDescription} bannerItems={data.adaptationMeasures.data} showButton={false} />
+            </div>
+            <div id={currentPage?.pageSections[1].attributes.oneWordHashtag}>
+                <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2} color={"#F6EDD9"} />
+                <ItemsGrid items={data.gridItems.data} />
+                <MapSlider sliderItems={data.mapSliderItems.data} />
+            </div>
+            <div id={currentPage?.pageSections[2].attributes.oneWordHashtag}>
+                <ColorContainer category={data.thirdBannerCategory} heading={data.thirdBannerTitle} description={data.thirdBannerDescription} color={"#F6EDD9"} />
+                <AdaptationSlider sliderItems={data.adaptationMeasuresHTW.data} />
+                <ImageContainer title={data.fourthBannerTitle} imageUrl={data.fourthImageUrl} description={data.fourthBannerDescription} bannerItems={data.callToActions.data} />
             </div>
         </div>
     )

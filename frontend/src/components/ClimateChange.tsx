@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {ClimateChangeSlider, QuizSlider} from "./slider";
-import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCard} from '@/types';
+import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCard, Question} from '@/types';
 import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
-import { SectionMenu } from "./";
+import {formatQuestions, SectionMenu} from "./";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getImageCardsStyle } from './';
@@ -11,6 +11,7 @@ import {usePages} from "../utils";
 
 function ClimateChange() {
     const [data, setData] = useState<ClimateChangeType | null>(null);
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [accordionData, setAccordionData] = useState<AccordionData | null>(null);
     const [error, setError] = useState<string | null>(null);
 
@@ -22,10 +23,11 @@ function ClimateChange() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, call_to_actions, slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage, image_cards.image`);
+                const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, call_to_actions, slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage, image_cards.image, quiz_questions`);
                 if (!climateResponse.ok) throw new Error('Network response was not ok');
                 const climateData = await climateResponse.json();
                 if (!climateData.data) throw new Error('No climate change data available');
+
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
                 setData(formattedData);
                 setAccordionData({
@@ -33,6 +35,7 @@ function ClimateChange() {
                     socialConsequencesSliderItems: formattedData.socialConsequences.data,
                     economicConsequencesSliderItems: formattedData.economicConsequences.data
                 });
+                setQuestions(formatQuestions(climateData.data.attributes.quiz_questions.data));
             } catch (error) {
                 setError((error as Error).message);
             }
@@ -59,7 +62,6 @@ function ClimateChange() {
             quizCategory: climateData.attributes.quizCategory,
             quizHeading: climateData.attributes.quizHeading,
             quizDescription: climateData.attributes.quizDescription,
-            quizSource: climateData.attributes.quizSource,
             category: climateData.attributes.category,
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
@@ -107,8 +109,7 @@ function ClimateChange() {
             <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
             <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
                             color={"#F6EDD9"}/>
-            <QuizSlider />
-            <div style={{textAlign: 'right', marginRight: '20%'}}><a href={data.quizSource} target="_blank" rel="noopener noreferrer">Quelle</a></div>
+            <QuizSlider questions={questions}/>
 
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}

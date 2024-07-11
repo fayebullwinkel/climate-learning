@@ -4,7 +4,7 @@
   "info": {
     "singularName": "quiz-question",
     "pluralName": "quiz-questions",
-    "displayName": "ConsequencesQuizQuestion",
+    "displayName": "QuizQuestion",
     "description": ""
   },
   "options": {
@@ -22,9 +22,6 @@
       "type": "string"
     },
     "answer3": {
-      "type": "string"
-    },
-    "answer4": {
       "type": "string"
     },
     "correctAnswer": {
