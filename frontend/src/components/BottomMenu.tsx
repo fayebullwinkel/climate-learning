@@ -32,7 +32,7 @@ function BottomMenu() {
             }
 
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/uploads/htw_gruen_b0a56b3fbf.jpg`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/uploads/htw_Logo_Weiss_e261ddd728.png`);
                 if (response.ok) {
                     const url = await response.url;
                     setLogoSmallUrl(url);
