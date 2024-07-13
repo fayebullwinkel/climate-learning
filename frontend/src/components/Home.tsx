@@ -59,6 +59,12 @@ function Home() {
         return <div>Loading...</div>;
     }
 
+    const dynamicImageCardsStyle: React.CSSProperties = {
+        ...imageCardsStyle,
+        justifyContent: 'center',
+        gap: '20px'
+    };
+
     return (
         <div className="page-container">
             <ImageContainer title={data.headerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
@@ -70,8 +76,10 @@ function Home() {
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                                 color={'#F7FbF1'}/>
                 <div>
-                    <div style={imageCardsStyle}>
-                        {pages.map((page, index) =>
+                    <div style={dynamicImageCardsStyle}>
+                        {pages
+                            .filter(page => page.title !== 'Biodiversität')
+                            .map((page, index) =>
                                 page.imageUrl && (
                                     <Card
                                         key={index}
