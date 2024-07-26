@@ -4,6 +4,7 @@ import { Campaign } from '@/types';
 import '../css/CampaignPage.css';
 import Button from "@mui/material/Button";
 import {usePages} from "../utils";
+import useHover from "./utils";
 
 const CampaignPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -11,6 +12,7 @@ const CampaignPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
     const pages = usePages();
+    const {showCredits, mousePosition, onMouseEnter, onMouseLeave, onMouseMove} = useHover(1500);
 
     const openCampaignPage = () => {
         navigate(`${pages[pages.length - 1].route}`);
@@ -73,10 +75,28 @@ const CampaignPage: React.FC = () => {
         <div className='campaignPageContent'>
             <p>{categoriesString}</p>
             <h2>{campaign.title}</h2>
-            <img
-                src={`${process.env.REACT_APP_BACKEND}${campaign.image.data.attributes.url}`}
-                alt="Thematisch passendes Bild"
-            />
+            <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
+                {showCredits && (
+                    <div style={{
+                        position: 'fixed',
+                        top: `${mousePosition.y + 10}px`,
+                        left: `${mousePosition.x + 10}px`,
+                        backgroundColor: '#F7FbF1',
+                        color: 'grey',
+                        padding: '5px',
+                        borderRadius: '3px',
+                        boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+                        zIndex: 3,
+                        fontSize: '12px'
+                    }}>
+                        ©{campaign.image.data.attributes.caption}
+                    </div>
+                )}
+                <img
+                    src={`${process.env.REACT_APP_BACKEND}${campaign.image.data.attributes.url}`}
+                    alt="Thematisch passendes Bild"
+                />
+            </div>
             {dateDisplay && <h3>Wann? {dateDisplay}</h3>}
             {campaign.location && <h3>Wo? {campaign.location}</h3>}
             {campaign.description && <p>{campaign.description}</p>}
