@@ -1,15 +1,15 @@
-import {Mixed} from "./";
+import {Image, Mixed} from "./";
 
 export interface Home {
     id: number;
     headerTitle: string;
-    headerImageUrl: string;
+    headerImage: Image;
     category: string;
     heading: string;
     description: string;
     bannerTitle: string;
     bannerDescription: string;
-    bannerImageUrl: string;
+    bannerImage: Image;
     reasons: {
         data: Mixed[];
     },
@@ -18,7 +18,7 @@ export interface Home {
     description_2: string;
     secondBannerTitle: string;
     secondBannerDescription: string;
-    secondBannerImageUrl: string;
+    secondBannerImage: Image;
     callToActions: {
         data: Mixed[];
     }

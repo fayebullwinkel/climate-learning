@@ -1,9 +1,9 @@
-import {Campaign} from "./";
+import {Campaign, Image} from "./";
 
 export interface CampusCampaign {
     id: number;
     bannerTitle: string;
-    headerImageUrl: string;
+    headerImage: Image;
     category: string;
     heading: string;
     description: string;

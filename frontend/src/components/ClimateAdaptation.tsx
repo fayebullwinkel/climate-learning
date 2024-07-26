@@ -36,14 +36,14 @@ function ClimateAdaptation() {
             return {
                 id: data.id,
                 bannerTitle: data.attributes.bannerTitle,
-                headerImageUrl: data.attributes.headerImage.data.attributes.url,
+                headerImage: data.attributes.headerImage,
                 quizCategory: data.attributes.quizCategory,
                 quizHeading: data.attributes.quizHeading,
                 quizDescription: data.attributes.quizDescription,
                 category: data.attributes.category,
                 heading: data.attributes.heading,
                 description: data.attributes.description,
-                secondImageUrl: data.attributes.secondBannerImage.data.attributes.url,
+                secondImage: data.attributes.secondBannerImage,
                 secondBannerTitle: data.attributes.secondBannerTitle,
                 secondBannerDescription: data.attributes.secondBannerDescription,
                 adaptationMeasures: data.attributes.adaptation_measures,
@@ -57,7 +57,7 @@ function ClimateAdaptation() {
                 adaptationMeasuresHTW: data.attributes.adaptation_unsealings,
                 fourthBannerTitle: data.attributes.fourthBannerTitle,
                 fourthBannerDescription: data.attributes.fourthBannerDescription,
-                fourthImageUrl: data.attributes.fourthBannerImage.data.attributes.url,
+                fourthImage: data.attributes.fourthBannerImage,
                 callToActions: data.attributes.call_to_actions,
                 category_2: data.attributes.category_2,
                 heading_2: data.attributes.heading_2,
@@ -81,14 +81,14 @@ function ClimateAdaptation() {
             {!isMobile && (
                 <SectionMenu />
             )}
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
+            <ImageContainer title={data.bannerTitle} image={data.headerImage} showButton={false} />
             <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
                             color={"#F6EDD9"}/>
             <QuizSlider questions={questions} feedbacks={feedbacks}/>
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
                 <VideoBanner title={data.videoTitle} description={data.videoDescription} />
-                <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl} description={data.secondBannerDescription} bannerItems={data.adaptationMeasures.data} showButton={false} />
+                <ImageContainer title={data.secondBannerTitle} image={data.secondImage} description={data.secondBannerDescription} bannerItems={data.adaptationMeasures.data} showButton={false} />
             </div>
             <div id={currentPage?.pageSections[1].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2} color={"#F6EDD9"} />
@@ -98,7 +98,7 @@ function ClimateAdaptation() {
             <div id={currentPage?.pageSections[2].attributes.oneWordHashtag}>
                 <ColorContainer category={data.thirdBannerCategory} heading={data.thirdBannerTitle} description={data.thirdBannerDescription} color={"#F6EDD9"} />
                 <AdaptationSlider sliderItems={data.adaptationMeasuresHTW.data} />
-                <ImageContainer title={data.fourthBannerTitle} imageUrl={data.fourthImageUrl} description={data.fourthBannerDescription} bannerItems={data.callToActions.data} />
+                <ImageContainer title={data.fourthBannerTitle} image={data.fourthImage} description={data.fourthBannerDescription} bannerItems={data.callToActions.data} />
             </div>
         </div>
     )

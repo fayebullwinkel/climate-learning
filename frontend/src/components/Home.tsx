@@ -33,20 +33,20 @@ function Home() {
         return {
             id: climateData.id,
             headerTitle: climateData.attributes.headerTitle,
-            headerImageUrl: climateData.attributes.headerImage.data.attributes.url,
+            headerImage: climateData.attributes.headerImage,
             category: climateData.attributes.category,
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
             bannerTitle: climateData.attributes.bannerTitle,
             bannerDescription: climateData.attributes.bannerDescription,
-            bannerImageUrl: climateData.attributes.bannerImage.data.attributes.url,
+            bannerImage: climateData.attributes.bannerImage,
             reasons: climateData.attributes.climate_change_reasons,
             category_2: climateData.attributes.category_2,
             heading_2: climateData.attributes.heading_2,
             description_2: climateData.attributes.description_2,
             secondBannerTitle: climateData.attributes.secondBannerTitle,
             secondBannerDescription: climateData.attributes.secondBannerDescription,
-            secondBannerImageUrl: climateData.attributes.secondBannerImage.data.attributes.url,
+            secondBannerImage: climateData.attributes.secondBannerImage,
             callToActions: climateData.attributes.call_to_actions
         };
     };
@@ -67,10 +67,10 @@ function Home() {
 
     return (
         <div className="page-container">
-            <ImageContainer title={data.headerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+            <ImageContainer title={data.headerTitle} image={data.headerImage} showButton={false} />
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
                             color={'#F7FbF1'}/>
-            <ImageContainer title={data.bannerTitle} imageUrl={data.bannerImageUrl}
+            <ImageContainer title={data.bannerTitle} image={data.bannerImage}
                             description={data.bannerDescription} bannerItems={data.reasons.data} showButton={false}/>
             <div style={{backgroundColor: '#F7FbF1'}}>
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
@@ -80,10 +80,10 @@ function Home() {
                         {pages
                             .filter(page => page.title !== 'Biodiversität')
                             .map((page, index) =>
-                                page.imageUrl && (
+                                page.image.data && (
                                     <Card
                                         key={index}
-                                        imageUrl={page.imageUrl}
+                                        image={page.image}
                                         heading={page.title}
                                         description={page.description}
                                         link={page.route}
@@ -94,8 +94,8 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondBannerImageUrl}
-                            description={data.secondBannerDescription} bannerItems={data.callToActions.data}/>
+            <ImageContainer title={data.secondBannerTitle} image={data.secondBannerImage}
+                            description={data.secondBannerDescription} bannerItems={data.callToActions.data} />
         </div>
     );
 }

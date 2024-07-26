@@ -5,7 +5,7 @@ import {CategoryCheckboxGroup, getImageCardsStyle} from './';
 
 const formatCampaignData = (campaign: any): Campaign => ({
     id: campaign.id,
-    imageUrl: campaign.attributes.image.data.attributes.url || '',
+    image: campaign.attributes.image,
     title: campaign.attributes.title,
     date: campaign.attributes.datetime ? new Date(campaign.attributes.datetime).toLocaleString(undefined, {
         year: 'numeric',
@@ -27,7 +27,7 @@ const formatCampaignData = (campaign: any): Campaign => ({
 const formatCampusCampaignData = (campusCampaign: any, campaigns: Campaign[], formattedCurrentCampaigns: Campaign[]): CampusCampaignType => ({
     id: campusCampaign.id,
     bannerTitle: campusCampaign.attributes.bannerTitle,
-    headerImageUrl: campusCampaign.attributes.headerImage.data.attributes.url,
+    headerImage: campusCampaign.attributes.headerImage,
     category: campusCampaign.attributes.category,
     heading: campusCampaign.attributes.heading,
     description: campusCampaign.attributes.description,
@@ -102,12 +102,11 @@ function CampusCampaign() {
         return <div>Loading...</div>;
     }
 
-    const filteredCampaigns = selectedCategories.length === 0
+    const filteredCampaigns: Campaign[] = selectedCategories.length === 0
         ? data.campaigns
         : data.campaigns.filter(campaign => {
             return campaign.categories.some(cat => selectedCategories.some(selCat => selCat.id === cat.id));
         });
-    console.log('filtered campaigns ', filteredCampaigns);
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
@@ -117,13 +116,13 @@ function CampusCampaign() {
 
     return (
         <div>
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false} />
+            <ImageContainer title={data.bannerTitle} image={data.headerImage} showButton={false} />
             <ColorContainer category={data.category} heading={data.heading} description={data.description} color={"#F6EDD9"} />
             <div>
                 <div style={imageCardsStyle}>
                     {
                         data.currentCampaigns.map((currentCampaign: Campaign) => (
-                            <Card key={currentCampaign.id} imageUrl={currentCampaign.imageUrl}
+                            <Card key={currentCampaign.id} image={currentCampaign.image}
                                   heading={currentCampaign.title}
                                   description={currentCampaign.description}
                                   location={currentCampaign.location}
@@ -141,7 +140,7 @@ function CampusCampaign() {
                 {filteredCampaigns.map((campaign, index) => (
                     <Card
                         key={index}
-                        imageUrl={campaign.imageUrl}
+                        image={campaign.image}
                         heading={campaign.title}
                         description={campaign.shortDescription}
                         campaignId={campaign.id}

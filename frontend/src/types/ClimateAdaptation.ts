@@ -1,16 +1,16 @@
-import {GridItem, SliderItem} from "@/types";
+import {GridItem, Image, SliderItem} from "@/types";
 import {Mixed} from './';
 export interface ClimateAdaptation {
     id: number;
     bannerTitle: string;
-    headerImageUrl: string;
+    headerImage: Image;
     quizCategory: string;
     quizHeading: string;
     quizDescription: string;
     category: string;
     heading: string;
     description: string;
-    secondImageUrl: string;
+    secondImage: Image;
     secondBannerTitle: string;
     secondBannerDescription: string;
     adaptationMeasures: {
@@ -32,7 +32,7 @@ export interface ClimateAdaptation {
     }
     fourthBannerTitle: string;
     fourthBannerDescription: string;
-    fourthImageUrl: string;
+    fourthImage: Image;
     callToActions: {
         data: Mixed[];
     }

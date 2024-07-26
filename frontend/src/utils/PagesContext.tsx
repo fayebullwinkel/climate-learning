@@ -22,6 +22,8 @@ export const PagesProvider = ({ children }: PagesProviderProps) => {
                     const data = await response.json();
                     if (!data.data) throw new Error('No page data available');
                     const formattedPages: PageType[] = data.data.map((page: any) => formatPageData(page));
+
+                    console.log("formatted pages ", formattedPages);
                     setPages(formattedPages);
                 } else {
                     throw new Error('Failed to fetch page titles: ' + response.statusText);
@@ -42,7 +44,7 @@ export const PagesProvider = ({ children }: PagesProviderProps) => {
             title: data.attributes.title,
             route: data.attributes.route,
             description: data.attributes.description,
-            imageUrl: data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes.url,
+            image: data.attributes.image,
             pageSections: data.attributes.page_sections.data
         };
     };

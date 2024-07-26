@@ -22,6 +22,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ item }) => {
         <ReactCardFlip isFlipped={isFlipped} flipSpeedBackToFront={0.7} flipSpeedFrontToBack={0.7} >
             <div className={`card frontCard ${isFlipped ? 'flipped' : ''}`} style={frontCardStyle} onClick={handleClick}>
                 <h2 className="heading">{item.attributes.heading}</h2>
+                <p className={'credits'}>©{item.attributes.image?.data.attributes.caption}</p>
             </div>
 
             <div className={`card back ${isFlipped ? 'flipped' : ''}`} onClick={handleClick}>

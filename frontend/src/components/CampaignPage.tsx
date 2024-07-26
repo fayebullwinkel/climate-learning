@@ -28,7 +28,7 @@ const CampaignPage: React.FC = () => {
 
                 const formattedCampaign: Campaign = {
                     id: campaignData.data.id,
-                    imageUrl: attributes.image.data.attributes.url || '',
+                    image: attributes.image,
                     title: attributes.title,
                     date: attributes.datetime ? new Date(attributes.datetime).toLocaleString(undefined, {
                         year: 'numeric',
@@ -74,7 +74,7 @@ const CampaignPage: React.FC = () => {
             <p>{categoriesString}</p>
             <h2>{campaign.title}</h2>
             <img
-                src={`${process.env.REACT_APP_BACKEND}${campaign.imageUrl}`}
+                src={`${process.env.REACT_APP_BACKEND}${campaign.image.data.attributes.url}`}
                 alt="Thematisch passendes Bild"
             />
             {dateDisplay && <h3>Wann? {dateDisplay}</h3>}

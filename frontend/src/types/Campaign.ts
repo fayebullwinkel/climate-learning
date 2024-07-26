@@ -1,8 +1,8 @@
-import {Category, Tip} from "@/types";
+import {Category, Image, Tip} from "@/types";
 
 export interface Campaign {
     id: number;
-    imageUrl: string;
+    image: Image;
     title: string;
     categories: Category[];
     date?: string;

@@ -45,7 +45,7 @@ function BioDiversity() {
         return {
             id: data.id,
             bannerTitle: data.attributes.bannerTitle,
-            headerImageUrl: data.attributes.headerImage.data.attributes.url,
+            headerImage: data.attributes.headerImage,
             category: data.attributes.category,
             heading: data.attributes.heading,
             description: data.attributes.description,
@@ -66,7 +66,7 @@ function BioDiversity() {
             {!isMobile && (
                 <SectionMenu />
             )}
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+            <ImageContainer title={data.bannerTitle} image={data.headerImage} showButton={false} />
             <div id={currentPage?.pageSections[0].attributes.oneWordHashtag}>
                 <ColorContainer category={data.category} heading={data.heading} description={data.description}
                                 color={"#F6EDD9"}/>
@@ -74,7 +74,7 @@ function BioDiversity() {
                     <div style={imageCardsStyle}>
                         {
                             data.imageCards.data.map((imageCard: ImageCard) => (
-                                <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
+                                <Card key={imageCard.id} image={imageCard.attributes.image}
                                       heading={imageCard.attributes.heading}
                                       description={imageCard.attributes.description}
                                       link={imageCard.attributes.link}

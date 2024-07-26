@@ -9,12 +9,13 @@ interface ConsequencesProps {
 }
 
 const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
+    const slidesToShow = (sliderItems.length < 3)? sliderItems.length : 3;
     const sliderSettings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: slidesToShow,
+        slidesToScroll: slidesToShow,
         responsive: [
             {
                 breakpoint: 1024,

@@ -1,9 +1,9 @@
-import {ImageCard, Mixed, SliderItem} from "./";
+import {Image, ImageCard, Mixed, SliderItem} from "./";
 
 export interface ClimateChange {
     id: number;
     bannerTitle: string;
-    headerImageUrl: string;
+    headerImage: Image;
     quizCategory: string;
     quizHeading: string;
     quizDescription: string;
@@ -15,7 +15,7 @@ export interface ClimateChange {
     }
     secondBannerTitle: string;
     secondBannerDescription: string;
-    secondImageUrl: string;
+    secondImage: Image;
     consequences: {
         data: Mixed[];
     }
@@ -36,7 +36,7 @@ export interface ClimateChange {
     economicConsequences: {
         data: SliderItem[];
     }
-    thirdImageUrl: string;
+    thirdImage: Image;
     category_3: string;
     heading_3: string;
     description_3: string;

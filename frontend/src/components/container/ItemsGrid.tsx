@@ -3,6 +3,7 @@ import {Grid} from '@mui/material';
 import {GridItem} from "@/types";
 import {useMediaQuery} from "react-responsive";
 import '../../css/container/ItemsGrid.css';
+import useHover from "../utils";
 
 interface ItemsGridProps {
     items: GridItem[];
@@ -10,6 +11,8 @@ interface ItemsGridProps {
 
 const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
     const isMobile = useMediaQuery({maxWidth: 768});
+    const containerWidth = isMobile ? '85%' : '70%';
+    const {showCredits, mousePosition, onMouseEnter, onMouseLeave, onMouseMove} = useHover(1500);
 
     const itemContainerStyle = {
         display: 'flex',
@@ -18,7 +21,6 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
         minHeight: 200,
         margin: '20px 0 20px 0'
     };
-
     const imageStyle = () => ({
         height: 'auto',
         maxHeight: '400px',
@@ -26,7 +28,6 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
         marginTop: isMobile ? '20px' : ''
     });
 
-    const containerWidth = isMobile ? '85%' : '70%';
 
     return (
         <Grid container style={{ width: containerWidth, margin: '0 auto'}}>
@@ -66,13 +67,30 @@ const ItemsGrid: React.FC<ItemsGridProps> = ({items}) => {
                             <h2 style={{textAlign: 'center'}}>{item.attributes.title}</h2>
                             <p style={{textAlign: 'justify'}}>{item.attributes.description}</p>
                         </Grid>
-                        <Grid item xs={12} sm={5}
-                              style={{display: 'flex', justifyContent: index % 2 === 0 ? 'right' : 'left'}}>
-                            <img
-                                src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}
-                                alt={item.attributes.title}
-                                style={imageStyle()}
-                            />
+                        <Grid item xs={12} sm={5} style={{ display: 'flex', justifyContent: index % 2 === 0 ? 'flex-end' : 'flex-start' }}>
+                            <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
+                                {showCredits && (
+                                    <div style={{
+                                        position: 'fixed',
+                                        top: `${mousePosition.y + 10}px`,
+                                        left: `${mousePosition.x + 10}px`,
+                                        backgroundColor: '#F7FbF1',
+                                        color: 'grey',
+                                        padding: '5px',
+                                        borderRadius: '3px',
+                                        boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+                                        zIndex: 3,
+                                        fontSize: '12px'
+                                    }}>
+                                        ©{item.attributes.image.data.attributes.caption}
+                                    </div>
+                                )}
+                                <img
+                                    src={`${process.env.REACT_APP_BACKEND}${item.attributes.image.data.attributes.url}`}
+                                    alt={item.attributes.title}
+                                    style={imageStyle()}
+                                />
+                            </div>
                         </Grid>
                     </Grid>
                 ))

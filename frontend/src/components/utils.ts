@@ -1,4 +1,5 @@
 import {Question} from "@/types";
+import {useState, useRef} from 'react';
 
 export const getImageCardsStyle = (): React.CSSProperties => {
     return {
@@ -23,3 +24,37 @@ export const formatQuestions = (questions: any): Question[] => {
         explanation: item.attributes.explanation
     }));
 }
+
+const useHover = (delay = 1500) => {
+    const [showCredits, setShowCredits] = useState(false);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+    const onMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+        timerRef.current = setTimeout(() => {
+            setShowCredits(true);
+        }, delay);
+    };
+
+    const onMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const onMouseLeave = () => {
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+        }
+        setShowCredits(false);
+    };
+
+    return {
+        showCredits,
+        mousePosition,
+        onMouseEnter,
+        onMouseLeave,
+        onMouseMove,
+    };
+};
+
+export default useHover;

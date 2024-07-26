@@ -8,6 +8,7 @@ export * from './ClimateAdaptation';
 export * from './ClimateChange';
 export * from './GridItem';
 export * from './Home';
+export * from './Image';
 export * from './ImageCard';
 export * from './Logo';
 export * from './Mixed';

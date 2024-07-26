@@ -61,7 +61,7 @@ function ClimateChange() {
         return {
             id: climateData.id,
             bannerTitle: climateData.attributes.bannerTitle,
-            headerImageUrl: climateData.attributes.headerImage.data.attributes.url,
+            headerImage: climateData.attributes.headerImage,
             quizCategory: climateData.attributes.quizCategory,
             quizHeading: climateData.attributes.quizHeading,
             quizDescription: climateData.attributes.quizDescription,
@@ -69,7 +69,7 @@ function ClimateChange() {
             heading: climateData.attributes.heading,
             description: climateData.attributes.description,
             imageCards: climateData.attributes.image_cards,
-            secondImageUrl: climateData.attributes.secondBannerImage.data.attributes.url,
+            secondImage: climateData.attributes.secondBannerImage,
             secondBannerTitle: climateData.attributes.secondBannerTitle,
             secondBannerDescription: climateData.attributes.secondBannerDescription,
             consequences: climateData.attributes.consequences,
@@ -82,7 +82,7 @@ function ClimateChange() {
             naturalConsequences: climateData.attributes.consequence_slider_items,
             socialConsequences: climateData.attributes.social_consequences,
             economicConsequences: climateData.attributes.economic_consequences,
-            thirdImageUrl: climateData.attributes.thirdBannerImage.data.attributes.url,
+            thirdImage: climateData.attributes.thirdBannerImage,
             category_3: climateData.attributes.category_3,
             heading_3: climateData.attributes.heading_3,
             description_3: climateData.attributes.description_3,
@@ -109,7 +109,7 @@ function ClimateChange() {
             {!isMobile && (
                 <SectionMenu />
             )}
-            <ImageContainer title={data.bannerTitle} imageUrl={data.headerImageUrl} showButton={false}/>
+            <ImageContainer title={data.bannerTitle} image={data.headerImage} showButton={false} />
             <ColorContainer category={data.quizCategory} heading={data.quizHeading} description={data.quizDescription}
                             color={"#F6EDD9"}/>
             <QuizSlider questions={questions} feedbacks={feedbacks}/>
@@ -121,7 +121,7 @@ function ClimateChange() {
                     <div style={imageCardsStyle}>
                         {
                             data.imageCards.data.map((imageCard: ImageCard) => (
-                                <Card key={imageCard.id} imageUrl={imageCard.attributes.image.data.attributes.url}
+                                <Card key={imageCard.id} image={imageCard.attributes.image}
                                       heading={imageCard.attributes.heading}
                                       description={imageCard.attributes.description}
                                       link={imageCard.attributes.link}
@@ -137,8 +137,8 @@ function ClimateChange() {
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
                                 color={"#F6EDD9"}/>
                 <CustomAccordion data={accordionData} accordionItems={accordionItems}/>
-                <ImageContainer title={data.secondBannerTitle} imageUrl={data.secondImageUrl}
-                                description={data.secondBannerDescription} bannerItems={data.consequences.data}/>
+                <ImageContainer title={data.secondBannerTitle} image={data.secondImage}
+                                description={data.secondBannerDescription} bannerItems={data.consequences.data} />
             </div>
 
             <div id={currentPage?.pageSections[2].attributes.oneWordHashtag}>
@@ -146,7 +146,7 @@ function ClimateChange() {
                                 color={"#F6EDD9"}/>
                 <ClimateChangeSlider sliderItems={data.sliderItems.data} />
 
-                <ImageContainer title={data.heading_3} imageUrl={data.thirdImageUrl}
+                <ImageContainer title={data.heading_3} image={data.thirdImage}
                                 description={data.description_3} bannerItems={data.callToActions.data}/>
             </div>
         </div>
