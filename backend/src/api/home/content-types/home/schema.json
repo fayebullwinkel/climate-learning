@@ -13,12 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "headerTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "headerImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -27,21 +28,25 @@
       ]
     },
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "category": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "bannerDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "bannerImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -56,27 +61,33 @@
       "mappedBy": "home"
     },
     "bannerTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "category_2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "heading_2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description_2": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "secondBannerTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "secondBannerDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "secondBannerImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",

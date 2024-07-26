@@ -13,22 +13,28 @@
   "pluginOptions": {},
   "attributes": {
     "question": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "answer1": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "answer2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "answer3": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "correctAnswer": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "explanation": {
-      "type": "text"
+      "type": "text",
+      "required": true
     }
   }
 }

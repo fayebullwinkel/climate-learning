@@ -40,7 +40,8 @@
       "inversedBy": "campaigns"
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "location": {
       "type": "string"
@@ -52,7 +53,8 @@
       "mappedBy": "campaign"
     },
     "shortDescription": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

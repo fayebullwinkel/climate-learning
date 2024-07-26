@@ -13,12 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "bannerTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "headerImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -27,15 +28,17 @@
       ]
     },
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "secondBannerImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -44,13 +47,16 @@
       ]
     },
     "secondBannerTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "category": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "secondBannerDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "consequences": {
       "type": "relation",
@@ -65,13 +71,16 @@
       "mappedBy": "climate_change"
     },
     "category_2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "heading_2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description_2": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "consequence_slider_items": {
       "type": "relation",
@@ -92,18 +101,21 @@
       "mappedBy": "climate_change"
     },
     "category_3": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "heading_3": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description_3": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "thirdBannerImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -112,10 +124,12 @@
       ]
     },
     "sliderHeading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "sliderDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "call_to_actions": {
       "type": "relation",
@@ -130,13 +144,16 @@
       "mappedBy": "main_page_climate_change"
     },
     "quizCategory": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "quizHeading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "quizDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "quiz_questions": {
       "type": "relation",
@@ -144,13 +161,16 @@
       "target": "api::quiz-question.quiz-question"
     },
     "quizFeedbackGreat": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "quizFeedbackOk": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "quizFeedbackBad": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

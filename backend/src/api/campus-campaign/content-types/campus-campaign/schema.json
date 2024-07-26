@@ -52,16 +52,20 @@
       "mappedBy": "main_page_campus_campaign"
     },
     "filterText": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "category2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "heading2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description2": {
-      "type": "text"
+      "type": "text",
+      "required": true
     }
   }
 }

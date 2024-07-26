@@ -4,7 +4,8 @@
   "info": {
     "singularName": "call-to-action",
     "pluralName": "call-to-actions",
-    "displayName": "CallToAction"
+    "displayName": "CallToAction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,13 +13,16 @@
   "pluginOptions": {},
   "attributes": {
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "page": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "main_page_home": {
       "type": "relation",

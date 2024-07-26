@@ -15,7 +15,7 @@
     "image": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -24,7 +24,8 @@
       ]
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "datetime": {
       "type": "datetime"
@@ -33,7 +34,8 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "main_page_campus_campaign": {
       "type": "relation",
@@ -42,7 +44,8 @@
       "inversedBy": "current_campaigns"
     },
     "link": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

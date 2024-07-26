@@ -795,13 +795,14 @@ export interface ApiAdaptationMeasureAdaptationMeasure
     singularName: 'adaptation-measure';
     pluralName: 'adaptation-measures';
     displayName: 'AdaptationMeasure';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     climate_adaptation: Attribute.Relation<
       'api::adaptation-measure.adaptation-measure',
       'manyToOne',
@@ -838,9 +839,10 @@ export interface ApiAdaptationUnsealingAdaptationUnsealing
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     climate_adaptation: Attribute.Relation<
       'api::adaptation-unsealing.adaptation-unsealing',
       'manyToOne',
@@ -876,11 +878,12 @@ export interface ApiBioDiversityBioDiversity extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    bannerTitle: Attribute.String;
-    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    category: Attribute.String;
-    heading: Attribute.String;
-    description: Attribute.Text;
+    bannerTitle: Attribute.String & Attribute.Required;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    category: Attribute.String & Attribute.Required;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     image_cards: Attribute.Relation<
       'api::bio-diversity.bio-diversity',
       'oneToMany',
@@ -910,14 +913,15 @@ export interface ApiCallToActionCallToAction extends Schema.CollectionType {
     singularName: 'call-to-action';
     pluralName: 'call-to-actions';
     displayName: 'CallToAction';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    page: Attribute.String;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    page: Attribute.String & Attribute.Required;
     main_page_home: Attribute.Relation<
       'api::call-to-action.call-to-action',
       'manyToOne',
@@ -976,14 +980,14 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
       'manyToOne',
       'api::campus-campaign.campus-campaign'
     >;
-    description: Attribute.Text;
+    description: Attribute.Text & Attribute.Required;
     location: Attribute.String;
     tips: Attribute.Relation<
       'api::campaign.campaign',
       'oneToMany',
       'api::tip.tip'
     >;
-    shortDescription: Attribute.String;
+    shortDescription: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1030,10 +1034,10 @@ export interface ApiCampusCampaignCampusCampaign extends Schema.CollectionType {
       'oneToMany',
       'api::current-campaign.current-campaign'
     >;
-    filterText: Attribute.String;
-    category2: Attribute.String;
-    heading2: Attribute.String;
-    description2: Attribute.Text;
+    filterText: Attribute.String & Attribute.Required;
+    category2: Attribute.String & Attribute.Required;
+    heading2: Attribute.String & Attribute.Required;
+    description2: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1101,24 +1105,26 @@ export interface ApiClimateAdaptationClimateAdaptation
     draftAndPublish: true;
   };
   attributes: {
-    bannerTitle: Attribute.String;
-    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    category: Attribute.String;
-    heading: Attribute.String;
-    description: Attribute.Text;
-    videoTitle: Attribute.String;
-    videoDescription: Attribute.Text;
+    bannerTitle: Attribute.String & Attribute.Required;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    category: Attribute.String & Attribute.Required;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    videoTitle: Attribute.String & Attribute.Required;
+    videoDescription: Attribute.Text & Attribute.Required;
     grid_items: Attribute.Relation<
       'api::climate-adaptation.climate-adaptation',
       'oneToMany',
       'api::grid-item.grid-item'
     >;
-    heading_2: Attribute.String;
-    secondBannerTitle: Attribute.String;
-    secondBannerDescription: Attribute.Text;
+    heading_2: Attribute.String & Attribute.Required;
+    secondBannerTitle: Attribute.String & Attribute.Required;
+    secondBannerDescription: Attribute.Text & Attribute.Required;
     secondBannerImage: Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
+    > &
+      Attribute.Required;
     adaptation_measures: Attribute.Relation<
       'api::climate-adaptation.climate-adaptation',
       'oneToMany',
@@ -1129,37 +1135,38 @@ export interface ApiClimateAdaptationClimateAdaptation
       'oneToMany',
       'api::map-slider-item.map-slider-item'
     >;
-    thirdBannerTitle: Attribute.String;
-    thirdBannerDescription: Attribute.Text;
-    thirdBannerCategory: Attribute.String;
+    thirdBannerTitle: Attribute.String & Attribute.Required;
+    thirdBannerDescription: Attribute.Text & Attribute.Required;
+    thirdBannerCategory: Attribute.String & Attribute.Required;
     adaptation_unsealings: Attribute.Relation<
       'api::climate-adaptation.climate-adaptation',
       'oneToMany',
       'api::adaptation-unsealing.adaptation-unsealing'
     >;
-    fourthBannerTitle: Attribute.String;
-    fourthBannerDescription: Attribute.Text;
+    fourthBannerTitle: Attribute.String & Attribute.Required;
+    fourthBannerDescription: Attribute.Text & Attribute.Required;
     fourthBannerImage: Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
-    category_2: Attribute.String;
-    description_2: Attribute.Text;
+    > &
+      Attribute.Required;
+    category_2: Attribute.String & Attribute.Required;
+    description_2: Attribute.Text & Attribute.Required;
     call_to_actions: Attribute.Relation<
       'api::climate-adaptation.climate-adaptation',
       'oneToMany',
       'api::call-to-action.call-to-action'
     >;
-    quizCategory: Attribute.String;
-    quizHeading: Attribute.String;
-    quizDescription: Attribute.Text;
+    quizCategory: Attribute.String & Attribute.Required;
+    quizHeading: Attribute.String & Attribute.Required;
+    quizDescription: Attribute.Text & Attribute.Required;
     quiz_questions: Attribute.Relation<
       'api::climate-adaptation.climate-adaptation',
       'oneToMany',
       'api::quiz-question.quiz-question'
     >;
-    quizFeedbackGreat: Attribute.String;
-    quizFeedbackOk: Attribute.String;
-    quizFeedbackBad: Attribute.String;
+    quizFeedbackGreat: Attribute.String & Attribute.Required;
+    quizFeedbackOk: Attribute.String & Attribute.Required;
+    quizFeedbackBad: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1190,16 +1197,18 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    bannerTitle: Attribute.String;
-    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    heading: Attribute.String;
-    description: Attribute.Text;
+    bannerTitle: Attribute.String & Attribute.Required;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     secondBannerImage: Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
-    secondBannerTitle: Attribute.String;
-    category: Attribute.String;
-    secondBannerDescription: Attribute.Text;
+    > &
+      Attribute.Required;
+    secondBannerTitle: Attribute.String & Attribute.Required;
+    category: Attribute.String & Attribute.Required;
+    secondBannerDescription: Attribute.Text & Attribute.Required;
     consequences: Attribute.Relation<
       'api::climate-change.climate-change',
       'oneToMany',
@@ -1210,9 +1219,9 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::slider-item.slider-item'
     >;
-    category_2: Attribute.String;
-    heading_2: Attribute.String;
-    description_2: Attribute.Text;
+    category_2: Attribute.String & Attribute.Required;
+    heading_2: Attribute.String & Attribute.Required;
+    description_2: Attribute.Text & Attribute.Required;
     consequence_slider_items: Attribute.Relation<
       'api::climate-change.climate-change',
       'oneToMany',
@@ -1228,12 +1237,15 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::economic-consequence.economic-consequence'
     >;
-    category_3: Attribute.String;
-    heading_3: Attribute.String;
-    description_3: Attribute.Text;
-    thirdBannerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    sliderHeading: Attribute.String;
-    sliderDescription: Attribute.Text;
+    category_3: Attribute.String & Attribute.Required;
+    heading_3: Attribute.String & Attribute.Required;
+    description_3: Attribute.Text & Attribute.Required;
+    thirdBannerImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Attribute.Required;
+    sliderHeading: Attribute.String & Attribute.Required;
+    sliderDescription: Attribute.Text & Attribute.Required;
     call_to_actions: Attribute.Relation<
       'api::climate-change.climate-change',
       'oneToMany',
@@ -1244,17 +1256,17 @@ export interface ApiClimateChangeClimateChange extends Schema.CollectionType {
       'oneToMany',
       'api::image-card.image-card'
     >;
-    quizCategory: Attribute.String;
-    quizHeading: Attribute.String;
-    quizDescription: Attribute.Text;
+    quizCategory: Attribute.String & Attribute.Required;
+    quizHeading: Attribute.String & Attribute.Required;
+    quizDescription: Attribute.Text & Attribute.Required;
     quiz_questions: Attribute.Relation<
       'api::climate-change.climate-change',
       'oneToMany',
       'api::quiz-question.quiz-question'
     >;
-    quizFeedbackGreat: Attribute.String;
-    quizFeedbackOk: Attribute.String;
-    quizFeedbackBad: Attribute.String;
+    quizFeedbackGreat: Attribute.String & Attribute.Required;
+    quizFeedbackOk: Attribute.String & Attribute.Required;
+    quizFeedbackBad: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1285,8 +1297,8 @@ export interface ApiConsequenceConsequence extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     climate_change: Attribute.Relation<
       'api::consequence.consequence',
       'manyToOne',
@@ -1323,9 +1335,10 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     climate_change: Attribute.Relation<
       'api::consequence-slider-item.consequence-slider-item',
       'manyToOne',
@@ -1362,17 +1375,18 @@ export interface ApiCurrentCampaignCurrentCampaign
     draftAndPublish: true;
   };
   attributes: {
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    title: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    title: Attribute.String & Attribute.Required;
     datetime: Attribute.DateTime;
     location: Attribute.String;
-    description: Attribute.String;
+    description: Attribute.String & Attribute.Required;
     main_page_campus_campaign: Attribute.Relation<
       'api::current-campaign.current-campaign',
       'manyToOne',
       'api::campus-campaign.campus-campaign'
     >;
-    link: Attribute.String;
+    link: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1404,9 +1418,10 @@ export interface ApiEconomicConsequenceEconomicConsequence
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     climate_change: Attribute.Relation<
       'api::economic-consequence.economic-consequence',
       'manyToOne',
@@ -1442,9 +1457,10 @@ export interface ApiGridItemGridItem extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     climate_adaptation: Attribute.Relation<
       'api::grid-item.grid-item',
       'manyToOne',
@@ -1480,27 +1496,30 @@ export interface ApiHomeHome extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    headerTitle: Attribute.String;
-    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    heading: Attribute.String;
-    description: Attribute.Text;
-    category: Attribute.String;
-    bannerDescription: Attribute.Text;
-    bannerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    headerTitle: Attribute.String & Attribute.Required;
+    headerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    category: Attribute.String & Attribute.Required;
+    bannerDescription: Attribute.Text & Attribute.Required;
+    bannerImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     climate_change_reasons: Attribute.Relation<
       'api::home.home',
       'oneToMany',
       'api::reason.reason'
     >;
-    bannerTitle: Attribute.String;
-    category_2: Attribute.String;
-    heading_2: Attribute.String;
-    description_2: Attribute.Text;
-    secondBannerTitle: Attribute.String;
-    secondBannerDescription: Attribute.Text;
+    bannerTitle: Attribute.String & Attribute.Required;
+    category_2: Attribute.String & Attribute.Required;
+    heading_2: Attribute.String & Attribute.Required;
+    description_2: Attribute.Text & Attribute.Required;
+    secondBannerTitle: Attribute.String & Attribute.Required;
+    secondBannerDescription: Attribute.Text & Attribute.Required;
     secondBannerImage: Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
+    > &
+      Attribute.Required;
     call_to_actions: Attribute.Relation<
       'api::home.home',
       'oneToMany',
@@ -1528,10 +1547,11 @@ export interface ApiImageCardImageCard extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    heading: Attribute.String;
-    description: Attribute.Text;
-    link: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    link: Attribute.String & Attribute.Required;
     main_page_climate_change: Attribute.Relation<
       'api::image-card.image-card',
       'manyToOne',
@@ -1566,13 +1586,14 @@ export interface ApiMapSliderItemMapSliderItem extends Schema.CollectionType {
     singularName: 'map-slider-item';
     pluralName: 'map-slider-items';
     displayName: 'MapSliderItem';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     climate_adaptation: Attribute.Relation<
       'api::map-slider-item.map-slider-item',
       'manyToOne',
@@ -1608,10 +1629,11 @@ export interface ApiPagePage extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
-    route: Attribute.String;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    route: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     page_sections: Attribute.Relation<
       'api::page.page',
       'oneToMany',
@@ -1639,8 +1661,8 @@ export interface ApiPageSectionPageSection extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    menuName: Attribute.String;
-    oneWordHashtag: Attribute.String;
+    menuName: Attribute.String & Attribute.Required;
+    oneWordHashtag: Attribute.String & Attribute.Required;
     page: Attribute.Relation<
       'api::page-section.page-section',
       'manyToOne',
@@ -1676,12 +1698,12 @@ export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    question: Attribute.String;
-    answer1: Attribute.String;
-    answer2: Attribute.String;
-    answer3: Attribute.String;
-    correctAnswer: Attribute.Integer;
-    explanation: Attribute.Text;
+    question: Attribute.String & Attribute.Required;
+    answer1: Attribute.String & Attribute.Required;
+    answer2: Attribute.String & Attribute.Required;
+    answer3: Attribute.String & Attribute.Required;
+    correctAnswer: Attribute.Integer & Attribute.Required;
+    explanation: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1712,8 +1734,8 @@ export interface ApiReasonReason extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     home: Attribute.Relation<
       'api::reason.reason',
       'manyToOne',
@@ -1749,8 +1771,8 @@ export interface ApiSliderItemSliderItem extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     climate_change: Attribute.Relation<
       'api::slider-item.slider-item',
       'manyToOne',
@@ -1787,9 +1809,10 @@ export interface ApiSocialConsequenceSocialConsequence
     draftAndPublish: true;
   };
   attributes: {
-    heading: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     climate_change: Attribute.Relation<
       'api::social-consequence.social-consequence',
       'manyToOne',
@@ -1825,8 +1848,8 @@ export interface ApiTipTip extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     campaign: Attribute.Relation<
       'api::tip.tip',
       'manyToOne',

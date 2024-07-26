@@ -4,7 +4,8 @@
   "info": {
     "singularName": "map-slider-item",
     "pluralName": "map-slider-items",
-    "displayName": "MapSliderItem"
+    "displayName": "MapSliderItem",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "climate_adaptation": {
       "type": "relation",
