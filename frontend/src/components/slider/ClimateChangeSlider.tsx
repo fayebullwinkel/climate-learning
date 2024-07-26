@@ -1,8 +1,8 @@
 import Slider from "react-slick";
 import { Co2Clock, StatistaGraph, TemperatureChart } from "./";
 import React from "react";
-import { SliderItem } from '@/types';
-import '../../css/slider/ClimateChangeSlider.css';
+import { SliderItem } from "@/types";
+import "../../css/slider/ClimateChangeSlider.css";
 
 interface ClimateChangeProps {
     sliderItems: SliderItem[];
@@ -28,12 +28,12 @@ const ClimateChangeSlider: React.FC<ClimateChangeProps> = ({ sliderItems}) => {
     };
 
     const paragraphStyle: React.CSSProperties = {
-        width: window.innerWidth <= 768 ? '95%' : 'auto',
+        width: window.innerWidth <= 768 ? "95%" : "auto",
     }
 
     return (
-        <div className='slider-container'>
-            <div className='custom-slider'>
+        <div className="slider-container">
+            <div className="custom-slider">
                 <Slider {...sliderSettings}>
                     <div>
                         <h2>{sliderItems[0].attributes.heading}</h2>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Question } from '@/types';
+import React, { useState } from "react";
+import { Question } from "@/types";
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Button from "@mui/material/Button";
-import '../../css/container/Quiz.css';
+import "../../css/container/Quiz.css";
 
 interface QuizProps {
     question: Question;
@@ -42,9 +42,9 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast, onAnswerCorrect, on
                     <RadioGroup
                         aria-label="quiz"
                         name="quiz"
-                        value={selectedAnswer?.toString() ?? ''}
+                        value={selectedAnswer?.toString() ?? ""}
                         onChange={handleAnswerChange}
-                        className='centered'
+                        className="centered"
                     >
                         {question.answers.map((answer, index) => (
                             <FormControlLabel
@@ -53,7 +53,7 @@ const Quiz: React.FC<QuizProps> = ({ question, triggerToast, onAnswerCorrect, on
                                 control={<Radio />}
                                 label={<span className="quiz-answer">{answer}</span>}
                                 disabled={submitted }
-                                className={submitted && index === question.correctAnswer ? 'correct-answer' : ''}
+                                className={submitted && index === question.correctAnswer ? "correct-answer" : ""}
                             />
                         ))}
                     </RadioGroup>

@@ -1,6 +1,6 @@
-import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
-import temperatureData from '../../assets/temperatureData.json';
+import React from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from "recharts";
+import temperatureData from "../../assets/temperatureData.json";
 
 const TemperatureChart = () => {
     return (
@@ -12,7 +12,7 @@ const TemperatureChart = () => {
                         <Label value="Jahr" offset={-15} position="insideBottom" />
                     </XAxis>
                     <YAxis>
-                        <Label value="Temperaturanomalie (°C)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
+                        <Label value="Temperaturanomalie (°C)" angle={-90} position="insideLeft" style={{ textAnchor: "middle" }} />
                     </YAxis>
                     <Tooltip />
                     <Legend verticalAlign="top" wrapperStyle={{ marginBottom: 10, marginTop: -10 }}/>

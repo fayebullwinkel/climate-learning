@@ -1,8 +1,8 @@
 import Slider from "react-slick";
 import React from "react";
-import { SliderItem } from '@/types';
+import { SliderItem } from "@/types";
 import { FlipCard } from "../container";
-import '../../css/slider/FlipCardSlider.css';
+import "../../css/slider/FlipCardSlider.css";
 
 interface ConsequencesProps {
     sliderItems: SliderItem[];
@@ -28,7 +28,7 @@ const ConsequencesSlider: React.FC<ConsequencesProps> = ({ sliderItems }) => {
     };
 
     return (
-        <div className='flipCardContainer'>
+        <div className="flipCardContainer">
             <Slider {...sliderSettings}>
                 {sliderItems.map((item, index) => (
                     <div key={index}>

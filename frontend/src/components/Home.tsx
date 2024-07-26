@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Home as HomeType} from '@/types';
+import {Home as HomeType} from "@/types";
 import {Card, ColorContainer, ImageContainer} from "./container";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,9 +16,9 @@ function Home() {
         const fetchData = async () => {
             try {
                 const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/homes/1?populate=*,headerImage, bannerImage, secondBannerImage, climate_change_reasons, page_sections, page_sections.image, call_to_actions`);
-                if (!climateResponse.ok) throw new Error('Network response was not ok');
+                if (!climateResponse.ok) throw new Error("Network response was not ok");
                 const climateData = await climateResponse.json();
-                if (!climateData.data) throw new Error('No climate change data available');
+                if (!climateData.data) throw new Error("No climate change data available");
                 const formattedData: HomeType = formatHomeData(climateData.data);
                 setData(formattedData);
             } catch (error) {
@@ -61,24 +61,24 @@ function Home() {
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
-        justifyContent: 'center',
-        gap: '20px'
+        justifyContent: "center",
+        gap: "20px"
     };
 
     return (
         <div className="page-container">
             <ImageContainer title={data.headerTitle} image={data.headerImage} showButton={false} />
             <ColorContainer category={data.category} heading={data.heading} description={data.description}
-                            color={'#F7FbF1'}/>
+                            color={"#F7FbF1"}/>
             <ImageContainer title={data.bannerTitle} image={data.bannerImage}
                             description={data.bannerDescription} bannerItems={data.reasons.data} showButton={false}/>
-            <div style={{backgroundColor: '#F7FbF1'}}>
+            <div style={{backgroundColor: "#F7FbF1"}}>
                 <ColorContainer category={data.category_2} heading={data.heading_2} description={data.description_2}
-                                color={'#F7FbF1'}/>
+                                color={"#F7FbF1"}/>
                 <div>
                     <div style={dynamicImageCardsStyle}>
                         {pages
-                            .filter(page => page.title !== 'Biodiversität')
+                            .filter(page => page.title !== "Biodiversität")
                             .map((page, index) =>
                                 page.image.data && (
                                     <Card

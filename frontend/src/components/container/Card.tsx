@@ -1,8 +1,8 @@
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import React from "react";
+import {useNavigate} from "react-router-dom";
 import Button from "@mui/material/Button";
-import '../../css/container/Card.css';
-import {usePages} from '../../utils';
+import "../../css/container/Card.css";
+import {usePages} from "../../utils";
 import useHover from "../utils";
 import {Image} from "@/types";
 
@@ -51,28 +51,28 @@ const Card: React.FC<CardProps> = ({
         width: window.innerWidth <= 768 ? "100%" : "30%",
     };
 
-    const dateDisplay = date && date.includes(':')
+    const dateDisplay = date && date.includes(":")
         ? `${date} Uhr`
         : date;
 
     return (
-        <div style={cardStyle} className='custom-card' onClick={() => {
+        <div style={cardStyle} className="custom-card" onClick={() => {
             if (!external && !section) openCampaignPage();
         }}>
             <div>
                 <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
                     {showCredits && (
                         <div style={{
-                            position: 'fixed',
+                            position: "fixed",
                             top: `${mousePosition.y + 10}px`,
                             left: `${mousePosition.x + 10}px`,
-                            backgroundColor: '#F7FbF1',
-                            color: 'grey',
-                            padding: '5px',
-                            borderRadius: '3px',
-                            boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+                            backgroundColor: "#F7FbF1",
+                            color: "grey",
+                            padding: "5px",
+                            borderRadius: "3px",
+                            boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
                             zIndex: 3,
-                            fontSize: '12px'
+                            fontSize: "12px"
                         }}>
                             ©{image.data.attributes.caption}
                         </div>
@@ -80,18 +80,18 @@ const Card: React.FC<CardProps> = ({
                     <img
                         src={`${process.env.REACT_APP_BACKEND}${image.data.attributes.url}`}
                         alt="Thematisch passendes Bild"
-                        className='image-card'
+                        className="image-card"
                     />
                 </div>
                 <h3>{heading}</h3>
                 {date && <p>{dateDisplay}</p>}
                 {location && <p>{location}</p>}
-                {description && <p className='card-description'>{description}</p>}
+                {description && <p className="card-description">{description}</p>}
                 <Button
                     variant="contained"
                     onClick={openLink}
                     size="small"
-                    className='custom-button'
+                    className="custom-button"
                 >
                     {external || section ? "Mehr erfahren" : "Zur Aktion"}
                 </Button>

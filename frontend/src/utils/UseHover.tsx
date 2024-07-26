@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const UseHover = (delay: number = 300) => {
     const [hovered, setHovered] = useState<boolean>(false);

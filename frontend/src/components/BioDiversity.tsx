@@ -18,9 +18,9 @@ function BioDiversity() {
         const fetchData = async () => {
             try {
                 const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/bio-diversities/1?populate=*,headerImage,image_cards.image`);
-                if (!climateResponse.ok) throw new Error('Network response was not ok');
+                if (!climateResponse.ok) throw new Error("Network response was not ok");
                 const climateData = await climateResponse.json();
-                if (!climateData.data) throw new Error('No climate change data available');
+                if (!climateData.data) throw new Error("No climate change data available");
                 const formattedData: BioDiversityType = formatData(climateData.data);
                 setData(formattedData);
             } catch (error) {
@@ -34,10 +34,10 @@ function BioDiversity() {
             setImageCardsStyle(getImageCardsStyle());
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 

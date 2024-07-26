@@ -20,9 +20,9 @@ function ClimateAdaptation() {
         const fetchData = async () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-adaptations/1?populate=*,grid_items.image, headerImage, secondBannerImage, adaptation_measures, map_slider_items, adaptation_unsealings.image, fourthBannerImage, call_to_actions, quiz_questions`);
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) throw new Error("Network response was not ok");
                 const climateAdaptationData = await response.json();
-                if (!climateAdaptationData.data) throw new Error('No climate adaptation data available');
+                if (!climateAdaptationData.data) throw new Error("No climate adaptation data available");
                 const formattedData: ClimateAdaptationType = formatClimateAdaptationData(climateAdaptationData.data);
                 setData(formattedData);
                 setQuestions(formatQuestions(climateAdaptationData.data.attributes.quiz_questions.data));

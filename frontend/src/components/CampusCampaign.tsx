@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {Campaign, CampusCampaign as CampusCampaignType, Category} from "@/types";
 import { Card, ColorContainer, ImageContainer } from "../components/container";
-import {CategoryCheckboxGroup, getImageCardsStyle} from './';
+import {CategoryCheckboxGroup, getImageCardsStyle} from "./";
 
 const formatCampaignData = (campaign: any): Campaign => ({
     id: campaign.id,
     image: campaign.attributes.image,
     title: campaign.attributes.title,
     date: campaign.attributes.datetime ? new Date(campaign.attributes.datetime).toLocaleString(undefined, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
     }) : undefined,
     shortDescription: campaign.attributes.shortDescription ?? undefined,
     description: campaign.attributes.description ?? undefined,
@@ -50,9 +50,9 @@ function CampusCampaign() {
         const fetchData = async () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/campus-campaigns/1?populate=*,headerImage,campaigns.image,campaigns.campaign_categories, current_campaigns.image`);
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) throw new Error("Network response was not ok");
                 const campusCampaignData = await response.json();
-                if (!campusCampaignData.data) throw new Error('No climate adaptation data available');
+                if (!campusCampaignData.data) throw new Error("No climate adaptation data available");
 
                 const formattedCampaigns: Campaign[] = campusCampaignData.data.attributes.campaigns.data.map(formatCampaignData);
                 const formattedCurrentCampaigns: Campaign[] = campusCampaignData.data.attributes.current_campaigns.data.map(formatCampaignData);
@@ -83,10 +83,10 @@ function CampusCampaign() {
             setImageCardsStyle(getImageCardsStyle());
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -110,8 +110,8 @@ function CampusCampaign() {
 
     const dynamicImageCardsStyle: React.CSSProperties = {
         ...imageCardsStyle,
-        justifyContent: filteredCampaigns.length === 2 ? 'left' : 'space-between',
-        gap: '20px'
+        justifyContent: filteredCampaigns.length === 2 ? "left" : "space-between",
+        gap: "20px"
     };
 
     return (

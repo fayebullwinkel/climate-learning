@@ -1,23 +1,23 @@
-import * as React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 import { Grid } from "@mui/material";
-import { useMediaQuery } from 'react-responsive';
-import '../css/NavigationMenu.css';
+import { useMediaQuery } from "react-responsive";
+import "../css/NavigationMenu.css";
 import {usePages} from "../utils";
 
 function NavigationMenu() {
-    const [logoUrl, setLogoUrl] = React.useState<string>('');
+    const [logoUrl, setLogoUrl] = React.useState<string>("");
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const pages = usePages();
 
@@ -29,10 +29,10 @@ function NavigationMenu() {
                     const url = await response.url;
                     setLogoUrl(url);
                 } else {
-                    console.error('Failed to fetch logo:', response.statusText);
+                    console.error("Failed to fetch logo:", response.statusText);
                 }
             } catch (error) {
-                console.error('Error fetching logo:', error);
+                console.error("Error fetching logo:", error);
             }
         };
 
@@ -43,7 +43,7 @@ function NavigationMenu() {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
+        if (event.type === "keydown" && ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")) {
             return;
         }
         setDrawerOpen(open);
@@ -51,7 +51,7 @@ function NavigationMenu() {
 
     const renderMenuItems = () => (
         pages
-            .filter(page => page.title !== 'Biodiversität')
+            .filter(page => page.title !== "Biodiversität")
             .map((page, index) => (
             <Button
                 key={index}
@@ -60,7 +60,7 @@ function NavigationMenu() {
                 to={page.route}
                 sx={{
                     mx: 1,
-                    fontWeight: location.pathname === page.route ? 'bold' : 'normal'
+                    fontWeight: location.pathname === page.route ? "bold" : "normal"
                 }}
             >
                 {page.title}
@@ -82,9 +82,9 @@ function NavigationMenu() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
                 position="fixed"
-                sx={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}
+                sx={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)" }}
             >
-                <Toolbar sx={{ minHeight: 100 }} className='customMainMenu'>
+                <Toolbar sx={{ minHeight: 100 }} className="customMainMenu">
                     <IconButton
                         size="large"
                         edge="start"
@@ -92,7 +92,7 @@ function NavigationMenu() {
                         aria-label="menu"
                         component={Link}
                         to="/"
-                        sx={{ mr: 2, position: 'absolute',  "&:hover": { backgroundColor: "transparent" }}}
+                        sx={{ mr: 2, position: "absolute",  "&:hover": { backgroundColor: "transparent" }}}
                         disableRipple
                     >
                         {logoUrl ? (
@@ -100,9 +100,9 @@ function NavigationMenu() {
                                 src={logoUrl}
                                 alt="logo"
                                 style={{
-                                    width: 'auto',
-                                    height: isMobile? '50px' : '70px',
-                                    objectFit: 'contain'
+                                    width: "auto",
+                                    height: isMobile? "50px" : "70px",
+                                    objectFit: "contain"
                                 }}
                             />
                         ) : (

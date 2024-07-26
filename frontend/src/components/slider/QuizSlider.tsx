@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Slider from "react-slick";
-import { Question } from '@/types';
+import { Question } from "@/types";
 import { Quiz } from "../../components/container";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '../../css/Shared.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../css/Shared.css";
 
 interface QuizSliderProps {
     questions: Question[];
@@ -40,7 +40,7 @@ const QuizSlider: React.FC<QuizSliderProps> = ({ questions, feedbacks }) => {
     };
 
     return (
-        <div className='default-container' style={{marginBottom: '20px'}}>
+        <div className="default-container" style={{marginBottom: "20px"}}>
             <ToastContainer position="bottom-right" />
             <Slider {...sliderSettings}>
                 {questions.map((question, index) => (

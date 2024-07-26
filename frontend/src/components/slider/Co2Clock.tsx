@@ -22,7 +22,7 @@ const Co2Clock: React.FC = () => {
                         https://www.mcc-berlin.net/en/research/co2-budget.html
                     </a>
                     ),<br />
-                    Übersetzung: Martin Auer,{' '}
+                    Übersetzung: Martin Auer,{" "}
                     <a
                         href="https://at.scientists4future.org"
                         target="_blank"

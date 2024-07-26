@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
-import { Campaign } from '@/types';
-import '../css/CampaignPage.css';
+import React, { useEffect, useState } from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import { Campaign } from "@/types";
+import "../css/CampaignPage.css";
 import Button from "@mui/material/Button";
 import {usePages} from "../utils";
 import useHover from "./utils";
@@ -22,9 +22,9 @@ const CampaignPage: React.FC = () => {
         const fetchCampaignData = async () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/campaigns/${id}?populate=*`);
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) throw new Error("Network response was not ok");
                 const campaignData = await response.json();
-                if (!campaignData.data) throw new Error('Campaign data not found');
+                if (!campaignData.data) throw new Error("Campaign data not found");
 
                 const attributes = campaignData.data.attributes;
 
@@ -33,11 +33,11 @@ const CampaignPage: React.FC = () => {
                     image: attributes.image,
                     title: attributes.title,
                     date: attributes.datetime ? new Date(attributes.datetime).toLocaleString(undefined, {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit'
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit"
                     }) : undefined,
                     categories: attributes.campaign_categories.data.map((cat: any) => ({
                         id: cat.id,
@@ -65,29 +65,29 @@ const CampaignPage: React.FC = () => {
         return <div>Loading...</div>;
     }
 
-    const categoriesString = campaign.categories.map(category => category.value).join(' • ');
+    const categoriesString = campaign.categories.map(category => category.value).join(" • ");
 
-    const dateDisplay = campaign.date && campaign.date.includes(':')
+    const dateDisplay = campaign.date && campaign.date.includes(":")
         ? `${campaign.date} Uhr`
         : campaign.date;
 
     return (
-        <div className='campaignPageContent'>
+        <div className="campaignPageContent">
             <p>{categoriesString}</p>
             <h2>{campaign.title}</h2>
             <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
                 {showCredits && (
                     <div style={{
-                        position: 'fixed',
+                        position: "fixed",
                         top: `${mousePosition.y + 10}px`,
                         left: `${mousePosition.x + 10}px`,
-                        backgroundColor: '#F7FbF1',
-                        color: 'grey',
-                        padding: '5px',
-                        borderRadius: '3px',
-                        boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+                        backgroundColor: "#F7FbF1",
+                        color: "grey",
+                        padding: "5px",
+                        borderRadius: "3px",
+                        boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
                         zIndex: 3,
-                        fontSize: '12px'
+                        fontSize: "12px"
                     }}>
                         ©{campaign.image.data.attributes.caption}
                     </div>
@@ -105,7 +105,7 @@ const CampaignPage: React.FC = () => {
                     <h2>Tipps</h2>
                         {campaign.tips.map((tip) => (
                             <div>
-                                <h3 style={{color: '#87966B'}}>{tip.attributes.title}</h3>
+                                <h3 style={{color: "#87966B"}}>{tip.attributes.title}</h3>
                                 <p>{tip.attributes.description}</p>
                             </div>
                         ))}

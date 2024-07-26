@@ -1,8 +1,8 @@
 import Slider from "react-slick";
 import React from "react";
-import { SliderItem } from '@/types';
+import { SliderItem } from "@/types";
 import { FlipCard } from "../container";
-import '../../css/slider/FlipCardSlider.css';
+import "../../css/slider/FlipCardSlider.css";
 
 interface AdaptationProps {
     sliderItems: SliderItem[];
@@ -27,7 +27,7 @@ const AdaptationSlider: React.FC<AdaptationProps> = ({ sliderItems }) => {
     };
 
     return (
-        <div className='flipCardContainer adaptationHTWContent'>
+        <div className="flipCardContainer adaptationHTWContent">
             <Slider {...sliderSettings}>
                 {sliderItems.map((item, index) => (
                     <div key={index}>

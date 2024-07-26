@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Page as PageType } from '@/types';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { Page as PageType } from "@/types";
 
 interface PagesProviderProps {
     children: ReactNode;
@@ -20,13 +20,13 @@ export const PagesProvider = ({ children }: PagesProviderProps) => {
                 const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/pages?populate=*`);
                 if (response.ok) {
                     const data = await response.json();
-                    if (!data.data) throw new Error('No page data available');
+                    if (!data.data) throw new Error("No page data available");
                     const formattedPages: PageType[] = data.data.map((page: any) => formatPageData(page));
 
                     console.log("formatted pages ", formattedPages);
                     setPages(formattedPages);
                 } else {
-                    throw new Error('Failed to fetch page titles: ' + response.statusText);
+                    throw new Error("Failed to fetch page titles: " + response.statusText);
                 }
             } catch (error: any) {
                 setError(error.message);

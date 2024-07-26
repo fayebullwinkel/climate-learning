@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useLocation } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import { useLocation } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import { usePages } from "../utils";
 
 function SectionMenu() {
@@ -20,7 +20,7 @@ function SectionMenu() {
     };
 
     return (
-        <Box sx={{ flexGrow: 1, marginTop: '100px' }}>
+        <Box sx={{ flexGrow: 1, marginTop: "100px" }}>
             <Toolbar sx={{ minHeight: 100 }}>
                 <Grid container alignItems="center" justifyContent={isMobile ? "flex-end" : "center"}>
                     {!isMobile && pages.map(page => (

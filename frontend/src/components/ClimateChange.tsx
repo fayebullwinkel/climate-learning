@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {ClimateChangeSlider, QuizSlider} from "./slider";
-import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCard, Question} from '@/types';
+import {AccordionData, AccordionItem, ClimateChange as ClimateChangeType, ImageCard, Question} from "@/types";
 import { ColorContainer, ImageContainer, Card, CustomAccordion } from "./container";
 import {formatQuestions, SectionMenu} from "./";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getImageCardsStyle } from './';
+import { getImageCardsStyle } from "./";
 import {useMediaQuery} from "react-responsive";
 import {usePages} from "../utils";
 
@@ -25,9 +25,9 @@ function ClimateChange() {
         const fetchData = async () => {
             try {
                 const climateResponse = await fetch(`${process.env.REACT_APP_BACKEND}/api/climate-changes/1?populate=*,headerImage, introductionBannerImage, secondBannerImage, climate_change_reasons, consequences, call_to_actions, slider_items,consequence_slider_items.image,social_consequences,social_consequences.image,economic_consequences,economic_consequences.image, thirdBannerImage, image_cards.image, quiz_questions`);
-                if (!climateResponse.ok) throw new Error('Network response was not ok');
+                if (!climateResponse.ok) throw new Error("Network response was not ok");
                 const climateData = await climateResponse.json();
-                if (!climateData.data) throw new Error('No climate change data available');
+                if (!climateData.data) throw new Error("No climate change data available");
 
                 const formattedData: ClimateChangeType = formatClimateData(climateData.data);
                 setData(formattedData);
@@ -37,7 +37,7 @@ function ClimateChange() {
                     economicConsequencesSliderItems: formattedData.economicConsequences.data
                 });
                 setQuestions(formatQuestions(climateData.data.attributes.quiz_questions.data));
-                console.log('looking ', climateData.data.attributes);
+                console.log("looking ", climateData.data.attributes);
                 setFeedbacks([climateData.data.attributes.quizFeedbackGreat, climateData.data.attributes.quizFeedbackOk, climateData.data.attributes.quizFeedbackBad]);
             } catch (error) {
                 setError((error as Error).message);
@@ -50,10 +50,10 @@ function ClimateChange() {
             setImageCardsStyle(getImageCardsStyle());
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -91,9 +91,9 @@ function ClimateChange() {
     };
 
     const accordionItems: AccordionItem[] = [
-        { title: 'Natürliche Folgen', dataKey: 'naturalConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
-        { title: 'Gesellschaftliche Gefahren', dataKey: 'socialConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
-        { title: 'Wirtschaftliche Gefahren', dataKey: 'economicConsequencesSliderItems', link: 'https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen' },
+        { title: "Natürliche Folgen", dataKey: "naturalConsequencesSliderItems", link: "https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen" },
+        { title: "Gesellschaftliche Gefahren", dataKey: "socialConsequencesSliderItems", link: "https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen" },
+        { title: "Wirtschaftliche Gefahren", dataKey: "economicConsequencesSliderItems", link: "https://climate.ec.europa.eu/climate-change/consequences-climate-change_de#territoriale-bedrohungen" },
     ];
 
     if (error) {

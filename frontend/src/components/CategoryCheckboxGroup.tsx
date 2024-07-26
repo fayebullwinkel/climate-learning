@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Chip from '@mui/material/Chip';
-import CloseIcon from '@mui/icons-material/Close';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
+import React, { useState, useEffect } from "react";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Chip from "@mui/material/Chip";
+import CloseIcon from "@mui/icons-material/Close";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
 import { Category } from "@/types";
-import '../css/container/CategoryCheckboxGroup.css';
+import "../css/container/CategoryCheckboxGroup.css";
 
 interface CategoryCheckboxGroupProps {
     categories: Category[];
@@ -45,7 +45,7 @@ const CategoryCheckboxGroup: React.FC<CategoryCheckboxGroupProps> = ({ categorie
                     value={selectedCategories.map(cat => cat.id)}
                     onChange={handleCategoryChange}
                     renderValue={() => (
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                             {selectedCategories.map((cat) => (
                                 <Chip
                                     key={cat.id}

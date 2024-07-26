@@ -1,5 +1,5 @@
 import {GridItem, Image, SliderItem} from "@/types";
-import {Mixed} from './';
+import {Mixed} from "./";
 export interface ClimateAdaptation {
     id: number;
     bannerTitle: string;

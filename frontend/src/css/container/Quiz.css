@@ -9,13 +9,13 @@
 .quiz-question {
     text-align: left;
     margin-bottom: 20px !important;
-    font-family: 'HTWBerlinOffice', sans-serif;
+    font-family: "HTWBerlinOffice", sans-serif;
     font-size: 1.3rem;
 
 }
 
 .quiz-answer {
-    font-family: 'HTWBerlinOffice', sans-serif;
+    font-family: "HTWBerlinOffice", sans-serif;
     font-size: 1.3rem;
 }
 
