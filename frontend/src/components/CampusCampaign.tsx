@@ -49,7 +49,7 @@ function CampusCampaign() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/campus-campaigns/1?populate=*,headerImage,campaigns.image,campaigns.campaign_categories, current_campaigns.image`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/campus-campaigns/1?populate=*,headerImage, campaigns, campaigns.image, campaigns.campaign_categories, current_campaigns, current_campaigns.image, current_campaigns.campaign_categories`);
                 if (!response.ok) throw new Error("Network response was not ok");
                 const campusCampaignData = await response.json();
                 if (!campusCampaignData.data) throw new Error("No climate adaptation data available");
@@ -124,11 +124,11 @@ function CampusCampaign() {
                         data.currentCampaigns.map((currentCampaign: Campaign) => (
                             <Card key={currentCampaign.id} image={currentCampaign.image}
                                   heading={currentCampaign.title}
-                                  description={currentCampaign.description}
+                                  description={currentCampaign.shortDescription}
                                   location={currentCampaign.location}
                                   link={currentCampaign.link}
-                                  external={true}
                                   date={currentCampaign.date}
+                                  campaignId={currentCampaign.id}
                             />
                         ))
                     }

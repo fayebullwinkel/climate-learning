@@ -4,7 +4,7 @@
   "info": {
     "singularName": "campaign",
     "pluralName": "campaigns",
-    "displayName": "CampaignPast",
+    "displayName": "Campaign",
     "description": ""
   },
   "options": {
@@ -41,7 +41,7 @@
     },
     "description": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "location": {
       "type": "string"
@@ -55,6 +55,18 @@
     "shortDescription": {
       "type": "string",
       "required": true
+    },
+    "datetime": {
+      "type": "datetime"
+    },
+    "link": {
+      "type": "string"
+    },
+    "main_page_campus_campaign_current": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::campus-campaign.campus-campaign",
+      "inversedBy": "current_campaigns"
     }
   }
 }

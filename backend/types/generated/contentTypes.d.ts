@@ -960,7 +960,7 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
   info: {
     singularName: 'campaign';
     pluralName: 'campaigns';
-    displayName: 'CampaignPast';
+    displayName: 'Campaign';
     description: '';
   };
   options: {
@@ -980,7 +980,7 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
       'manyToOne',
       'api::campus-campaign.campus-campaign'
     >;
-    description: Attribute.Text & Attribute.Required;
+    description: Attribute.Text;
     location: Attribute.String;
     tips: Attribute.Relation<
       'api::campaign.campaign',
@@ -988,6 +988,13 @@ export interface ApiCampaignCampaign extends Schema.CollectionType {
       'api::tip.tip'
     >;
     shortDescription: Attribute.String & Attribute.Required;
+    datetime: Attribute.DateTime;
+    link: Attribute.String;
+    main_page_campus_campaign_current: Attribute.Relation<
+      'api::campaign.campaign',
+      'manyToOne',
+      'api::campus-campaign.campus-campaign'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1029,15 +1036,15 @@ export interface ApiCampusCampaignCampusCampaign extends Schema.CollectionType {
       'oneToMany',
       'api::campaign.campaign'
     >;
-    current_campaigns: Attribute.Relation<
-      'api::campus-campaign.campus-campaign',
-      'oneToMany',
-      'api::current-campaign.current-campaign'
-    >;
     filterText: Attribute.String & Attribute.Required;
     category2: Attribute.String & Attribute.Required;
     heading2: Attribute.String & Attribute.Required;
     description2: Attribute.Text & Attribute.Required;
+    current_campaigns: Attribute.Relation<
+      'api::campus-campaign.campus-campaign',
+      'oneToMany',
+      'api::campaign.campaign'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1355,49 +1362,6 @@ export interface ApiConsequenceSliderItemConsequenceSliderItem
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::consequence-slider-item.consequence-slider-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCurrentCampaignCurrentCampaign
-  extends Schema.CollectionType {
-  collectionName: 'current_campaigns';
-  info: {
-    singularName: 'current-campaign';
-    pluralName: 'current-campaigns';
-    displayName: 'CampaignCurrent';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Attribute.Required;
-    title: Attribute.String & Attribute.Required;
-    datetime: Attribute.DateTime;
-    location: Attribute.String;
-    description: Attribute.String & Attribute.Required;
-    main_page_campus_campaign: Attribute.Relation<
-      'api::current-campaign.current-campaign',
-      'manyToOne',
-      'api::campus-campaign.campus-campaign'
-    >;
-    link: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::current-campaign.current-campaign',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::current-campaign.current-campaign',
       'oneToOne',
       'admin::user'
     > &
@@ -1894,7 +1858,6 @@ declare module '@strapi/types' {
       'api::climate-change.climate-change': ApiClimateChangeClimateChange;
       'api::consequence.consequence': ApiConsequenceConsequence;
       'api::consequence-slider-item.consequence-slider-item': ApiConsequenceSliderItemConsequenceSliderItem;
-      'api::current-campaign.current-campaign': ApiCurrentCampaignCurrentCampaign;
       'api::economic-consequence.economic-consequence': ApiEconomicConsequenceEconomicConsequence;
       'api::grid-item.grid-item': ApiGridItemGridItem;
       'api::home.home': ApiHomeHome;

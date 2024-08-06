@@ -78,7 +78,6 @@ function Home() {
                 <div>
                     <div style={dynamicImageCardsStyle}>
                         {pages
-                            .filter(page => page.title !== "Biodiversität")
                             .map((page, index) =>
                                 page.image.data && (
                                     <Card

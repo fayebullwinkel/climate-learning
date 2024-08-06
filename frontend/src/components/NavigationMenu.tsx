@@ -51,7 +51,6 @@ function NavigationMenu() {
 
     const renderMenuItems = () => (
         pages
-            .filter(page => page.title !== "Biodiversität")
             .map((page, index) => (
             <Button
                 key={index}

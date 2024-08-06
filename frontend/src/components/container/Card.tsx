@@ -40,6 +40,8 @@ const Card: React.FC<CardProps> = ({
     const openLink = () => {
         if (external && link) {
             window.open(link, "_blank", "noopener noreferrer");
+        } else if (link && link !== undefined) {
+            window.open(link, "_blank", "noopener noreferrer");
         } else if (section && link) {
             window.location.href = link;
         } else {
@@ -57,7 +59,7 @@ const Card: React.FC<CardProps> = ({
 
     return (
         <div style={cardStyle} className="custom-card" onClick={() => {
-            if (!external && !section) openCampaignPage();
+            if (!external && !section && link === undefined) openCampaignPage();
         }}>
             <div>
                 <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
@@ -93,7 +95,7 @@ const Card: React.FC<CardProps> = ({
                     size="small"
                     className="custom-button"
                 >
-                    {external || section ? "Mehr erfahren" : "Zur Aktion"}
+                    {link !== undefined ||external || section ? "Mehr erfahren" : "Zur Aktion"}
                 </Button>
             </div>
         </div>
